@@ -3,25 +3,25 @@
 ## Table of Contents  
 
 1. [문서 개요](#1)  
-  1.1. [목적](#1.1)  
-  1.2. [범위](#1.2)  
-  1.3. [참고자료](#1.3)  
+    1.1. [목적](#1.1)  
+    1.2. [범위](#1.2)  
+    1.3. [참고자료](#1.3)  
 
 2. [PaaS-TA AP Portal API 설치](#2)  
-  2.1. [Prerequisite](#2.1)   
-  2.2. [Stemcell 확인](#2.2)    
-  2.3. [Deployment 다운로드](#2.3)   
-  2.4. [Deployment 파일 수정](#2.4)  
-  2.5. [서비스 설치](#2.5)    
-  2.6. [서비스 설치 확인](#2.6)  
+    2.1. [Prerequisite](#2.1)   
+    2.2. [Stemcell 확인](#2.2)    
+    2.3. [Deployment 다운로드](#2.3)   
+    2.4. [Deployment 파일 수정](#2.4)  
+    2.5. [서비스 설치](#2.5)    
+    2.6. [서비스 설치 확인](#2.6)  
 
 3. [PaaS-TA AP Portal 운영](#3)  
-  3.1. [사용자의 조직 생성 Flag 활성화](#3.1)  
-  3.2. [사용자포탈 UAA 페이지 오류](#3.2)  
-  3.3. [운영자포탈 유저 페이지 조회 오류](#3.3)  
-  3.4. [DB Migration](#3.4)  
-  3.5. [Log](#3.5)  
-  3.6. [카탈로그 적용](#3.6)  
+    3.1. [사용자의 조직 생성 Flag 활성화](#3.1)  
+    3.2. [사용자포탈 UAA 페이지 오류](#3.2)  
+    3.3. [운영자포탈 유저 페이지 조회 오류](#3.3)  
+    3.4. [DB Migration](#3.4)  
+    3.5. [Log](#3.5)  
+    3.6. [카탈로그 적용](#3.6)  
 
 
 ## <div id="1"/> 1. 문서 개요
@@ -82,7 +82,7 @@ $ bosh -e ${BOSH_ENVIRONMENT} upload-stemcell -n {STEMCELL_URL}
 
 서비스 설치에 필요한 Deployment를 Git Repository에서 받아 서비스 설치 작업 경로로 위치시킨다.  
 
-- Portal Deployment Git Repository URL : https://github.com/PaaS-TA/portal-deployment/tree/v5.2.2
+- Portal Deployment Git Repository URL : https://github.com/PaaS-TA/portal-deployment/tree/v5.2.3
 
 ```
 # Deployment 다운로드 파일 위치 경로 생성 및 설치 경로 이동
@@ -90,7 +90,7 @@ $ mkdir -p ~/workspace
 $ cd ~/workspace
 
 # Deployment 파일 다운로드
-$ git clone https://github.com/PaaS-TA/portal-deployment.git -b v5.2.2
+$ git clone https://github.com/PaaS-TA/portal-deployment.git -b v5.2.3
 ```
 
 ### <div id="2.4"/> 2.4. Deployment 파일 수정
@@ -300,7 +300,7 @@ bosh -e ${BOSH_ENVIRONMENT} -n -d portal-api deploy --no-redact portal-api.yml \
 ```
 $ cd ~/workspace/portal-deployment/portal-api   
 $ sh ./deploy.sh  
-```  
+```
 
 
 ### <div id="2.6"/> 2.6. 서비스 설치 확인
@@ -375,6 +375,7 @@ $ uaac client add portalclient -s xxxxx --redirect_uri "http://portal-web-user.x
    Client ID:  admin\
    Client secret:  *****
 3. uaac client update portalclient --redirect_uri "사용자포탈 Url, 사용자포탈 Url/callback"
+    
     >$ uaac client update portalclient --redirect_uri "http://portal-web-user.xxxx.nip.io, http://portal-web-user.xxxx.nip.io/callback"
 
 ### <div id="3.3"/> 3.3. 운영자 포탈 유저 페이지 조회 오류
@@ -500,14 +501,19 @@ Paas-TA Portal 각각 Instance의 log를 확인 할 수 있다.
 Paas-TA Portal 설치 후에 관리자 포탈에서 빌드팩, 서비스팩을 등록해야 사용자 포탈에서 사용이 가능하다.
 
  1. 관리자 포탈에 접속한다.(portal-web-admin.[public ip].nip.io)
+    
     >![paas-ta-portal-15]
  2. 운영관리를 누른다.
+    
     >![paas-ta-portal-16]
  2. 카탈로그 페이지에 들어간다.
+    
     >![paas-ta-portal-17]
  3. 빌드팩, 서비스팩 상세화면에 들어가서 각 항목란에 값을 입력후에 저장을 누른다.
+    
     >![paas-ta-portal-18]
  4. 사용자포탈에서 변경된값이 적용되어있는지 확인한다.
+    
     >![paas-ta-portal-19]
 
 [paas-ta-portal-01]:./images/Paas-TA-Portal_01.png

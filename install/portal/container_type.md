@@ -3,27 +3,27 @@
 ## Table of Contents  
 
 1. [문서 개요](#1)  
-  1.1. [목적](#1.1)  
-  1.2. [범위](#1.2)  
-  1.3. [참고자료](#1.3)  
+    1.1. [목적](#1.1)  
+    1.2. [범위](#1.2)  
+    1.3. [참고자료](#1.3)  
 
 2. [PaaS-TA AP Portal infra 설치](#2)  
-  2.1. [Prerequisite](#2.1)   
-  2.2. [Stemcell 확인](#2.2)    
-  2.3. [Deployment 다운로드](#2.3)   
-  2.4. [Deployment 파일 수정](#2.4)  
-  2.5. [서비스 설치](#2.5)    
-  2.6. [서비스 설치 확인](#2.6)  
+    2.1. [Prerequisite](#2.1)   
+    2.2. [Stemcell 확인](#2.2)    
+    2.3. [Deployment 다운로드](#2.3)   
+    2.4. [Deployment 파일 수정](#2.4)  
+    2.5. [서비스 설치](#2.5)    
+    2.6. [서비스 설치 확인](#2.6)  
 
 3. [PaaS-TA AP Portal 설치](#3)  
-  3.1. [Portal App 구성](#3.1)  
-  3.2. [Portal App 배포 Script 변수 설정](#3.2)  
-  3.3. [Portal App 배포 Script 실행](#3.3)  
+    3.1. [Portal App 구성](#3.1)  
+    3.2. [Portal App 배포 Script 변수 설정](#3.2)  
+    3.3. [Portal App 배포 Script 실행](#3.3)  
 
 4. [PaaS-TA AP Portal 운영](#4)  
-  4.1. [사용자의 조직 생성 Flag 활성화](#4.1)  
-  4.2. [사용자포탈 UAA 페이지 오류](#4.2)  
-  4.3. [카탈로그 적용](#4.3)  
+    4.1. [사용자의 조직 생성 Flag 활성화](#4.1)  
+    4.2. [사용자포탈 UAA 페이지 오류](#4.2)  
+    4.3. [카탈로그 적용](#4.3)  
 
 
 ## <div id="1"/> 1. 문서 개요
@@ -83,7 +83,7 @@ $ bosh -e ${BOSH_ENVIRONMENT} upload-stemcell -n {STEMCELL_URL}
 
 서비스 설치에 필요한 Deployment를 Git Repository에서 받아 서비스 설치 작업 경로로 위치시킨다.  
 
-- Portal Deployment Git Repository URL : https://github.com/PaaS-TA/portal-deployment/tree/v5.2.2
+- Portal Deployment Git Repository URL : https://github.com/PaaS-TA/portal-deployment/tree/v5.2.3
 
 ```
 # Deployment 다운로드 파일 위치 경로 생성 및 설치 경로 이동
@@ -91,7 +91,7 @@ $ mkdir -p ~/workspace
 $ cd ~/workspace
 
 # Deployment 파일 다운로드
-$ git clone https://github.com/PaaS-TA/portal-deployment.git -b v5.2.2
+$ git clone https://github.com/PaaS-TA/portal-deployment.git -b v5.2.3
 ```
 
 ### <div id="2.4"/> 2.4. Deployment 파일 수정  
@@ -233,7 +233,7 @@ bosh -e ${BOSH_ENVIRONMENT} -n -d portal-container-infra deploy --no-redact port
 ```
 $ cd ~/workspace/portal-deployment/portal-container-infra    
 $ sh ./deploy.sh  
-```  
+```
 
 
 ### <div id="2.6"/> 2.6. 서비스 설치 확인
