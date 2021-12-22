@@ -260,16 +260,16 @@ Succeeded
 ### <div id="3.1"/> 3.1. Portal App 구성
 PaaS-TA AP에 Portal 관련 App이 9개 배포되며 구성은 다음과 같다.
 ```
-portal-app-1.2.1
-├── portal-api-2.4.0
-├── portal-common-api-2.2.0
+portal-app-1.2.2
+├── portal-api-2.4.1
+├── portal-common-api-2.2.1
 ├── portal-gateway-2.1.0
 ├── portal-log-api-2.1.0
 ├── portal-registration-2.1.0
 ├── portal-ssh-1.0.0
 ├── portal-storage-api-2.2.1
-├── portal-web-admin-2.3.0
-└── portal-web-user-2.3.1
+├── portal-web-admin-2.3.1
+└── portal-web-user-2.4.1
 ```
 ### <div id="3.2"/> 3.2. Portal App 배포 Script 변수 설정  
 Portal App 배포 Script 실행을 위하여 Script가 있는 위치로 이동한다.
