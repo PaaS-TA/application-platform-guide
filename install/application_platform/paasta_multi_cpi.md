@@ -35,7 +35,7 @@
 
 ## <div id='1.2'/>1.2. 범위
 본 가이드는 BOSH와 PaaS-TA AP에 대한 기본 이해도가 있다는 전제 하에 가이드를 진행하였다.  
-multi-cpi-deployment는 paasta-deployment v5.6.4의 설치를 기준으로 가이드를 작성하였다.  
+multi-cpi-deployment는 paasta-deployment v5.6.5의 설치를 기준으로 가이드를 작성하였다.  
 multi-cpi-deployment는 AWS, OpenStack, vSphere 에서 설정이 가능하다.  
 분류는 크게 Main IaaS AZ와 Second IaaS AZ가 같은 경우 (e.g. A OpenStack ⇔ B OpenStack, 이하 Same IaaS AZ) 와 Main IaaS AZ와 Second IaaS AZ가 다른 경우 (e.g. Openstack ⇔ AWS, 이하 Different IaaS AZ)를 기준으로 작성하였다.
 
@@ -131,8 +131,8 @@ BOSH CLI가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문�
 ```
 $ mkdir -p ~/workspace
 $ cd ~/workspace
-$ git clone https://github.com/PaaS-TA/paasta-deployment.git -b v5.6.4
-$ git clone https://github.com/PaaS-TA/multi-cpi-deployment.git -b v5.6.4
+$ git clone https://github.com/PaaS-TA/paasta-deployment.git -b v5.6.5
+$ git clone https://github.com/PaaS-TA/multi-cpi-deployment.git -b v5.6.2
 ```
 
 <br>
@@ -613,7 +613,7 @@ $ bosh update-cloud-config ~/workspace/bosh/multi-cpi/cloud-config-{iaas}-{iaas}
 설치된 BOSH에 로그인 후 사용하는 IaaS의 Stemcell 업로드를 진행한다.   
 (e.g. AWS와 OpenStack의 두개의 환경을 사용 할 경우 해당 명령어를 두개 다 실행한다.)  
 ```
-# paasta-deployment v5.6.4와 동일한 Stemcell인 ubuntu-bionic 1.34를 사용한다.
+# paasta-deployment v5.6.5와 동일한 Stemcell인 ubuntu-bionic 1.34를 사용한다.
 # AWS 스템셀의 경우 light Stemcell을 이용한다
 
 # AWS
