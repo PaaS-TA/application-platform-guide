@@ -1,4 +1,4 @@
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP User Guide](../README.md) > Java Service Metering 개발
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP User Guide](../README.md) > Java Service Metering 개발
 
 ## Table of Contents
 
@@ -1161,4 +1161,4 @@ mock 적용을 위하여, owermock-mockito-release-full:1.6.1 을 사용하였�
 [Java_Service_Metering_Image04]:./images/Java_Service_Metering/service_broker_library_architecture.png
 
 
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP User Guide](../README.md) > Java Service Metering 개발
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP User Guide](../README.md) > Java Service Metering 개발

@@ -1,4 +1,4 @@
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP User Guide](../README.md) > On-Demand Service 개발
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP User Guide](../README.md) > On-Demand Service 개발
 
 ## Table of Contents
 1. [문서 개요](#1)
@@ -1392,4 +1392,4 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 [On-Demand_Image_06]:./images/on-demand/6.png
 
 
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP User Guide](../README.md) > On-Demand Service 개발
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP User Guide](../README.md) > On-Demand Service 개발

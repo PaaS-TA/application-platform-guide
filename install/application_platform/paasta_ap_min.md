@@ -1,4 +1,4 @@
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP Install](../README.md) > PaaS-TA AP - min
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Install](../README.md) > PaaS-TA AP - min
 
 ## Table of Contents
 
@@ -837,4 +837,4 @@ Select an org (or press enter to skip):
 [PaaSTa_FLAVOR_Image]:./images/ap/aws-vmtype.png
 
 
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP Install](../README.md) > PaaS-TA AP - min
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Install](../README.md) > PaaS-TA AP - min

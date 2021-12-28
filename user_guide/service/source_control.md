@@ -1,4 +1,4 @@
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP User Guide](../README.md) > Source Control Service 
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP User Guide](../README.md) > Source Control Service 
 
 # [PaaS-TA 형상관리 서비스 사용자 가이드]
 
@@ -365,4 +365,4 @@
 [044]:./images/source-control/image044.png
 [045]:./images/source-control/image045.png
 
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP User Guide](../README.md) > Source Control Service 
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP User Guide](../README.md) > Source Control Service 

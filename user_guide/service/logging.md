@@ -1,4 +1,4 @@
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP User Guide](../README.md) > Logging Service
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP User Guide](../README.md) > Logging Service
 
 
 # Table Of Contents
@@ -382,4 +382,4 @@ Add Panels의 "Visualization" / "Saved Search" 을 클릭하여 저장된 객체
 [059]:./images/logging-service/image059.png
 
 
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP User Guide](../README.md) > Logging Service
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP User Guide](../README.md) > Logging Service

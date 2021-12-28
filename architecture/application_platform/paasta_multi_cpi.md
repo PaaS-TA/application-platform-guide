@@ -1,4 +1,4 @@
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP Architecture](../README.md) > PaaS-TA Multi CPI
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Architecture](../README.md) > PaaS-TA Multi CPI
 
 ## 목적
 본 문서는 PaaS-TA Multi CPI의 Architecture를 제공한다.
@@ -23,4 +23,4 @@
 BOSH Document: [http://bosh.io](http://bosh.io)  
 BOSH Deployment: [https://github.com/cloudfoundry/bosh-deployment](https://github.com/cloudfoundry/bosh-deployment)  
 
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP Architecture](../README.md) > PaaS-TA Multi CPI
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Architecture](../README.md) > PaaS-TA Multi CPI

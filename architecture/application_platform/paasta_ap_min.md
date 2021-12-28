@@ -1,4 +1,4 @@
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP Architecture](../README.md) > PaaS-TA AP - min
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Architecture](../README.md) > PaaS-TA AP - min
 
 ## 목적
 본 문서는 PaaS-TA Application Platform (AP) - min의 Architecture를 제공한다.
@@ -35,4 +35,4 @@ PaaS-TA AP - min은 PaaS-TA AP의 경량화 버전이다.
 기존 15~16VM 구성요소를 필요에 따라 4VM이나 7VM로 배포가 가능하다.
 
 
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP Architecture](../README.md) > PaaS-TA AP - min
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Architecture](../README.md) > PaaS-TA AP - min

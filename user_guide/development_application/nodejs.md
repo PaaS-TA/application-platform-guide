@@ -1,4 +1,4 @@
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP User Guide](../README.md) > Node.js 개발
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP User Guide](../README.md) > Node.js 개발
 
 ## Table of Contents
 1. [문서 개요](#1)
@@ -1120,4 +1120,4 @@ test:
 [2-4-5-0]:./images/nodejs/2-4-5-0.png
 [2-5-0-0]:./images/nodejs/2-5-0-0.png
 
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP User Guide](../README.md) > Node.js 개발
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP User Guide](../README.md) > Node.js 개발

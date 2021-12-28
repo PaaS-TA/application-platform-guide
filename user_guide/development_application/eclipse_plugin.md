@@ -1,4 +1,4 @@
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP User Guide](../README.md) > Eclipse Tools for ClF 사용
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP User Guide](../README.md) > Eclipse Tools for ClF 사용
 
 # Table Of Contents
 
@@ -816,4 +816,4 @@ src/main/resources/egovframework/spring/context-datasource.xml 파일을 열어 
     이름을 일치시켜야 한다.
 
 
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP User Guide](../README.md) > Eclipse Tools for ClF 사용
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP User Guide](../README.md) > Eclipse Tools for ClF 사용

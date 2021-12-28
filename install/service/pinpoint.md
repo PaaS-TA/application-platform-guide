@@ -1,4 +1,4 @@
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP Install](../README.md) > Pinpoint APM Service
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Install](../README.md) > Pinpoint APM Service
 
 ## Table of Contents  
 
@@ -608,4 +608,4 @@ e.g. http://3.12.24.53/#/main/spring-music-pinpoint@SPRING_BOOT/realtime
 [pinpoint_image_04]:./images/pinpoint/pinpoint-image4.png
 
 
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP Install](../README.md) > Pinpoint APM Service
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Install](../README.md) > Pinpoint APM Service

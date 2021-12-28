@@ -1,4 +1,4 @@
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP Install](../README.md) > PaaS-TA AP
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Install](../README.md) > PaaS-TA AP
 
 ## Table of Contents
 
@@ -792,4 +792,4 @@ space:          No space targeted, use 'cf target -s SPACE'
 [PaaSTa_FLAVOR_Image]:./images/ap/aws-vmtype.png
 
 
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP Install](../README.md) > PaaS-TA AP
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Install](../README.md) > PaaS-TA AP

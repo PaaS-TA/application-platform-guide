@@ -1,4 +1,4 @@
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP Architecture](../README.md) > Portal Container Type
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Architecture](../README.md) > Portal Container Type
 
 ## 목적
 본 문서는 Application Platform (AP) Portal - Container Type의 Architecture를 제공한다.
@@ -37,4 +37,4 @@ Portal Infra, Portal APP의 구성과 스펙은 다음과 같다.
 | ssh-app | 1 | 1G | 1G|  
 
 
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP Architecture](../README.md) > Portal Container Type
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Architecture](../README.md) > Portal Container Type

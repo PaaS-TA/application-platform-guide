@@ -1,4 +1,4 @@
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP User Guide](../README.md) > BOSH CLI
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP User Guide](../README.md) > BOSH CLI
 
 ## Table Contents
 1. [개요](#1)
@@ -2126,4 +2126,4 @@ CLI는 BOSH 배포와 Release를 관리하기 위해 도움을 주는 커맨드 
 		-----BEGIN CERTIFICATE-----
 
   
-  ### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP User Guide](../README.md) > BOSH CLI
+  ### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP User Guide](../README.md) > BOSH CLI
