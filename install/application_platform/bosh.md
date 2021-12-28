@@ -1,4 +1,4 @@
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP Install](../README.md) > BOSH
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Install](../README.md) > BOSH
 
 ## Table of Contents
 
@@ -511,4 +511,4 @@ $ source {BOSH_LOGIN_FILE_PATH}/{BOSH_LOGIN_FILE_NAME}
 ```
 
 
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP Install](../README.md) > BOSH
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Install](../README.md) > BOSH

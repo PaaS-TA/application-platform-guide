@@ -1,4 +1,4 @@
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP Install](../README.md) > GlusterFS Service
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Install](../README.md) > GlusterFS Service
 
 ## Table of Contents  
 
@@ -572,4 +572,4 @@ memory usage:   1024M
 [glusterfs_image_19]:./images/glusterfs/glusterfs_image_19.png
 
 
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP Install](../README.md) > GlusterFS Service
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Install](../README.md) > GlusterFS Service

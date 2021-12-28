@@ -1,4 +1,4 @@
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP User Guide](../README.md) > API Platform 도로주소 개발
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP User Guide](../README.md) > API Platform 도로주소 개발
 
 
 ## Table of Contents
@@ -1274,4 +1274,4 @@ Accept : application/json
 [api_platform_dorojuso_16]:./images/openpaas-application-apiplatform-dorojuso/api_platform_dorojuso_16.png
 
 
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP User Guide](../README.md) > API Platform 도로주소 개발
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP User Guide](../README.md) > API Platform 도로주소 개발

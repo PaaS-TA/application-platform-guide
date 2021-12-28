@@ -1,4 +1,4 @@
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP User Guide](../README.md) > Public API 개발
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP User Guide](../README.md) > Public API 개발
 
 
 ## Table of Contents
@@ -1125,4 +1125,4 @@ VCAP_SERVICES 정보를 확인하면 그림과 같이 각각의 서비스 별로
 
 
 
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP User Guide](../README.md) > Public API 개발
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP User Guide](../README.md) > Public API 개발

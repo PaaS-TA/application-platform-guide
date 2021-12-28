@@ -1,4 +1,4 @@
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP Architecture](../README.md) > Source Control Service
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Architecture](../README.md) > Source Control Service
 
 ## 목적
 본 문서는 Application Platform (AP) - Source Control Service의 Architecture를 제공한다.
@@ -19,4 +19,4 @@
 | sourcecontrol-broker | 1vCPU / 2GB RAM / 2GB 추가 디스크 |
 
 
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP Architecture](../README.md) > Source Control Service
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Architecture](../README.md) > Source Control Service

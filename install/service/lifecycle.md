@@ -1,4 +1,4 @@
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP Install](../README.md) > Lifecycle Service
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Install](../README.md) > Lifecycle Service
 
 ## Table of Contents
 
@@ -421,4 +421,4 @@ service broker:   app-lifecycle-service-broker
 [006]:./images/applifecycle-service/image006.png
 
 
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP Install](../README.md) > Lifecycle Service
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Install](../README.md) > Lifecycle Service

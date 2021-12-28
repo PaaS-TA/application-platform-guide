@@ -1,4 +1,4 @@
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP User Guide](../README.md) > Buildpack 개발
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP User Guide](../README.md) > Buildpack 개발
 
 ## Table of Contents
 1. [문서 개요](#1)
@@ -1365,4 +1365,4 @@ https://username:password@github.com/johndoe/my-buildpack.git\#my-branch-name
 [buildpack_develope_guide_02]:./images/openpaas-buildpack-devolpe-guide/buildpack_develope_guide_02.png
 
 
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP User Guide](../README.md) > Buildpack 개발
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP User Guide](../README.md) > Buildpack 개발

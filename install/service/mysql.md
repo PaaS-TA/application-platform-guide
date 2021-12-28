@@ -1,4 +1,4 @@
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP Install](../README.md) > MySQL Service
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Install](../README.md) > MySQL Service
 
 ## Table of Contents  
 
@@ -730,4 +730,4 @@ HeidiSQL 프로그램은 무료로 사용할 수 있는 오픈소스 소프트�
 [update_mysql_vsphere_49]:./images/mysql/update_mysql_vsphere_49.png
 [update_mysql_vsphere_50]:./images/mysql/update_mysql_vsphere_50.png
 
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP Install](../README.md) > MySQL Service
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Install](../README.md) > MySQL Service

@@ -1,4 +1,4 @@
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP Architecture](../README.md) > PaaS-TA AP
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Architecture](../README.md) > PaaS-TA AP
 
 ## 목적
 본 문서는 PaaS-TA Application Platform (AP)의 Architecture를 제공한다.
@@ -32,4 +32,4 @@ PaaS-TA AP는 개발자 프레임워크 및 앱 서비스를 선택할 수 있�
 PaaS-TA AP를 사용하면 어플리케이션을 더 빠르고 쉽게 구축, 테스트 배포 및 확장할 수 있다.
 
 
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP Architecture](../README.md) > PaaS-TA AP
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Architecture](../README.md) > PaaS-TA AP

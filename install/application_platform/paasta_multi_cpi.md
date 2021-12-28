@@ -1,4 +1,4 @@
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP Install](../README.md) > PaaS-TA Multi CPI
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Install](../README.md) > PaaS-TA Multi CPI
 
 ## Table of Contents
 
@@ -664,4 +664,4 @@ PaaS-TA AP 설치 완료 후 Test APP을 Push하여 App이 정상작동하는지
 
 
 
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP Install](../README.md) > PaaS-TA Multi CPI
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Install](../README.md) > PaaS-TA Multi CPI

@@ -1,4 +1,4 @@
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP Architecture](../README.md) > BOSH
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Architecture](../README.md) > BOSH
 
 ## 목적
 본 문서는 BOSH의 Architecture를 제공한다.
@@ -53,4 +53,4 @@ Agent는 Director로부터 수신받은 Job Specification(설치할 패키지 �
 BOSH Document: [http://bosh.io](http://bosh.io)  
 BOSH Deployment: [https://github.com/cloudfoundry/bosh-deployment](https://github.com/cloudfoundry/bosh-deployment)  
 
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP Architecture](../README.md) > BOSH
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Architecture](../README.md) > BOSH

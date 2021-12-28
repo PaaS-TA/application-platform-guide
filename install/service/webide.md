@@ -1,4 +1,4 @@
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP Install](../README.md) > WEB IDE Service
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Install](../README.md) > WEB IDE Service
 
 ## Table of Contents
 1. [문서 개요](#1)  
@@ -617,4 +617,4 @@ Succeeded
 [004]:./images/webide/userportal_dashboard.png
 
 
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP Install](../README.md) > WEB IDE Service
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Install](../README.md) > WEB IDE Service

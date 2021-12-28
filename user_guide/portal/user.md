@@ -1,4 +1,4 @@
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP User Guide](../README.md) > 사용자 포털
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP User Guide](../README.md) > 사용자 포털
 
 ## Table of Contents
 1. [문서 개요](#1)
@@ -880,4 +880,4 @@ PaaS-TA 사용자 포탈은 조직, 공간, 애플리케이션을 관리하는 �
 [cass-dashboard4]:./images/user-portal/cass-dashboard4.png
 
 
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP User Guide](../README.md) > 사용자 포털
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP User Guide](../README.md) > 사용자 포털

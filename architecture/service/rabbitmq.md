@@ -1,4 +1,4 @@
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP Architecture](../README.md) > RabbitMQ Service
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Architecture](../README.md) > RabbitMQ Service
 
 ## 목적
 본 문서는 Application Platform (AP) - RabbitMQ Service의 Architecture를 제공한다.
@@ -17,4 +17,4 @@
 
 
 
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP Architecture](../README.md) > RabbitMQ Service
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Architecture](../README.md) > RabbitMQ Service

@@ -1,4 +1,4 @@
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > AP User Guide
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > AP User Guide
 
 ## Application Platform (AP) - User Guide
 - Application Platform
@@ -35,4 +35,4 @@
   - [Node.js API 서비스 미터링](./development_platform/nodejs_api_service_metering.md)
   - [On-Demand 서비스](./development_platform/on_demand_service.md)
 
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > AP User Guide
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > AP User Guide

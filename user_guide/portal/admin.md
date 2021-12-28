@@ -1,4 +1,4 @@
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP User Guide](../README.md) > 운영자 포털
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP User Guide](../README.md) > 운영자 포털
 
 ## Table of Contents
 1. [문서 개요](#1)
@@ -500,4 +500,4 @@ PaaS-TA 포탈의 보안 관리를 수행하기 위한 메뉴이다.<br>
 [isolationSegments04]:./images/admin-portal/isolationSegments04.png	
 [isolationSegments05]:./images/admin-portal/isolationSegments05.png	
 
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP User Guide](../README.md) > 운영자 포털
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP User Guide](../README.md) > 운영자 포털

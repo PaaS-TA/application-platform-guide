@@ -1,4 +1,4 @@
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > AP Install
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > AP Install
 
 ## Application Platform (AP) - Install
 - Application Platform  
@@ -30,4 +30,4 @@
   - [Gateway](./service/gateway.md)
   - [Lifecycle](./service/lifecycle.md)
 
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > AP Install
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > AP Install

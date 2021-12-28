@@ -1,4 +1,4 @@
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP User Guide](../README.md) > Java API Service Metering 개발
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP User Guide](../README.md) > Java API Service Metering 개발
 
 
 ## Table of Contents
@@ -1060,4 +1060,4 @@ API 연동 샘플 애플리케이션의 url을 통해 웹 브라우저에서 접
 [Java_Api_Service_Metering_Image02]:./images/Java_Api_Service_Metering/sampleAPI_Service.png
 
 
-### [Index](https://github.com/okpc579/paasta-guide-new/blob/main/README.md) > [AP User Guide](../README.md) > Java API Service Metering 개발
+### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP User Guide](../README.md) > Java API Service Metering 개발
