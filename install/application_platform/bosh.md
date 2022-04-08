@@ -134,7 +134,7 @@ BOSH 인증서는 BOSH 내부 Component 간의 통신 시 필요한 certificate�
 ```
 $ mkdir -p ~/workspace
 $ cd ~/workspace
-$ git clone https://github.com/PaaS-TA/paasta-deployment.git -b v5.7.0
+$ git clone https://github.com/PaaS-TA/paasta-deployment.git -b v5.7.1
 ```
 
 - paasta/deployment/paasta-deployment 이하 폴더 확인
@@ -179,12 +179,20 @@ Shell Script 파일을 이용하여 BOSH를 설치한다.
 <td>OpenStack 환경에 BOSH 설치시 적용하는 변수 설정 파일</td>
 </tr>
 <tr>
+<td>vsphere-vars.yml</td>
+<td>vSphere 환경에 BOSH 설치시 적용하는 변수 설정 파일</td>
+</tr>
+<tr>
 <td>deploy-aws.sh</td>
 <td>AWS 환경에 BOSH 설치를 위한 Shell Script 파일</td>
 </tr>
 <tr>
 <td>deploy-openstack.sh</td>
 <td>OpenStack 환경에 BOSH 설치를 위한 Shell Script 파일</td>
+</tr>
+<tr>
+<td>deploy-vsphere.sh</td>
+<td>vSphere 환경에 BOSH 설치를 위한 Shell Script 파일</td>
 </tr>
 <tr>
 <td>bosh.yml</td>
@@ -252,6 +260,35 @@ metric_url: "10.0.161.101"				# PaaS-TA Monitoring InfluxDB IP
 syslog_address: "10.0.121.100"				# Logsearch의 ls-router IP
 syslog_port: "2514"					# Logsearch의 ls-router Port
 syslog_transport: "relp"				# Logsearch Protocol
+```
+
+- vSphere 환경 설치 시
+
+> $ vi ~/workspace/paasta-deployment/bosh/vsphere-vars.yml
+```
+# BOSH VARIABLE
+bosh_client_admin_id: "admin"			# Bosh Client Admin ID
+director_name: "micro-bosh"			# BOSH Director Name
+private_cidr: "10.0.1.0/24"			# Private IP Range
+private_gw: "10.0.1.1"				# Private IP Gateway
+bosh_ip: "10.0.1.6"				# Private IP
+network_name: "PaaS-TA"				# Private Network Name (vCenter)
+vcenter_dc: "PaaS-TA-DC"			# vCenter Data Center Name
+vcenter_ds: "PaaS-TA-Storage"			# vCenter Data Storage Name
+vcenter_ip: "XX.XX.XXX.XX"			# vCenter Private IP
+vcenter_user: "XXXXX"				# vCenter User Name
+vcenter_password: "XXXXXX"			# vCenter User Password
+vcenter_templates: "PaaS-TA_Templates"		# vCenter Templates Name
+vcenter_vms: "PaaS-TA_VMs"			# vCenter VMS Name
+vcenter_disks: "PaaS-TA_Disks"			# vCenter Disk Name
+vcenter_cluster: "PaaS-TA"			# vCenter Cluster Name
+vcenter_rp: "PaaS-TA_Pool"			# vCenter Resource Pool Name
+
+# MONITORING VARIABLE(PaaS-TA Monitoring을 설치할 경우 수정)
+metric_url: "10.0.161.101"			# PaaS-TA Monitoring InfluxDB IP
+syslog_address: "10.0.121.100"			# Logsearch의 ls-router IP
+syslog_port: "2514"				# Logsearch의 ls-router Port
+syslog_transport: "relp"			# Logsearch Protocol
 ```
 
 
@@ -347,6 +384,22 @@ bosh create-env bosh.yml \
 	-o cce.yml \					# CCE 조치 적용
 	-o openstack/disable-readable-vm-names.yml \	# VM 명을 UUIDs로 적용
 	-l openstack-vars.yml				# OpenStack 환경에 BOSH 설치시 적용하는 변수 설정 파일
+```
+
+- vSphere 환경 설치 시 
+
+> $ vi ~/workspace/paasta-deployment/bosh/deploy-vsphere.sh
+```
+bosh create-env bosh.yml \
+	--state=vsphere/state.json \			# BOSH Latest Running State, 설치 시 생성, Backup 필요
+	--vars-store=vsphere/creds.yml \		# BOSH Credentials and Certs, 설치 시 생성, Backup 필요
+	-o vsphere/cpi.yml \				# vSphere CPI 적용
+	-o vsphere/resource-pool.yml  \				# vSphere resouce-pool 사용 설정
+	-o uaa.yml  \					# UAA 적용
+	-o credhub.yml  \				# CredHub 적용
+	-o jumpbox-user.yml  \				# Jumpbox-user 적용
+	-o cce.yml \					# CCE 조치 적용
+	-l vsphere-vars.yml				# vSphere 환경에 BOSH 설치시 적용하는 변수 설정 파일
 ```
 
 

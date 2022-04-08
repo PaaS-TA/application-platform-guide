@@ -35,7 +35,7 @@
 
 ## <div id='1.2'/>1.2. 범위
 본 가이드는 BOSH와 PaaS-TA AP에 대한 기본 이해도가 있다는 전제 하에 가이드를 진행하였다.  
-multi-cpi-deployment는 paasta-deployment v5.6.6의 설치를 기준으로 가이드를 작성하였다.  
+multi-cpi-deployment는 paasta-deployment v5.7.1의 설치를 기준으로 가이드를 작성하였다.  
 multi-cpi-deployment는 AWS, OpenStack, vSphere 에서 설정이 가능하다.  
 분류는 크게 Main IaaS AZ와 Second IaaS AZ가 같은 경우 (e.g. A OpenStack ⇔ B OpenStack, 이하 Same IaaS AZ) 와 Main IaaS AZ와 Second IaaS AZ가 다른 경우 (e.g. Openstack ⇔ AWS, 이하 Different IaaS AZ)를 기준으로 작성하였다.
 
@@ -131,8 +131,8 @@ BOSH CLI가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문�
 ```
 $ mkdir -p ~/workspace
 $ cd ~/workspace
-$ git clone https://github.com/PaaS-TA/paasta-deployment.git -b v5.6.6
-$ git clone https://github.com/PaaS-TA/multi-cpi-deployment.git -b v5.6.2
+$ git clone https://github.com/PaaS-TA/paasta-deployment.git -b v5.7.1
+$ git clone https://github.com/PaaS-TA/multi-cpi-deployment.git -b v5.7.1
 ```
 
 <br>
@@ -339,7 +339,7 @@ BOSH 설치에 대한 상세 내용은 BOSH 설치 가이드를 참고한다.
 | deploy-cpi-aws-secondary.yml | BOSH를 설치하지 않는 인프라가 AWS 일 경우 사용 |
 | deploy-cpi-openstack-secondary.yml	 | BOSH를 설치하지 않는 인프라가 OpenStack 일 경우 사용 |
 | deploy-cpi-vsphere-secondary.yml	 | BOSH를 설치하지 않는 인프라가 vSphere 일 경우 사용 |
-| deploy-cpi-registry-secondary.yml | BOSH를 설치하는 인프라가 vSphere 일 경우 사용 |
+| deploy-cpi-registry-secondary.yml | BOSH를 설치하는 인프라가 vSphere 일 경우 사용 <br>(paasta-deployment v5.7.0 미만 버전 배포 시 사용, <br>v5.7.0 이상은 사용하지 않는다.) |
 
 - 예제1. AWS - Openstack BOSH 설치
 > $ vi deploy-aws.sh
@@ -388,7 +388,22 @@ BOSH 설치에 대한 상세 내용은 BOSH 설치 가이드를 참고한다.
  	-l openstack-vars.yml
 ```
 
-- 예제4. vSphere - AWS BOSH 설치
+- 예제4. vSphere - AWS BOSH 설치 (paasta-deployment v5.7.0 이상 설치 시)
+> $ vi deploy-vsphere.sh
+```diff
+ bosh create-env bosh.yml \
+ 	--state=vsphere/state.json \
+ 	--vars-store=vsphere/creds.yml \
+ 	-o vsphere/cpi.yml \
+ 	-o vsphere/resource-pool.yml  \
++ 	-o multi-cpi/deploy-cpi-aws-secondary.yml \
+ 	-o uaa.yml  \
+ 	-o credhub.yml  \
+ 	-o jumpbox-user.yml  \
+ 	-l vsphere-vars.yml
+```
+
+- 예제5. vSphere - AWS BOSH 설치 (paasta-deployment v5.7.0 미만 설치 시)
 > $ vi deploy-vsphere.sh
 ```diff
  bosh create-env bosh.yml \
@@ -613,17 +628,17 @@ $ bosh update-cloud-config ~/workspace/bosh/multi-cpi/cloud-config-{iaas}-{iaas}
 설치된 BOSH에 로그인 후 사용하는 IaaS의 Stemcell 업로드를 진행한다.   
 (e.g. AWS와 OpenStack의 두개의 환경을 사용 할 경우 해당 명령어를 두개 다 실행한다.)  
 ```
-# paasta-deployment v5.6.6와 동일한 Stemcell인 ubuntu-bionic 1.34를 사용한다.
+# paasta-deployment v5.7.1와 동일한 Stemcell인 ubuntu-bionic 1.76를 사용한다.
 # AWS 스템셀의 경우 light Stemcell을 이용한다
 
 # AWS
-$ bosh upload-stemcell https://storage.googleapis.com/bosh-aws-light-stemcells/1.34/light-bosh-stemcell-1.34-aws-xen-hvm-ubuntu-bionic-go_agent.tgz --fix
+$ bosh upload-stemcell https://storage.googleapis.com/bosh-aws-light-stemcells/1.76/light-bosh-stemcell-1.76-aws-xen-hvm-ubuntu-bionic-go_agent.tgz --fix
 
 # OpenStack
-$ bosh upload-stemcell https://storage.googleapis.com/bosh-core-stemcells/1.34/bosh-stemcell-1.34-openstack-kvm-ubuntu-bionic-go_agent.tgz --fix
+$ bosh upload-stemcell https://storage.googleapis.com/bosh-core-stemcells/1.76/bosh-stemcell-1.76-openstack-kvm-ubuntu-bionic-go_agent.tgz --fix
 
 # vSphere
-$ bosh upload-stemcell https://storage.googleapis.com/bosh-core-stemcells/1.34/bosh-stemcell-1.34-vsphere-esxi-ubuntu-bionic-go_agent.tgz --fix
+$ bosh upload-stemcell https://storage.googleapis.com/bosh-core-stemcells/1.76/bosh-stemcell-1.76-vsphere-esxi-ubuntu-bionic-go_agent.tgz --fix
 ```
 
 <br>

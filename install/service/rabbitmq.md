@@ -42,10 +42,52 @@ Cloud Foundry Document: [https://docs.cloudfoundry.org](https://docs.cloudfoundr
 서비스팩 설치를 위해서는 먼저 BOSH CLI v2 가 설치 되어 있어야 하고 BOSH 에 로그인이 되어 있어야 한다.  
 BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이드 문서를 참고 하여 BOSH CLI v2를 설치를 하고 사용법을 숙지 해야 한다.  
 
+- bosh runtime-config를 확인하여 bosh-dns include deployments 에 rabbitmq가 있는지 확인한다.  
+ ※ bosh-dns include deployments에 rabbitmq가 없다면 ~/workspace/paasta-deployment/bosh/runtime-configs 의 dns.yml 을 열어서 rabbitmq를 추가하고, bosh runtime-config를 업데이트 해준다.    
+
+> $ bosh -e micro-bosh runtime-config
+```
+Using environment '10.0.1.6' as client 'admin'
+
+---
+addons:
+- include:
+    deployments:
+    - paasta
+    - pinpoint
+    - pinpoint-monitoring
+    - rabbitmq
+    stemcell:
+    - os: ubuntu-trusty
+    - os: ubuntu-xenial
+    - os: ubuntu-bionic
+  jobs:
+  - name: bosh-dns
+    properties:
+      api:
+        client:
+          tls: "((/dns_api_client_tls))"
+        server:
+          tls: "((/dns_api_server_tls))"
+      cache:
+        enabled: true
+      health:
+        client:
+          tls: "((/dns_healthcheck_client_tls))"
+        enabled: true
+        server:
+          tls: "((/dns_healthcheck_server_tls))"
+    release: bosh-dns
+  name: bosh-dns
+...(생략)...
+
+Succeeded
+```
+
 ### <div id="2.2"/> 2.2. Stemcell 확인
 
 Stemcell 목록을 확인하여 서비스 설치에 필요한 Stemcell이 업로드 되어 있는 것을 확인한다.  
-본 가이드의 Stemcell은 ubuntu-bionic 1.34를 사용한다.  
+본 가이드의 Stemcell은 ubuntu-bionic 1.76를 사용한다.  
 
 > $ bosh -e ${BOSH_ENVIRONMENT} stemcells
 
@@ -53,7 +95,7 @@ Stemcell 목록을 확인하여 서비스 설치에 필요한 Stemcell이 업로
 Using environment '10.0.1.6' as client 'admin'
 
 Name                                       Version   OS             CPI  CID  
-bosh-openstack-kvm-ubuntu-bionic-go_agent  1.34      ubuntu-bionic  -    ce507ae4-aca6-4a6d-b7c7-220e3f4aaa7d
+bosh-openstack-kvm-ubuntu-bionic-go_agent  1.76      ubuntu-bionic  -    ce507ae4-aca6-4a6d-b7c7-220e3f4aaa7d
 
 (*) Currently deployed
 
@@ -73,7 +115,7 @@ $ bosh -e ${BOSH_ENVIRONMENT} upload-stemcell -n {STEMCELL_URL}
 
 서비스 설치에 필요한 Deployment를 Git Repository에서 받아 서비스 설치 작업 경로로 위치시킨다.  
 
-- Service Deployment Git Repository URL : https://github.com/PaaS-TA/service-deployment/tree/v5.1.2
+- Service Deployment Git Repository URL : https://github.com/PaaS-TA/service-deployment/tree/v5.1.5
 
 ```
 # Deployment 다운로드 파일 위치 경로 생성 및 설치 경로 이동
@@ -81,7 +123,7 @@ $ mkdir -p ~/workspace
 $ cd ~/workspace
 
 # Deployment 파일 다운로드
-$ git clone https://github.com/PaaS-TA/service-deployment.git -b v5.1.2
+$ git clone https://github.com/PaaS-TA/service-deployment.git -b v5.1.5
 
 # common_vars.yml 파일 다운로드(common_vars.yml가 존재하지 않는다면 다운로드)
 $ git clone https://github.com/PaaS-TA/common.git
@@ -176,11 +218,11 @@ paasta_nats_ip: "10.0.1.121"
 > $ vi ~/workspace/service-deployment/rabbitmq/vars.yml
 
 ```
-deployment_name: "rabbitmq"                                 # rabbitmq deployment name 
+deployment_name: "rabbitmq"                                  # rabbitmq deployment name 
 
 # STEMCELL
 stemcell_os: "ubuntu-bionic"                                # stemcell os
-stemcell_version: "1.34"                                    # stemcell version
+stemcell_version: "1.76"                                    # stemcell version
 
 # VM_TYPE
 vm_type_small: "minimal"                                    # vm type small 
@@ -188,11 +230,15 @@ vm_type_small: "minimal"                                    # vm type small
 # NETWORK
 private_networks_name: "default"                            # private network name
 
+# COMMON
+bosh_name: "micro-bosh"                                     # bosh name (e.g. micro-bosh) -- ('bosh env' 명령어를 통해 확인 가능)
+paasta_deployment_name: "paasta"                            # paasta application platform name (e.g. paasta)
+
 # RABBITMQ
 rabbitmq_azs: [z3]                                          # rabbitmq : azs
 rabbitmq_instances: 1                                       # rabbitmq : instances (1) 
 rabbitmq_private_ips: "<RABBITMQ_PRIVATE_IPS>"              # rabbitmq : private ips (e.g. "10.0.81.31")
-management_username: "<MANAGEMENT_USERNAME>"  		          # rabbitmq : username (e.g. "madmin") *broker/administrator_username != management_username
+management_username: "<MANAGEMENT_USERNAME>"  		    # rabbitmq : username (e.g. "madmin") *broker/administrator_username != management_username
 
 # HAPROXY
 haproxy_azs: [z3]                                           # haproxy : azs
@@ -203,7 +249,7 @@ haproxy_private_ips: "<HAPROXY_PRIVATE_IPS>"                # haproxy : private 
 broker_azs: [z3]                                            # service-broker : azs
 broker_instances: 1                                         # service-broker : instances (1)
 broker_port: 4567                                           # service-broker : broker port (e.g. "4567")
-broker_username: "<SERVICE_BROKER_USERNAME>"		            # service-broker : username (e.g. "admin") *broker/administrator_username != management_username
+broker_username: "<SERVICE_BROKER_USERNAME>"		    # service-broker : username (e.g. "admin") *broker/administrator_username != management_username
 broker_password: "<SERVICE_BROKER_PASSWORD>"                # service-broker : password (e.g. "admin" no recommand)
 administrator_username: "<SERVICE_BROKER_ADMIN_USERNAME>"   # servier-broker : administrator username (e.g. "administrator")
 
@@ -354,7 +400,7 @@ broker: rabbitmq-service-broker
 
 - Sample App 묶음 다운로드
 ```
-$ wget https://nextcloud.paas-ta.org/index.php/s/8sCHaWcw4n36MiB/download --content-disposition  
+$ wget https://nextcloud.paas-ta.org/index.php/s/NDgriPk5cgeLMfG/download --content-disposition  
 $ unzip paasta-service-samples.zip  
 $ cd paasta-service-samples/rabbitmq  
 ```
