@@ -14,6 +14,7 @@
  2.4. [Deployment 파일 수정](#2.4)  
  2.5. [서비스 설치](#2.5)    
  2.6. [서비스 설치 확인](#2.6)  
+ 2.7. [[선택] 확장 언어 설치](#2.7)  
     
 3. [배포 파이프라인 서비스 관리 및 신청](#3)  
  3.1. [서비스 브로커 등록](#3.1)  
@@ -369,6 +370,51 @@ postgres/6a8a4d71-e46f-49ca-b992-407441a90965                              runni
 Succeeded
 ```
 
+### <div id='2.7'/> 2.7. [선택] 확장 언어 설치
+
+- 확장 언어 스크립트를 ci_server 에 복사하고 실행한다.   
+```
+$ cd ~/workspace/service-deployment/pipeline-service/scripts/
+$ bosh -d pipeline-service scp php-ci-server-script.sh ci_server/0:/tmp/
+$ bosh -d pipeline-service ssh ci_server/0 
+$ sudo su
+$ mv /tmp/php-ci-server-script.sh /var/vcap/
+$ sh /var/vcap/php-ci-server-script.sh
+```
+
+
+- 서버 환경에 맞추어 스크립트 파일의 계정 정보를 수정한다. 
+
+> $ vi ~/workspace/service-deployment/pipeline-service/scripts/php-mariadb-script.sh
+
+```
+#!/bin/bash
+mysql_path=/var/vcap/store/mariadb-10.5.15-linux-x86_64/bin/mysql #경로 확인 및 수정
+mysql_port='<mysql_port>'           #mariadb port : (e.g. 13306)
+mysql_user='<mysql_user>'           #mariadb user : (e.g. root)
+mysql_password='<mysql_password>'   #mariadb password 
+# insert code table
+${mysql_path} -u${mysql_user} -p${mysql_password} -P${mysql_port} -Ddelivery_pipeline  << "EOF"
+insert  into `code`(`code_type`,`code_group`,`code_name`,`code_value`,`code_order`) values ('language_type', NULL,'PHP', 'PHP', 2);
+insert  into `code`(`code_type`,`code_group`,`code_name`,`code_value`,`code_order`) values ('language_type_version', 'PHP','PHP-7.4', 'PHP-7.4', 2);
+insert  into `code`(`code_type`,`code_group`,`code_name`,`code_value`,`code_order`) values ('builder_type', 'PHP','COMPOSER', 'COMPOSER', 2);
+insert  into `code`(`code_type`,`code_group`,`code_name`,`code_value`,`code_order`) values ('builder_type_version', 'COMPOSER','COMPOSER-2', 'COMPOSER-2.1.14', 2);
+EOF
+
+${mysql_path} -u${mysql_user} -p${mysql_password} -P${mysql_port} -Ddelivery_pipeline -e "select * from code;"
+
+echo 'php data insert complete'
+```
+
+- 확장 언어 스크립트를 mariadb 에 복사하고 실행하여, 파이프라인 서비스에 적용한다.  
+```
+$ cd ~/workspace/service-deployment/pipeline-service/scripts/
+$ bosh -d pipeline-service scp php-mariadb-script.sh mariadb/0:/tmp/
+$ bosh -d pipeline-service ssh mariadb/0 
+$ sudo su
+$ mv /tmp/php-mariadb-script.sh /var/vcap/
+$ sh /var/vcap/php-mariadb-script.sh
+```
 
 ## <div id='3'/> 3. 배포 파이프라인 서비스 관리 및 신청 
 PaaS-TA 운영자 포탈을 통해 배포파이프라인 서비스를 등록 및 공개하면, PaaS-TA 사용자 포탈을 통해 서비스를 신청 하여 사용할 수 있다.
