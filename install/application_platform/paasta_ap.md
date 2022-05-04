@@ -27,8 +27,8 @@
 <br>
 
 ## <div id='1.2'/>1.2. 범위
-PaaS-TA AP는 bosh-deployment를 기반으로 한 BOSH 환경에서 설치하며 paasta-deployment v5.7.2의 설치를 기준으로 가이드를 작성하였다.  
-PaaS-TA AP는 VMware vSphere, Google Cloud Platform, Amazon Web Services EC2, OpenStack, Microsoft Azure 등의 IaaS를 지원하며,  paasta-deployment v5.7.2에서 검증한 IaaS 환경은 AWS, OpenStack, vSphere 환경이다.
+PaaS-TA AP는 bosh-deployment를 기반으로 한 BOSH 환경에서 설치하며 paasta-deployment v5.7.3의 설치를 기준으로 가이드를 작성하였다.  
+PaaS-TA AP는 VMware vSphere, Google Cloud Platform, Amazon Web Services EC2, OpenStack, Microsoft Azure 등의 IaaS를 지원하며,  paasta-deployment v5.7.3에서 검증한 IaaS 환경은 AWS, OpenStack, vSphere 환경이다.
 
 <br>
 
@@ -67,7 +67,7 @@ $ git clone https://github.com/PaaS-TA/paasta-deployment.git -b v5.7.3
 
 ## <div id='2.3'/>2.3. Stemcell 업로드
 Stemcell은 배포 시 생성되는 PaaS-TA AP VM Base OS Image이다.  
-paasta-deployment v5.7.2는 Ubuntu bionic stemcell 1.79을 기반으로 한다.  
+paasta-deployment v5.7.3는 Ubuntu bionic stemcell 1.79을 기반으로 한다.  
 기본적인 Stemcell 업로드 명령어는 다음과 같다.  
 ```                     
 $ bosh -e ${BOSH_ENVIRONMENT} upload-stemcell {URL}
