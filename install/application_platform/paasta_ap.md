@@ -60,7 +60,7 @@ $ mkdir -p ~/workspace
 $ cd ~/workspace
 $ git clone https://github.com/PaaS-TA/common.git
 $ cd ~/workspace
-$ git clone https://github.com/PaaS-TA/paasta-deployment.git -b v5.7.2
+$ git clone https://github.com/PaaS-TA/paasta-deployment.git -b v5.7.3
 ```
 
 <br>
