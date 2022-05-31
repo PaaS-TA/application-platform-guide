@@ -134,7 +134,7 @@ BOSH 인증서는 BOSH 내부 Component 간의 통신 시 필요한 certificate�
 ```
 $ mkdir -p ~/workspace
 $ cd ~/workspace
-$ git clone https://github.com/PaaS-TA/paasta-deployment.git -b v5.7.3
+$ git clone https://github.com/PaaS-TA/paasta-deployment.git -b v5.7.4
 ```
 
 - paasta/deployment/paasta-deployment 이하 폴더 확인
@@ -231,6 +231,55 @@ metric_url: "xx.xx.xxx.xxx"				# PaaS-TA Monitoring InfluxDB IP
 syslog_address: "xx.xx.xxx.xxx"				# Logsearch의 ls-router IP
 syslog_port: "2514"					# Logsearch의 ls-router Port
 syslog_transport: "relp"				# Logsearch Protocol
+```
+- Azure 환경 설치 시 
+
+> $ vi ~/workspace/paasta-deployment/bosh/azure-vars.yml
+```
+# BOSH VARIABLE
+bosh_client_admin_id: "admin"				# Bosh Client Admin ID
+private_cidr: "10.0.1.0/24"				# Private IP Range
+private_gw: "10.0.1.1"					# Private IP Gateway
+bosh_ip: "10.0.1.6"					# Private IP
+director_name: "micro-bosh"				# BOSH Director Name
+vnet_name: "paasta-bosh-net"				# Azure VNet Name
+subnet_name: "paasta-subnet"				# Azure VNet Subnet Name
+subscription_id: "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"	# Azure Subscription ID
+tenant_id: "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"	# Azure Tenant ID
+client_id: "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"	# Azure Client ID
+client_secret: "client-secret"				# Azure Client Secret
+resource_group_name: "paasta-bosh-group"		# Azure Resource Group
+storage_account_name: "paasta-store"			# Azure Storage Account
+default_security_group: "paasta-security"		# Azure Security Group
+
+# MONITORING VARIABLE(PaaS-TA Monitoring을 설치할 경우 수정)
+metric_url: "10.0.161.101"          # influxdb IP
+syslog_address: "10.0.121.100"      # td-agent IP
+syslog_port: "2514"                 # td-agent Port
+syslog_transport: "udp"             # td-agent Logging Protocol
+```
+
+- GCP 환경 설치 시 
+
+> $ vi ~/workspace/paasta-deployment/bosh/gcp-vars.yml
+```
+# BOSH VARIABLE
+bosh_client_admin_id: "admin"		# Bosh Client Admin ID
+director_name: "micro-bosh"		# BOSH Director Name
+private_cidr: "10.0.1.0/24"		# Private IP Range
+private_gw: "10.0.1.1"			# Private IP Gateway
+bosh_ip: "10.0.1.6"			# Private IP
+network: "public-bosh"			# GCP Network Name
+subnetwork: "public-bosh-subnet"	# GCP Subnet Name
+tags: ["paasta-security"]		# GCP Tags
+project_id: "paasta-project"		# GCP Project ID
+zone: "asia-northeast1-a"		# GCP Zone
+
+# MONITORING VARIABLE(PaaS-TA Monitoring을 설치할 경우 수정)
+metric_url: "10.0.161.101"          # influxdb IP
+syslog_address: "10.0.121.100"      # td-agent IP
+syslog_port: "2514"                 # td-agent Port
+syslog_transport: "udp"             # td-agent Logging Protocol
 ```
 
 - OpenStack 환경 설치 시
@@ -368,6 +417,37 @@ bosh create-env bosh.yml \
 	-o jumpbox-user.yml \				# Jumpbox-user 적용  
 	-o cce.yml \					# CCE 조치 적용
  	-l aws-vars.yml					# AWS 환경에 BOSH 설치시 적용하는 변수 설정 파일
+```
+
+- Azure 환경 설치 시 
+
+> $ vi ~/workspace/paasta-deployment/bosh/deploy-azure.sh
+```
+bosh create-env bosh.yml \                         
+	--state=azure/state.json \			# BOSH Latest Running State, 설치 시 생성, Backup 필요
+	--vars-store=azure/creds.yml \			# BOSH Credentials and Certs, 설치 시 생성, Backup 필요
+	-o azure/cpi.yml \				# Azure CPI 적용
+	-o uaa.yml \					# UAA 적용      
+	-o credhub.yml \				# CredHub 적용    
+	-o jumpbox-user.yml \				# Jumpbox-user 적용  
+	-o cce.yml \					# CCE 조치 적용
+ 	-l azure-vars.yml				# Azure 환경에 BOSH 설치시 적용하는 변수 설정 파일
+```
+
+- GCP 환경 설치 시 
+
+> $ vi ~/workspace/paasta-deployment/bosh/deploy-gcp.sh
+```
+bosh create-env bosh.yml \                         
+	--state=gcp/state.json \					# BOSH Latest Running State, 설치 시 생성, Backup 필요
+	--vars-store=gcp/creds.yml \					# BOSH Credentials and Certs, 설치 시 생성, Backup 필요
+	-o gcp/cpi.yml \						# GCP CPI 적용
+	-o uaa.yml \							# UAA 적용      
+	-o credhub.yml \						# CredHub 적용    
+	-o jumpbox-user.yml \						# Jumpbox-user 적용  
+	-o cce.yml \							# CCE 조치 적용
+	--var-file gcp_credentials_json=~/.ssh/paasta-project.json \	# GCP credentials
+ 	-l gcp-vars.yml							# GCP 환경에 BOSH 설치시 적용하는 변수 설정 파일
 ```
 
 - OpenStack 환경 설치 시 
