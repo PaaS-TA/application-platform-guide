@@ -439,6 +439,11 @@ Paas-TA Portal 설치 후에 관리자 포탈에서 빌드팩, 서비스팩을 �
 ![paas-ta-portal-17]  
 4. 빌드팩, 서비스팩 상세화면에 들어가서 각 항목란에 값을 입력후에 저장을 누른다.  
 ![paas-ta-portal-18]  
+※ 카탈로그 등록 및 수정 시 카탈로그 관리 코드는 선택 필수이며, 현재 사용 가능한 코드가 없는 경우 다음 내용을 참고하여 처리하도록 한다.
+    1. ①"코드 관리"를 클릭한다.
+    2. **Group Table**에서 해당하는 ②"분류 코드"를 클릭한다.
+    3. **Detail Table**에 ③"등록"버튼을 클릭하여 카탈로그 관리 코드를 추가 후 사용한다.
+    ![paas-ta-portal-18-1]
 5. 사용자포탈에서 변경된값이 적용되어있는지 확인한다.  
 ![paas-ta-portal-19]   
 
@@ -447,6 +452,7 @@ Paas-TA Portal 설치 후에 관리자 포탈에서 빌드팩, 서비스팩을 �
 [paas-ta-portal-16]:./images/Paas-TA-Portal_16.png
 [paas-ta-portal-17]:./images/Paas-TA-Portal_17.png
 [paas-ta-portal-18]:./images/Paas-TA-Portal_18.png
+[paas-ta-portal-18-1]:./images/Paas-TA-Portal_18-1.png
 [paas-ta-portal-19]:./images/Paas-TA-Portal_19.png
 [paas-ta-portal-31]:./images/Paas-TA-Portal_27.jpg
 [paas-ta-portal-32]:./images/Paas-TA-Portal_28.jpg
