@@ -505,10 +505,10 @@ uaac client add {클라이언트 명} -s {클라이언트 비밀번호} --redire
 자동승인권한: 사용자 승인이 필요하지 않은 권한 목록  
 ```
 
->$ uaac client add pipeclient -s clientsecret --redirect_uri "[DASHBOARD_URL]" /  
->--scope "cloud_controller_service_permissions.read , openid , cloud_controller.read , cloud_controller.write , cloud_controller.admin" /  
->--authorized_grant_types "authorization_code , client_credentials , refresh_token" /  
->--authorities="uaa.resource" /  
+>$ uaac client add pipeclient -s clientsecret --redirect_uri "[DASHBOARD_URL]" \  
+>--scope "cloud_controller_service_permissions.read , openid , cloud_controller.read , cloud_controller.write , cloud_controller.admin" \  
+>--authorized_grant_types "authorization_code , client_credentials , refresh_token" \  
+>--authorities="uaa.resource" \  
 >--autoapprove="openid , cloud_controller_service_permissions.read"  
 
 ```  

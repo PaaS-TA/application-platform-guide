@@ -401,10 +401,10 @@ uaac client add <CF_UAA_CLIENT_ID> -s <CF_UAA_CLIENT_SECRET> --redirect_uri <형
 <권한 퍼미션> : 클라이언트에 부여 된 권한 목록  
 <자동승인권한> : 사용자 승인이 필요하지 않은 권한 목록  
 ```
-> $ uaac client add scclient -s clientsecret --redirect_uri "http://[DASHBOARD_URL]:8080 http://[DASHBOARD_URL]:8080/repositories http://[DASHBOARD_URL]:8080/repositories/user" \
-  --scope "cloud_controller_service_permissions.read , openid , cloud_controller.read , cloud_controller.write , cloud_controller.admin" \
-  --authorized_grant_types "authorization_code , client_credentials , refresh_token" \
-  --authorities="uaa.resource" \
+> $ uaac client add scclient -s clientsecret --redirect_uri "http://[DASHBOARD_URL]:8080 http://[DASHBOARD_URL]:8080/repositories http://[DASHBOARD_URL]:8080/repositories/user" \  
+  --scope "cloud_controller_service_permissions.read , openid , cloud_controller.read , cloud_controller.write , cloud_controller.admin" \  
+  --authorized_grant_types "authorization_code , client_credentials , refresh_token" \  
+  --authorities="uaa.resource" \  
   --autoapprove="openid , cloud_controller_service_permissions.read"
 ```  
 # e.g. 형상관리 서비스 계정 생성
