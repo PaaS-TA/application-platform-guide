@@ -167,24 +167,38 @@ README.md  bosh  cloud-config  paasta
 
 Shell Script 파일을 이용하여 BOSH를 설치한다.
 파일명은 deploy-{IaaS}.sh 로 만들어졌다.  
-또한 {IaaS}-vars.yml을 수정하여 BOSH 설치시 적용하는 변수을 설정할 수 있다.
+또한 {IaaS}-vars.yml을 수정하여 BOSH 설치 시 적용하는 변수을 설정할 수 있다.
 
 <table>
 <tr>
 <td>aws-vars.yml</td>
-<td>AWS 환경에 BOSH 설치시 적용하는 변수 설정 파일</td>
+<td>AWS 환경에 BOSH 설치 시 적용하는 변수 설정 파일</td>
+</tr>
+<tr>
+<td>azure-vars.yml</td>
+<td>Azure 환경에 BOSH 설치 시 적용하는 변수 설정 파일</td>
+</tr>
+<tr>
+<td>gcp-vars.yml</td>
+<td>GCP 환경에 BOSH 설치 시 적용하는 변수 설정 파일</td>
 </tr>
 <tr>
 <td>openstack-vars.yml</td>
-<td>OpenStack 환경에 BOSH 설치시 적용하는 변수 설정 파일</td>
+<td>OpenStack 환경에 BOSH 설치 시 적용하는 변수 설정 파일</td>
 </tr>
 <tr>
 <td>vsphere-vars.yml</td>
-<td>vSphere 환경에 BOSH 설치시 적용하는 변수 설정 파일</td>
+<td>vSphere 환경에 BOSH 설치 시 적용하는 변수 설정 파일</td>
 </tr>
 <tr>
 <td>deploy-aws.sh</td>
 <td>AWS 환경에 BOSH 설치를 위한 Shell Script 파일</td>
+</tr>
+<td>deploy-azure.sh</td>
+<td>Azure 환경에 BOSH 설치를 위한 Shell Script 파일</td>
+</tr>
+<td>deploy-gcp.sh</td>
+<td>GCP 환경에 BOSH 설치를 위한 Shell Script 파일</td>
 </tr>
 <tr>
 <td>deploy-openstack.sh</td>
