@@ -54,7 +54,7 @@ $ uaac -v
 
 ### <div id="2.2"/> 2.2. Stemcell 확인
 Stemcell 목록을 확인하여 서비스 설치에 필요한 Stemcell이 업로드 되어 있는 것을 확인한다.  
-본 가이드의 Stemcell은 ubuntu-bionic 1.84를 사용한다.  
+본 가이드의 Stemcell은 ubuntu-bionic 1.88을 사용한다.  
 
 > $ bosh -e ${BOSH_ENVIRONMENT} stemcells
 
@@ -62,7 +62,7 @@ Stemcell 목록을 확인하여 서비스 설치에 필요한 Stemcell이 업로
 Using environment '10.0.1.6' as client 'admin'
 
 Name                                       Version   OS             CPI  CID  
-bosh-openstack-kvm-ubuntu-bionic-go_agent  1.84      ubuntu-bionic  -    ce507ae4-aca6-4a6d-b7c7-220e3f4aaa7d
+bosh-openstack-kvm-ubuntu-bionic-go_agent  1.88      ubuntu-bionic  -    ce507ae4-aca6-4a6d-b7c7-220e3f4aaa7d
 
 (*) Currently deployed
 
@@ -83,7 +83,7 @@ $ bosh -e ${BOSH_ENVIRONMENT} upload-stemcell -n {STEMCELL_URL}
 
 서비스 설치에 필요한 Deployment를 Git Repository에서 받아 서비스 설치 작업 경로로 위치시킨다.  
 
-- Portal Deployment Git Repository URL : https://github.com/PaaS-TA/portal-deployment/tree/v5.2.7
+- Portal Deployment Git Repository URL : https://github.com/PaaS-TA/portal-deployment/tree/v5.2.8
 
 ```
 # Deployment 다운로드 파일 위치 경로 생성 및 설치 경로 이동
@@ -91,7 +91,7 @@ $ mkdir -p ~/workspace
 $ cd ~/workspace
 
 # Deployment 파일 다운로드
-$ git clone https://github.com/PaaS-TA/portal-deployment.git -b v5.2.7
+$ git clone https://github.com/PaaS-TA/portal-deployment.git -b v5.2.8
 ```
 
 ### <div id="2.4"/> 2.4. Deployment 파일 수정  
@@ -180,7 +180,7 @@ system_domain: "61.252.53.246.nip.io"		# Domain (nip.io를 사용하는 경우 H
 ```
 # STEMCELL INFO
 stemcell_os: "ubuntu-bionic"                                    # stemcell os
-stemcell_version: "1.84"                                        # stemcell version
+stemcell_version: "1.88"                                        # stemcell version
 
 # NETWORKS INFO
 private_networks_name: "default"                                # private network name
@@ -260,16 +260,16 @@ Succeeded
 ### <div id="3.1"/> 3.1. Portal App 구성
 PaaS-TA AP에 Portal 관련 App이 9개 배포되며 구성은 다음과 같다.
 ```
-portal-app-1.2.2
+portal-app-1.2.4
 ├── portal-api-2.4.1
-├── portal-common-api-2.2.1
+├── portal-common-api-2.2.2
 ├── portal-gateway-2.1.0
-├── portal-log-api-2.1.0
+├── portal-log-api-2.2.0
 ├── portal-registration-2.1.0
 ├── portal-ssh-1.0.0
 ├── portal-storage-api-2.2.1
-├── portal-web-admin-2.3.1
-└── portal-web-user-2.4.1
+├── portal-web-admin-2.3.2
+└── portal-web-user-2.4.2
 ```
 ### <div id="3.2"/> 3.2. Portal App 배포 Script 변수 설정  
 Portal App 배포 Script 실행을 위하여 Script가 있는 위치로 이동한다.

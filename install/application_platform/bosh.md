@@ -134,7 +134,7 @@ BOSH 인증서는 BOSH 내부 Component 간의 통신 시 필요한 certificate�
 ```
 $ mkdir -p ~/workspace
 $ cd ~/workspace
-$ git clone https://github.com/PaaS-TA/paasta-deployment.git -b v5.7.4
+$ git clone https://github.com/PaaS-TA/paasta-deployment.git -b v5.7.5
 ```
 
 - paasta/deployment/paasta-deployment 이하 폴더 확인
@@ -167,24 +167,38 @@ README.md  bosh  cloud-config  paasta
 
 Shell Script 파일을 이용하여 BOSH를 설치한다.
 파일명은 deploy-{IaaS}.sh 로 만들어졌다.  
-또한 {IaaS}-vars.yml을 수정하여 BOSH 설치시 적용하는 변수을 설정할 수 있다.
+또한 {IaaS}-vars.yml을 수정하여 BOSH 설치 시 적용하는 변수을 설정할 수 있다.
 
 <table>
 <tr>
 <td>aws-vars.yml</td>
-<td>AWS 환경에 BOSH 설치시 적용하는 변수 설정 파일</td>
+<td>AWS 환경에 BOSH 설치 시 적용하는 변수 설정 파일</td>
+</tr>
+<tr>
+<td>azure-vars.yml</td>
+<td>Azure 환경에 BOSH 설치 시 적용하는 변수 설정 파일</td>
+</tr>
+<tr>
+<td>gcp-vars.yml</td>
+<td>GCP 환경에 BOSH 설치 시 적용하는 변수 설정 파일</td>
 </tr>
 <tr>
 <td>openstack-vars.yml</td>
-<td>OpenStack 환경에 BOSH 설치시 적용하는 변수 설정 파일</td>
+<td>OpenStack 환경에 BOSH 설치 시 적용하는 변수 설정 파일</td>
 </tr>
 <tr>
 <td>vsphere-vars.yml</td>
-<td>vSphere 환경에 BOSH 설치시 적용하는 변수 설정 파일</td>
+<td>vSphere 환경에 BOSH 설치 시 적용하는 변수 설정 파일</td>
 </tr>
 <tr>
 <td>deploy-aws.sh</td>
 <td>AWS 환경에 BOSH 설치를 위한 Shell Script 파일</td>
+</tr>
+<td>deploy-azure.sh</td>
+<td>Azure 환경에 BOSH 설치를 위한 Shell Script 파일</td>
+</tr>
+<td>deploy-gcp.sh</td>
+<td>GCP 환경에 BOSH 설치를 위한 Shell Script 파일</td>
 </tr>
 <tr>
 <td>deploy-openstack.sh</td>
@@ -398,11 +412,11 @@ BOSH 설치 Option은 아래와 같다.
 </tr>
 <tr>
 <td>-l, --var-file</td>
-<td>YAML파일에 작성한 변수를 읽어올때 사용한다.</td>
+<td>YAML파일에 작성한 변수를 읽어올 때 사용한다.</td>
 </tr>
 </table>
 
-설치 Shell Script에 Option을 변경필요가 있다면 해당 명령어를 실행하여 변경한다.
+설치 Shell Script에 Option을 변경할 필요가 있다면 해당 명령어를 실행하여 변경한다.
 
 - AWS 환경 설치 시 
 
@@ -416,7 +430,7 @@ bosh create-env bosh.yml \
 	-o credhub.yml \				# CredHub 적용    
 	-o jumpbox-user.yml \				# Jumpbox-user 적용  
 	-o cce.yml \					# CCE 조치 적용
- 	-l aws-vars.yml					# AWS 환경에 BOSH 설치시 적용하는 변수 설정 파일
+ 	-l aws-vars.yml					# AWS 환경에 BOSH 설치 시 적용하는 변수 설정 파일
 ```
 
 - Azure 환경 설치 시 
@@ -431,7 +445,7 @@ bosh create-env bosh.yml \
 	-o credhub.yml \				# CredHub 적용    
 	-o jumpbox-user.yml \				# Jumpbox-user 적용  
 	-o cce.yml \					# CCE 조치 적용
- 	-l azure-vars.yml				# Azure 환경에 BOSH 설치시 적용하는 변수 설정 파일
+ 	-l azure-vars.yml				# Azure 환경에 BOSH 설치 시 적용하는 변수 설정 파일
 ```
 
 - GCP 환경 설치 시 
@@ -447,7 +461,7 @@ bosh create-env bosh.yml \
 	-o jumpbox-user.yml \						# Jumpbox-user 적용  
 	-o cce.yml \							# CCE 조치 적용
 	--var-file gcp_credentials_json=~/.ssh/paasta-project.json \	# GCP credentials
- 	-l gcp-vars.yml							# GCP 환경에 BOSH 설치시 적용하는 변수 설정 파일
+ 	-l gcp-vars.yml							# GCP 환경에 BOSH 설치 시 적용하는 변수 설정 파일
 ```
 
 - OpenStack 환경 설치 시 
@@ -479,7 +493,7 @@ bosh create-env bosh.yml \
 	-o credhub.yml  \				# CredHub 적용
 	-o jumpbox-user.yml  \				# Jumpbox-user 적용
 	-o cce.yml \					# CCE 조치 적용
-	-l vsphere-vars.yml				# vSphere 환경에 BOSH 설치시 적용하는 변수 설정 파일
+	-l vsphere-vars.yml				# vSphere 환경에 BOSH 설치 시 적용하는 변수 설정 파일
 ```
 
 
@@ -519,7 +533,7 @@ Succeeded
 
 
 ### <div id='2.3.6'/>2.3.6. BOSH 로그인
-BOSH가 설치되면, BOSH 설치 폴더 이하 {iaas}/creds.yml 파일이 생성된다.  
+BOSH가 설치되면, BOSH 설치 폴더 이하에 {iaas}/creds.yml 파일이 생성된다.  
 creds.yml은 BOSH 인증정보를 가지고 있으며, creds.yml을 활용하여 BOSH에 로그인한다.  
 BOSH 로그인 후, BOSH CLI 명령어를 이용하여 PaaS-TA를 설치할 수 있다.  
 **BOSH를 이용하여 VM를 배포하려면 반드시 BOSH에 로그인을 해야한다.**  
