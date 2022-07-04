@@ -82,7 +82,7 @@ $ bosh -e ${BOSH_ENVIRONMENT} upload-stemcell -n {STEMCELL_URL}
 
 서비스 설치에 필요한 Deployment를 Git Repository에서 받아 서비스 설치 작업 경로로 위치시킨다.  
 
-- Portal Deployment Git Repository URL : https://github.com/PaaS-TA/portal-deployment/tree/v5.2.9
+- Portal Deployment Git Repository URL : https://github.com/PaaS-TA/portal-deployment/tree/v5.2.10
 
 ```
 # Deployment 다운로드 파일 위치 경로 생성 및 설치 경로 이동
@@ -90,7 +90,7 @@ $ mkdir -p ~/workspace
 $ cd ~/workspace
 
 # Deployment 파일 다운로드
-$ git clone https://github.com/PaaS-TA/portal-deployment.git -b v5.2.9
+$ git clone https://github.com/PaaS-TA/portal-deployment.git -b v5.2.10
 ```
 
 ### <div id="2.4"/> 2.4. Deployment 파일 수정
@@ -161,7 +161,7 @@ Succeeded
 ```
 
 - common_vars.yml을 서버 환경에 맞게 수정한다.
-- PaaS-TA AP Portal API에서 사용하는 변수는 system_domain, paasta_admin_username, paasta_admin_password, paasta_database_ips, paasta_database_port, paasta_database_type, paasta_database_driver_class, paasta_cc_db_id, paasta_cc_db_password, paasta_uaa_db_id, paasta_uaa_db_password, uaa_client_admin_id, uaa_client_admin_secret, monitoring_api_url, portal_web_user_url이다.
+- PaaS-TA AP Portal API에서 사용하는 변수는 system_domain, paasta_admin_username, paasta_admin_password, paasta_database_ips, paasta_database_port, paasta_database_type, paasta_database_driver_class, paasta_cc_db_id, paasta_cc_db_password, paasta_uaa_db_id, paasta_uaa_db_password, uaa_client_admin_id, uaa_client_admin_secret, monitoring_api_url, portal_web_user_url, portal_web_user_language 이다.
 
 > $ vi ~/workspace/common/common_vars.yml
 ```
@@ -182,6 +182,8 @@ uaa_client_admin_id: "admin"			# UAAC Admin Client Admin ID
 uaa_client_admin_secret: "admin-secret"		# UAAC Admin Client에 접근하기 위한 Secret 변수
 monitoring_api_url: "61.252.53.241"		# Monitoring-WEB의 Public IP
 portal_web_user_url: "http://portal-web-user.52.78.88.252.nip.io"
+portal_web_user_language: ["ko", "en"]             # portal webuser language list (e.g. ["ko", "en"])
+
 
 ... ((생략)) ...
 ```

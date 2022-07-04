@@ -83,7 +83,7 @@ $ bosh -e ${BOSH_ENVIRONMENT} upload-stemcell -n {STEMCELL_URL}
 
 서비스 설치에 필요한 Deployment를 Git Repository에서 받아 서비스 설치 작업 경로로 위치시킨다.  
 
-- Portal Deployment Git Repository URL : https://github.com/PaaS-TA/portal-deployment/tree/v5.2.9
+- Portal Deployment Git Repository URL : https://github.com/PaaS-TA/portal-deployment/tree/v5.2.10
 
 ```
 # Deployment 다운로드 파일 위치 경로 생성 및 설치 경로 이동
@@ -91,7 +91,7 @@ $ mkdir -p ~/workspace
 $ cd ~/workspace
 
 # Deployment 파일 다운로드
-$ git clone https://github.com/PaaS-TA/portal-deployment.git -b v5.2.9
+$ git clone https://github.com/PaaS-TA/portal-deployment.git -b v5.2.10
 ```
 
 ### <div id="2.4"/> 2.4. Deployment 파일 수정  
@@ -161,13 +161,15 @@ Succeeded
 ```
 
 - common_vars.yml을 서버 환경에 맞게 수정한다.
-- PaaS-TA AP Portal infra에서 사용하는 변수는 system_domain이다.
+- PaaS-TA AP Portal infra에서 사용하는 변수는 system_domain, portal_web_user_language, portal_web_admin_language 이다.
 
 > $ vi ~/workspace/common/common_vars.yml
 ```
 ... ((생략)) ...
 
 system_domain: "61.252.53.246.nip.io"		# Domain (nip.io를 사용하는 경우 HAProxy Public IP와 동일)
+portal_web_user_language: ["ko", "en"]             # portal webuser language list (e.g. ["ko", "en"])
+portal_web_admin_language: ["ko", "en"]             # portal webadmin language list (e.g. ["ko", "en"])
 
 ... ((생략)) ...
 ```
