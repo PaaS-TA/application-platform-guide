@@ -55,7 +55,7 @@ $ uaac -v
 ### <div id="2.2"/> 2.2. Stemcell 확인
 
 Stemcell 목록을 확인하여 서비스 설치에 필요한 Stemcell이 업로드 되어 있는 것을 확인한다.  
-본 가이드의 Stemcell은 ubuntu-bionic 1.88을 사용한다.  
+본 가이드의 Stemcell은 ubuntu-bionic 1.90을 사용한다.  
 
 > $ bosh -e ${BOSH_ENVIRONMENT} stemcells
 
@@ -63,7 +63,7 @@ Stemcell 목록을 확인하여 서비스 설치에 필요한 Stemcell이 업로
 Using environment '10.0.1.6' as client 'admin'
 
 Name                                       Version   OS             CPI  CID  
-bosh-openstack-kvm-ubuntu-bionic-go_agent  1.88      ubuntu-bionic  -    ce507ae4-aca6-4a6d-b7c7-220e3f4aaa7d
+bosh-openstack-kvm-ubuntu-bionic-go_agent  1.90      ubuntu-bionic  -    ce507ae4-aca6-4a6d-b7c7-220e3f4aaa7d
 
 (*) Currently deployed
 
@@ -83,7 +83,7 @@ $ bosh -e ${BOSH_ENVIRONMENT} upload-stemcell -n {STEMCELL_URL}
 
 서비스 설치에 필요한 Deployment를 Git Repository에서 받아 서비스 설치 작업 경로로 위치시킨다.  
 
-- Portal Deployment Git Repository URL : https://github.com/PaaS-TA/portal-deployment/tree/v5.2.8
+- Portal Deployment Git Repository URL : https://github.com/PaaS-TA/portal-deployment/tree/v5.2.10
 
 ```
 # Deployment 다운로드 파일 위치 경로 생성 및 설치 경로 이동
@@ -91,7 +91,7 @@ $ mkdir -p ~/workspace
 $ cd ~/workspace
 
 # Deployment 파일 다운로드
-$ git clone https://github.com/PaaS-TA/portal-deployment.git -b v5.2.8
+$ git clone https://github.com/PaaS-TA/portal-deployment.git -b v5.2.10
 ```
 
 ### <div id="2.4"/> 2.4. Deployment 파일 수정
@@ -162,7 +162,7 @@ Succeeded
 ```
 
 - common_vars.yml을 서버 환경에 맞게 수정한다.
-- PaaS-TA AP Portal UI에서 사용하는 변수는 system_domain, paasta_api_version, uaa_client_portal_secret 이다.
+- PaaS-TA AP Portal UI에서 사용하는 변수는 system_domain, paasta_api_version, uaa_client_portal_secret, portal_web_user_language, portal_web_admin_language 이다.
 
 > $ vi ~/workspace/common/common_vars.yml
 ```
@@ -171,7 +171,8 @@ Succeeded
 system_domain: "61.252.53.246.nip.io"		# Domain (nip.io를 사용하는 경우 HAProxy Public IP와 동일)
 paasta_api_version: "v3"
 uaa_client_portal_secret: "clientsecret"	# UAAC Portal Client에 접근하기 위한 Secret 변수
-
+portal_web_user_language: ["ko", "en"]             # portal webuser language list (e.g. ["ko", "en"])
+portal_web_admin_language: ["ko", "en"]             # portal webadmin language list (e.g. ["ko", "en"])
 ... ((생략)) ...
 ```
 
@@ -183,7 +184,7 @@ uaa_client_portal_secret: "clientsecret"	# UAAC Portal Client에 접근하기 �
 ```
 # STEMCELL INFO
 stemcell_os: "ubuntu-bionic"                                             # stemcell os
-stemcell_version: "1.88"                                                 # stemcell version
+stemcell_version: "1.90"                                                 # stemcell version
 
 # NETWORKS INFO
 private_networks_name: "default"                                         # private network name
