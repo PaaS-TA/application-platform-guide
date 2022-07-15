@@ -193,7 +193,12 @@ proxy_mysql_port: 13307                                          # proxy mysql p
 mysql_broker_azs: [z4]                                           # mysql broker azs
 mysql_broker_instances: 1                                        # mysql broker instances (1)
 mysql_broker_vm_type: "small"                                    # mysql broker vm type
+mysql_broker_services_plan_a_name: "<MYSQL_BROKER_SERVICE_PLAN_A_NAME>"   # mysql broker service small plan name (e.g. "Mysql-Plan1-10con")
+mysql_broker_services_plan_a_connection: 10                      # mysql broker service small plan user connections
+mysql_broker_services_plan_b_name: "<MYSQL_BROKER_SERVICE_PLAN_B_NAME>"   # mysql broker service big plan name (e.g. "Mysql-Plan2-100con")
+mysql_broker_services_plan_b_connection: 100                     # mysql broker service big plan user connections
 ```
+
 
 ### <div id="2.5"/> 2.5. 서비스 설치
 
