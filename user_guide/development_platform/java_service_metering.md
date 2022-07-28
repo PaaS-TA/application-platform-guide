@@ -492,7 +492,7 @@ Abacus****를 위한****UAA****계정 등록**을 참고한다.
 		'{"app_organization_id":"test05","app_space_id":"testspaceId","metering_plan_id":"standard"}'
 
 
-parameter 넘어온 정보들을 mongo-db 에 저장하기 위해
+parameter로 넘어온 정보들을 mongo-db 에 저장하기 위해
 ServiceInstanceBinding 객체에 매핑한다. mongo-db repository 를 통해 저장
 후, 바인딩 정보를 리턴 한다.
 	
@@ -1012,9 +1012,7 @@ PLAN_EXTRA_QUANTITY 등은 임의로 정한 수치 이다. 서비스에 맞게 �
 
 ### <div id='34'/>2.6.2.  mongo-db 서비스 브로커 생성
 
-애플리케이션에서 사용할 서비스를 파스-타 플랫폼을 통하여 생성한다.
-mongo-db 서비스 팩이 배포하고자 파스-타 플랫폼 환경에 release 되어
-있어야 한다. 애플리케이션과 바인딩 과정을 통해 접속정보를 얻을 수 있다.
+파스-타 플랫폼 환경에 mongo db 서비스가 배포되어 있어야 한다. 애플리케이션과 바인딩 과정을 통해 접속정보를 얻을 수 있다.
 
 -   **서비스 생성 (cf marketplace 명령을 통해 서비스 목록과 각 서비스의
     플랜을 조회할 수 있다.)**

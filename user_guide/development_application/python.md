@@ -8,7 +8,7 @@
 		-	[1.1.2.	범위](#1-1-2)  
 		-	[1.1.3.	참고 자료](#1-1-3)  
 
-2. [python 애플리케이션개발가이드](#2)  
+2. [python 애플리케이션 개발 가이드](#2)  
 
 	-	[2.1. 개요](#2-1)  
 	-	[2.2. 개발환경 구성](#2-2)  
@@ -50,7 +50,7 @@
 ## <div id='1-1'></div> 1.1. 문서 개요  
 
 ##### <div id='1-1-1'></div> 1.1.1 목적  
-본 문서(python 애플리케이션 개발 가이드)는 Open PaaS프로젝트의 서비스팩(Mysql, Cubrid, MongoDB, RabbitMQ, Radis, GlusterFS)을 python 애플리케이션과 연동하여서비스를 사용하고 애플리케이션을 배포하는 방법에 대해 제시하는 문서이다.
+본 문서(python 애플리케이션 개발 가이드)는 Open PaaS프로젝트의 서비스팩(Mysql, Cubrid, MongoDB, RabbitMQ, Redis, GlusterFS)을 python 애플리케이션과 연동하여서비스를 사용하고 애플리케이션을 배포하는 방법에 대해 제시하는 문서이다.
 
 ##### <div id='1-1-2'></div> 1.1.2 범위  
 본 문서의 범위는 Open PaaS 프로젝트의 python 애플리케이션 개발과 서비스팩 연동에 대한 내용으로 한정한다.
@@ -61,10 +61,10 @@
 [**https://docs.djangoproject.com/en/1.9/intro/tutorial01**](https://docs.djangoproject.com/en/1.9/intro/tutorial01) <br>
 [**http://pythontips.com/**](http://pythontips.com/) <br>
 
-# <div id='2'></div> 2.python 애플리케이션개발가이드  
+# <div id='2'></div> 2.python 애플리케이션 개발 가이드  
 
 ## <div id='2-1'></div> 2.1.	개요
-Open PaaS에 등록된 다양한 서비스팩을 python 언어로 작성된 애플리케이션과 바인딩하고 해당 애플리케이션에 바인딩 된 환경정보(VCAP_SERVICES)에서 각 서비스별 접속정보를 획득하여 애플리케이션에 적용하여 이용 할 수 있도록 Windows 환경에서 python 애플리케이션을 작성할 수 있도록 한다. 
+Open PaaS에 등록된 다양한 서비스팩을 python 언어로 작성된 애플리케이션과 바인딩하고, 해당 애플리케이션에 설정된 환경정보(VCAP_SERVICES)에서 각 서비스별 접속정보를 획득하여 애플리케이션에 이용할 수 있도록 Windows 환경에서 python 애플리케이션을 작성할 수 있도록 한다. 
 
 ## <div id='2-2'></div>  2.2.	개발환경 구성  
 python 샘플 애플리케이션 개발이 이루어진 환경은 다음과 같다..
@@ -115,7 +115,7 @@ Windows x86-64 MSI installer
 
 ![python-5]  
 
-※ ip는 python 관련 패키지 설치를 지원하는 도구이다. 일반적으로 python을 설치하면 함께 설치되지만 경우에 따라 pip 설치가 되지 않을 수 있다. 이 때는 python 설치에 기본으로 제공되는 또 다른 설치도구인 easy_install을 사용하여 pip를 설치한다.
+※ pip는 python 관련 패키지 설치를 지원하는 도구이다. 일반적으로 python을 설치하면 함께 설치되지만 경우에 따라 pip 설치가 되지 않을 수 있다. 이 때는 python 설치에 기본으로 제공되는 또 다른 설치도구인 easy_install을 사용하여 pip를 설치한다.
 
 ※ easy_install 이용한 pip 설치
  명령 프롬프트에서 python 설치 경로의 Scripts 디렉토리로 이동한다. 

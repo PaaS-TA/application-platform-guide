@@ -273,7 +273,7 @@ applications:
     AUTH_SERVER: https://api.bosh-lite.com:443					# oauth 서비스 엔드포인트
     CLIENT_ID: abacus	                    					# oauth 권한 id
     CLIENT_SECRET: secret                     					# oauth id 비밀번호
-    JWTKEY: |+                             						# 앱을 secured mode로 서비스 하기 위해 유효성 체크를 위한 인증 서비스 공개키 
+    JWTKEY: |+                             						# 앱을 secured mode로 서비스 하기 위해 Auth Server와 유효성 체크를 하는 인증 서비스 공개키 
       -----BEGIN PUBLIC KEY-----
       MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDHFr+KICms+tuT1OXJwhCUmR2d
       KVy7psa8xzElSyzqx7oJyfJ1JZyOzToj9T5SfTIq396agbHJWVfYphNahvZ/7uMX
@@ -440,7 +440,7 @@ applications:
 
 -   COR 설정
 
-		// api 서비스는 요청한 서비스의 응답 처리 이외에 abacus에 대해 request 처리가 추가로 필요하므로 크로스 도메인을 설정 한다.
+		// api 서비스는 요청한 서비스의 응답 처리 이외에 abacus에 대한 request 처리가 추가로 필요하므로 크로스 도메인을 설정 한다.
 		routes.use(function(req, res, next) {
 		  res.header('Access-Control-Allow-Origin', '*');
 		  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');

@@ -1,35 +1,61 @@
 ### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP User Guide](../README.md) > Go 개발
 
-### 1. 개요
+## Table of Contents
 
-#### 1.1. 문서 개요
+1. [개요](#1)	
+	-	[1.1. 문서 개요](#1-1)  
+		-	[1.1.1.	목적](#1-1-1)  
+		-	[1.1.2.	범위](#1-1-2)  
+		-	[1.1.3.	참고 자료](#1-1-3)  
 
-##### 1.1.1. 목적
-본 문서(Go 애플리케이션 개발 가이드)는 Open PaaS 프로젝트의 서비스팩(Mysql, MongoDB, RabbitMQ, Radis, GlusterFS)을 Go 애플리케이션과 연동하여 서비스를 사용하고 애플리케이션을 배포하는 방법에 대해 제시하는 문서이다.
+2. [Go 애플리케이션 개발가이드](#2)  
 
-##### 1.1.2. 범위
+	-	[2.1. 개요](#2-1)  
+	-	[2.2. 개발환경 구성](#2-2)  
+		-	[2.2.1.	Go SDK 설치](#2-2-1)  
+      -	[2.2.2.	IntelliJ IDEA 설치](#2-2-2) 
+
+	-	[2.3. 개발](#2-3)  
+		-	[2.3.1.	샘플 애플리케이션 연동](#2-3-1)  
+      -	[2.3.2.	샘플 애플리케이션 환경설정](#2-3-2)  
+      -	[2.3.3.	VCAP\_SERVICES 환경설정 정보를 통한 연동](#2-3-3) 
+      -	[2.3.4.	config.ini 파일을 통한 Database, Redis, RabbitMQ 연동](#2-3-4) 
+      -	[2.3.5.	GlusterFS 연동](#2-3-5) 
+
+	-	[2.4. 배포](#2-4)  
+
+	-	[2.5. 테스트](#2-5)  
+
+# <div id='1'></div> 1. 개요
+
+## <div id='1-1'></div> 1.1. 문서 개요
+
+##### <div id='1-1-1'></div> 1.1.1. 목적
+본 문서(Go 애플리케이션 개발 가이드)는 Open PaaS 프로젝트의 서비스팩(Mysql, MongoDB, RabbitMQ, Redis, GlusterFS)을 Go 애플리케이션과 연동하여 서비스를 사용하고 애플리케이션을 배포하는 방법에 대해 제시하는 문서이다.
+
+##### <div id='1-1-2'></div> 1.1.2. 범위
 본 문서의 범위는 Open PaaS 프로젝트의 Go 애플리케이션 개발과 서비스팩 연동에 대한 내용으로 한정되어 있다.
 
-##### 1.1.3. 참고 자료
+##### <div id='1-1-3'></div> 1.1.3. 참고 자료
 -   [***https://code.google.com/p/golang-korea/wiki/EffectiveGo***](https://code.google.com/p/golang-korea/wiki/EffectiveGo)
 -   [***https://github.com/brianmario/mysql2***](https://github.com/brianmario/mysql2)
 -   [***https://github.com/redis/redis-rb***](https://github.com/redis/redis-rb)
 -   [***https://github.com/fog/fog***](https://github.com/fog/fog)
 -   [***https://www.jetbrains.com/idea/***](https://www.jetbrains.com/idea/)
 
-### 2. Go 애플리케이션 개발가이드
+# <div id='2'></div> 2. Go 애플리케이션 개발가이드
 
-#### 2.1. 개요
-Open PaaS에 등록된 다양한 서비스팩을 Go언어로 작성된 애플리케이션과 바인딩하고 해당 애플리케이션에 바인딩된 환경정보(VCAP\_SERVICES)에서 각 서비스별 접속정보를 획득하여 애플리케이션에 적용하여 이용 할 수 있도록 Windows 환경에서 Go 애플리케이션을 작성 할 수 있도록한다.
+## <div id='2-1'></div> 2.1. 개요
+Open PaaS에 등록된 다양한 서비스팩을 Go언어로 작성된 애플리케이션과 바인딩한다. 해당 애플리케이션에 설정된 환경정보(VCAP\_SERVICES)에서 각 서비스별 접속정보를 획득하여 애플리케이션에 이용 할 수 있게끔 Windows 환경에서 Go 애플리케이션을 작성 할 수 있도록한다.
 
-#### 2.2. 개발환경 구성
+## <div id='2-2'></div> 2.2. 개발환경 구성
 Go 애플리케이션 개발을 위해 다음과 같은 환경으로 개발환경을 구성 한다.
 -   OS : Windows 7 64bit
 -   Go : 1.5.2
 -   IDE : Intellij IDEA  
 Intellij IDEA 는 Commnuity와 Ultimate 버전이 있는데, Community 버전은 Free이고, Ultimate 버전은 은 30-day trial버전이다.
 
-##### 2.2.1. Go SDK설치
+##### <div id='2-2-1'></div> 2.2.1. Go SDK 설치
 1.  Go SDK 다운로드
 
 | <span id="__DdeLink__2953_294360055" class="anchor"></span>https://golang.org/dl/ |
@@ -71,7 +97,7 @@ Go SDK : go1.5.2.windows-amd64.msi
 
 -   “Finish” 버튼 클릭
 
-##### 2.2.2. IntelliJ IDEA설치
+##### <div id='2-2-2'></div> 2.2.2. IntelliJ IDEA 설치
 1.  IDEA 다운로드
 
 | http://www.jetbrains.com/idea/ |
@@ -113,11 +139,11 @@ Go SDK : go1.5.2.windows-amd64.msi
 
 -   “Finish” 버튼 클릭
 
-#### 2.3. 개발
+## <div id='2-3'></div> 2.3. 개발
 
 샘플 애플리케이션에의 데이터 관리는 MySQL, MongoDB 중에 하나를 이용하기 때문에 API 요청시 요청 본문에 DBType 값을 가지고 결정한다.
 
-##### 2.3.1. 샘플 애플리케이션 연동
+##### <div id='2-3-1'></div> 2.3.1. 샘플 애플리케이션 연동
 
 1.  Go 샘플 프로젝트 연결
 
@@ -143,7 +169,7 @@ Go SDK : go1.5.2.windows-amd64.msi
 
 -   “Finish” 버튼 클릭
 
-##### 2.3.2. 샘플 애플리케이션 환경설정
+##### <div id='2-3-2'></div> 2.3.2. 샘플 애플리케이션 환경설정
 
 -   IntelliJ IDEA 환경에 Go Plugin 설치 및 Go 샘플 어플리케이션의 환결설정
 
@@ -211,7 +237,7 @@ Go SDK : go1.5.2.windows-amd64.msi
 
 <img src="./images/go/image40.png" width="560" height="305" />
 
-##### 2.3.3. VCAP\_SERVICES 환경설정 정보를 통한 연동 
+##### <div id='2-3-3'></div> 2.3.3. VCAP\_SERVICES 환경설정 정보를 통한 연동 
 
 개방형 플랫폼에 배포되는 애플리케이션이 바인딩된 서비스별 접속 정보를 얻기 위해서는 애플리케이션별로 등록되어있는 VCAP\_SERVICES 환경설정 정보를 읽어들여 정보를 획득 할 수 있다.
 
@@ -293,7 +319,7 @@ func sample_function_name() string {
 
 -   VCAP\_SERVICES 구조 참조
 
-##### 2.3.4. config.ini 파일을 통한 Database, Redis, RabbitMQ 연동
+##### <div id='2-3-4'></div> 2.3.4. config.ini 파일을 통한 Database, Redis, RabbitMQ 연동
 
 1).  config.ini
 
@@ -492,7 +518,7 @@ func initRedis(addr string) *redis.Client {
 
 ~~~
 
-##### 2.3.5. GlusterFS 연동
+##### <div id='2-3-5'></div> 2.3.5. GlusterFS 연동
 
 1).  파일 Upload
 
@@ -603,7 +629,7 @@ func readOSEnvironment_gf() (string, string, string, string) {
 }
 ~~~
 
-#### 2.4. 배포
+## <div id='2-4'></div> 2.4. 배포
 
 -   cf cli 명령어를 이용하여 Go 샘플 어플리케이션을 배포한다.
 
@@ -671,7 +697,7 @@ buildpack: https://github.com/cloudfoundry/go-buildpack.git
 
 Go 샘플 애플리케이션에의 데이터 관리는 MySQL, MongoDB 중에 하나를 이용하기 때문에 배포시 환경변수 정보(dbtype)에 데이터베이스 이름(mysql or mongodb)를 설정하여 배포한다..
 
-#### 2.5. 테스트
+## <div id='2-5'></div> 2.5. 테스트
 
 curl 명령어를 통해 command 창에서 직접 테스트 할 수 있다.
 

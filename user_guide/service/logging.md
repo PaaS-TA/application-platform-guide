@@ -126,7 +126,7 @@ Management | 저장된 객체 관리
 ![015]
 
 - Fields 설정
-"Discover" 메뉴의 ① 의 영역에서 Available Fields 목록의 Field를 선택(②)하여 조회 화면(③)에 표시되는 Field를 설정한다.
+"Discover" 메뉴의 ① 의 영역에 있는 Available Fields 목록에서 원하는 Field(②)를 선택하면 조회 화면(③)에 해당 Field가 표시된다.
 ![016]
 ![017]
 

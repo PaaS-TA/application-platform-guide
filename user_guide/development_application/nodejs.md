@@ -34,7 +34,7 @@
 
 ### <div id='2'> 1.1. 목적
 
-본 문서(node.js 애플리케이션 개발 가이드)는 개방형 플랫폼 프로젝트의 서비스팩(Mysql, Cubrid, MongoDB, RabbitMQ, Radis, GlusterFS)을 Node.js 애플리케이션과 연동하여서비스를 사용하고 애플리케이션을 배포하는 방법에 대해 제시하는 문서이다.
+본 문서(node.js 애플리케이션 개발 가이드)는 개방형 플랫폼 프로젝트의 서비스팩(Mysql, Cubrid, MongoDB, RabbitMQ, Redis, GlusterFS)을 Node.js 애플리케이션과 연동하여서비스를 사용하고 애플리케이션을 배포하는 방법에 대해 제시하는 문서이다.
 
 
 ### <div id='3'> 1.2. 범위
@@ -132,7 +132,7 @@ Node.js는 javascript기반의 언어로 Notepad++, Sublim Text, EditPlus등 문
 샘플 애플리케이션에의 데이터 관리는 MySQL, CubridDB, MongoDB 중에 하나를 이용하기 때문에 API 요청시 요청 본문에 DBType 값을 가지고 결정한다.
 
 
-### <div id='8'> 3.1. Node.js Express애플리케이션 생성
+### <div id='8'> 3.1. Node.js Express 애플리케이션 생성
 ##### 1. 'express-generator'를 이용하여 Express 애플리케이션을 생성
 
 - 커맨드 창에서 개발을 진행할 경로로 이동후 아래의 명령어를 입력하여 'express-generator' npm을 설치한다.
@@ -140,7 +140,7 @@ Node.js는 javascript기반의 언어로 Notepad++, Sublim Text, EditPlus등 문
 ><div>>npm install express-generator
 ![2-3-1-0]
 
-- Express 애플리케이션을 생성한다. '-e'옵션은 view enjine을 ejs를 사용한다는 것이고 default view enjin은 jade이다.
+- Express 애플리케이션을 생성한다. '-e'옵션은 view engine을 ejs로 사용한다는 것이고 default view engine은 jade이다.
 
 ><div>>.\node_modules\.bin\express -e
 ![2-3-1-1]
@@ -215,7 +215,7 @@ Node.js는 javascript기반의 언어로 Notepad++, Sublim Text, EditPlus등 문
   <tr>
     <td>views/</td>
     <td>ejs파일들이 위치하는 곳이다.<br>
-    ejs파일은 html을 좀더 쉽게 작성할 수 있게 도와주는 template enjin 이며 express의 view enjin을 ejs로 설정했을시 사용하는 파일이다.<br>
+    ejs파일은 html을 좀더 쉽게 작성할 수 있게 도와주는 template engine 이며 express의 view engine을 ejs로 설정했을시 사용하는 파일이다.<br>
     render() 메소드를 이용하여 ejs파일을 html로 변환하여 보여준다.</td>
   </tr>
   <tr>
