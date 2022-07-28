@@ -161,7 +161,7 @@ CREATE INDEX `IDX_DORO` ON `egov_common`.`doro_juso` (`doro` ASC)  COMMENT '';
 
 이 문서는 MySQL 서버를 대상으로 데이터를 Import 하는데 기존의 TXT 파일을 UTF8로 변환하고 변환된 파일을 MySQL Import 기능을 이용하여 DBMS에 넣는 방법을 설명하겠습니다. 물론 DBMS의 DB는 UTF8로 설정되어 있습니다.
 
-파일의 인코딩을 UTF8로 변환하는 방법은 Windows 환경에서 해당 파일을 메모장에서 열고 이 파일을 다시 “다른 이름으로 저장”하기를 할 때 인코딩을 변경하는 방법입니다.
+파일의 인코딩을 UTF8로 변환하는 방법은, Windows 환경에서 해당 파일을 메모장에서 열고 이 파일을 다시 “다른 이름으로 저장”하기를 합니다.
 >![api_platform_dorojuso_06]
 
 그림. 메모장에서 다른 이름으로 저장하기
@@ -542,7 +542,7 @@ broker: apiplatform-sb
 dorojusodb      Unlimited   all
    dorojusodbMgt   Unlimited   all
 ````
-서비스를 Enable해주고 다시 서비스 접근 리스트를 조회하면 access가 all로 되어 있는 것을 확인할 수 있습니다.
+서비스를 Enable해주고 다시 서비스 콤보박스를 조회하면 access가 all로 되어 있는 것을 확인할 수 있습니다.
 
 이제 개방형 클라우드 플랫폼에서 도로명 주소 서비스를 사용할 준비가 되었습니다.
 

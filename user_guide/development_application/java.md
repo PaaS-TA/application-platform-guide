@@ -1,27 +1,52 @@
 ### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP User Guide](../README.md) > Java 개발
 
-### 1. 개요
+## Table of Contents
 
-#### 1.1. 문서 개요
+1. [개요](#1)	
+	-	[1.1. 문서 개요](#1-1)  
+		-	[1.1.1.	목적](#1-1-1)  
+		-	[1.1.2.	범위](#1-1-2)  
+		-	[1.1.3.	참고 자료](#1-1-3)  
 
-##### 1.1.1. 목적
-본 문서(Java 애플리케이션 개발 가이드)는 Open PaaS프로젝트의 서비스팩(Mysql, Cubrid, MongoDB, RabbitMQ, Radis, GlusterFS)을 Java애플리케이션과 연동하여서비스를 사용하고 애플리케이션을 배포하는 방법에 대해 제시하는 문서이다.
+2. [JAVA 애플리케이션 개발가이드](#2)  
 
-##### 1.1.2. 범위
+	-	[2.1. 개요](#2-1)  
+	-	[2.2. 개발환경 구성](#2-2)  
+		-	[2.2.1.	JDK설치](#2-2-1)  
+
+	-	[2.3. 개발](#2-3)  
+		-	[2.3.1.	애플리케이션 환경 설정](#2-3-1)  
+
+	-	[2.4. 실행](#2-4)  
+
+	-	[2.5. 배포](#2-5)  
+
+	-	[2.6. Sample App 배포 확인](#2-6)
+
+	-	[2.7. Sample App 로그인](#2-7)
+
+# <div id='1'></div> 1. 개요
+
+## <div id='1-1'></div> 1.1. 문서 개요
+
+##### <div id='1-1-1'></div> 1.1.1. 목적
+본 문서(Java 애플리케이션 개발 가이드)는 Open PaaS프로젝트의 서비스팩(Mysql, Cubrid, MongoDB, RabbitMQ, Redis, GlusterFS)을 Java애플리케이션과 연동하여서비스를 사용하고 애플리케이션을 배포하는 방법에 대해 제시하는 문서이다.
+
+##### <div id='1-1-2'></div> 1.1.2. 범위
 본 문서의 범위는 Open PaaS 프로젝트의 Java 애플리케이션 개발과 서비스팩 연동에 대한 내용으로 한정되어 있다.
 
-##### 1.1.3. 참고 자료
+##### <div id='1-1-3'></div> 1.1.3. 참고 자료
 -   [http://java.sun.com](http://java.sun.com)
 -   [http://spring.io](http://spring.io)
 
 
-### 2. JAVA 애플리케이션 개발가이드
+# <div id='2'></div> 2. JAVA 애플리케이션 개발가이드
 
-#### 2.1. 개요
+## <div id='2-1'></div> 2.1. 개요
 Open PaaS에 등록된 다양한 서비스팩을 Java언어로 작성된 애플리케이션과 바인딩하고해당 애플리케이션에 바인딩된 환경정보(VCAP_SERVICES)에서 각 서비스별 접속정보를 획득하여 애플리케이션에 적용하여 이용 할 수 있도록 Windows 환경에서 Java 애플리케이션을 작성 할 수 있도록 한다.
  Java Sample Application은 REST 기반의 서비스를 UI를 제공한다. 사용하는 서비스로는 Mysql, Cubrid, Mongodb, Redis, RabbitMq, GlusterFS를 제공하며, Local 및 OpenPaas 환경에서 사용가능하다. 단, GlusterFs는 Local환경에서 Connection정보를 제공하지 않는다.
 
-#### 2.2. 개발환경 구성
+## <div id='2-2'></div> 2.2. 개발환경 구성
 Java 애플리케이션 개발을 위해 다음과 같은 환경으로 개발환경을 구성 한다.
 -   OS : Windows 7 64bit
 -   Java : 1.8
@@ -29,7 +54,7 @@ Java 애플리케이션 개발을 위해 다음과 같은 환경으로 개발환
 -   IDE : Eclipse
 -   의존성: Maven
 
-##### 2.2.1. JDK설치
+##### <div id='2-2-1'></div> 2.2.1. JDK설치
 1.  JDK 다운로드(1.8)
 
 | <span id="__DdeLink__2953_294360055" class="anchor"></span>http://www.oracle.com/technetwork/java/javase/downloads/index-jsp-138363.html |
@@ -60,7 +85,7 @@ Java 애플리케이션 개발을 위해 다음과 같은 환경으로 개발환
 
 <img src="./images/java/image5.png" width="400" height="150" />
 
-  -   고급 시스템설정>고급 텝 > 환경변수 버튼 클릭
+  -   고급 시스템설정>고급 탭 > 환경변수 버튼 클릭
   -   시스템 변수 영역 > path 클릭 > jdk설치된 디렉토리의 bin을 path로 추가한다.
 <img src="./images/java/image6.png" width="400" height="150" />
 
@@ -87,15 +112,15 @@ Java 애플리케이션 개발을 위해 다음과 같은 환경으로 개발환
   - Existing Maven Project를 클릭한다.  
 <img src="./images/java/image12.png" width="400" height="150" />
 
-  - Browse  버튼을 클릭하여 java-sample 프로제트가있는 폴더를 선택한다. Finish 버튼을 클릭한다.
+  - Browse  버튼을 클릭하여 java-sample 프로젝트가 있는 폴더를 선택한다. Finish 버튼을 클릭한다.
 <img src="./images/java/image13.png" width="400" height="150" />
 
   - java sample Application이 추가 된것을 확인한다.  
 <img src="./images/java/image14.png" width="400" height="150" />
 
 
-#### 2.3. 개발
-  - OpenPaas Java Sample Application은 다음과 같은 구조를 지닌다. Spring-Boot library를 사용하여
+## <div id='2-3'></div> 2.3. 개발
+  - OpenPaas Java Sample Application은 다음과 같은 구조를 지닙니다. Spring-Boot library를 사용하여
 별도의 Tomcat설정 없이 구동이 가능합니다. 샘플 애플리케이션에의 데이터 관리는 MySQL, CubridDB, MongoDB 중에 하나를 이용하기 때문에 API 요청시 요청 본문에 DBType 값을 가지고 결정합니다.
 
 <img src="./images/java/image15.png" width="500" height="500" />
@@ -122,7 +147,7 @@ Java 애플리케이션 개발을 위해 다음과 같은 환경으로 개발환
 |webapp                                 |UI관련 리소스 위치     |
 
 
-##### 2.3.1. 애플리케이션 환경 설정
+##### <div id='2-3-1'></div> 2.3.1. 애플리케이션 환경 설정
   - 본 문서는 Cloud환경에서 Java Application이 구동 될 수 있는 방법을 제시합니다. Mysql, Cubrid, Redis등의 설치관련 정보는 제공하지 않습니다.
 
 1)   manifest.yml
@@ -144,7 +169,7 @@ rabbitmq.service.name: rabbitmq-service-instance
   - 애플리케이션의 환경설정  
 
   ```
-  @Profile("cloud") ==> Cloud환경 인식하는 Annotation(manifest.yml의 Env정보와 매팽)
+  @Profile("cloud") ==> Cloud환경 인식하는 Annotation(manifest.yml의 Env정보와 매핑)
 @Configuration    ==> Spring Config
 @ServiceScan      ==> Cloud Config Service Scan Annotation
 public class CloudDataConfig extends AbstractCloudConfig {
@@ -447,7 +472,8 @@ public class CloudDataConfig extends AbstractCloudConfig {
  		</dependency>
  		<!-- GlusterFS End -->
    ```
-#### 2.3. 개발
+
+## <div id='2-4'></div> 2.4. 실행
 
   - Java Sample Application은 Spring Boot으로 구성되어 있어 별도의 Tomcat 설정이 필요하지 않습니다.
 java package Root에 있는 Application.java 우측 버튼을 클릭 --> Run As --> Java Application실행하면 Sample Application이 실행됩니다.
@@ -455,7 +481,7 @@ java package Root에 있는 Application.java 우측 버튼을 클릭 --> Run As 
 <img src="./images/java/image17.png" width="350" height="400" />
 
 
-#### 2.4. 배포
+## <div id='2-5'></div> 2.5. 배포
   - cf cli 명령어를 이용하여 Java 샘플 어플리케이션을 배포한다
   - java-sample application이 maven install을 실행하여 war가 존재하여야 한다.
   - cf cli가 설치되어 있고, cf login이 이미 되어 있다는 가정하에 진행한다.
@@ -549,7 +575,7 @@ buildpack: java_buildpack
 #0   running   2016-02-15 03:49:33 PM   88.2%   341M of 512M   185.2M of 1G
  ```
 
-#### 2.5. Sample App 배포 확인
+## <div id='2-6'></div> 2.6. Sample App 배포 확인
 
 1) cf cli 명령어를 이용하여 Java 샘플 어플리케이션의 배포 상태 및 URL을 확인한다.
 
@@ -562,13 +588,13 @@ name                     requested state   instances   memory   disk   urls
 java-sample              started           1/1         512M     1G     java-sample.52.71.31.153.xip.io   
 ```
 
-#### 2.6. Sample App 로그인
+## <div id='2-7'></div> 2.7. Sample App 로그인
 1) 브라우저에서 java-sample.52.71.31.153.xip.io 에 접속하면 로그인 화면이 나타납니다.
 admin/admin 입력후 로그인 합니다.
 
 <img src="./images/java/image18.png" width="350" height="300" />
 
-2) 로그인이 완료되면 다음 조직 화면이 나타납니다. 화면 하단에 집 아이콘을 클릭하면 해당 조직의 상세 조직 화면이 나타납니다. 조직명을 클릭하면 조직의 에하 조직 목록을 조회 할 수 있습니다.
+2) 로그인이 완료되면 다음 조직 화면이 나타납니다. 화면 하단에 집 아이콘을 클릭하면 해당 조직의 상세 조직 화면이 나타납니다. 조직명을 클릭하면 조직 이하의 조직 목록을 조회 할 수 있습니다.
 
 <img src="./images/java/image19.png" width="350" height="150" />
 

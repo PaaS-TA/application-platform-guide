@@ -7,7 +7,7 @@
          * 1.1.2. [범위](#1.1.2)
          * 1.1.3. [제약사항](#1.1.3)
          * 1.1.4. [참고자료](#1.1.4)
-2. [PHP 애플리케이션개발가이드](#2)
+2. [PHP 애플리케이션 개발 가이드](#2)
      * 2.1. [개요](#2.1)
      * 2.2. [개발환경 구성](#2.2)
          * 2.2.1. [PHP 샘플 소스 받기](#2.2.1)
@@ -54,7 +54,7 @@
 -	XAMP 사이트 :https://www.apachefriends.org/index.html
 
   
-# <div id='2'> 2.  PHP 애플리케이션개발가이드
+# <div id='2'> 2.  PHP 애플리케이션 개발 가이드
  
 ## <div id='2.1'> 2.1.  개요
 
@@ -423,7 +423,7 @@ php-opencloud라는 패키지를 사용하며 composer를 통해서 설치가 �
 
 1.	GlusterFS와 연동하기 (파일 Upload)
 개방형 플랫폼에서는 Object Storage를 GlusterFS를 사용하는데 Object Storage를 API를 통해 사용하기 위해 Openstack의 Swift를 이용하여 서비스를 할 수 있게 구성되어 있습니다.
-php-opencloud는 swif를 만든 rackspace 회사에서 제공하는 SDK입니다. 
+php-opencloud는 swift를 만든 rackspace 회사에서 제공하는 SDK입니다. 
 Opencloud를 사용하기 위해 선언을 합니다.
 
         use OpenCloud\Rackspace;
@@ -491,7 +491,7 @@ Opencloud를 사용하기 위해 선언을 합니다.
         path: .
         buildpack: https://github.com/cloudfoundry/php-buildpack.git# 사용할 빌드팩을 선언
 
-※애플리케이션 스테이징시할달 받은 포트가 환경변수로 등록되어있다. 이 포트는 애플리케이션의 상태 체크에도 사용되므로 위와 같이 포트를 지정할 것을 권장한다.
+※애플리케이션 스테이징시 할당 받은 포트가 환경변수로 등록되어있다. 이 포트는 애플리케이션의 상태 체크에도 사용되므로 위와 같이 포트를 지정할 것을 권장한다.
 
 2)	개방형 플랫폼 로그인
 

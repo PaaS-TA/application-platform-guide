@@ -59,7 +59,7 @@ http://docs.cloudfoundry.org/services/
 http://bosh.io/docs/create-release.html  
 https://github.com/cloudfoundry/bosh-sample-release  
 https://github.com/cloudfoundry/cf-mysql-release/  
-https://github.com/cloudfoundry-community/cf-mysql-java-broker-boshrelease  
+https://github.com/cloudfoundry-community/cf-mysql-java-broker-Bosh release  
 https://github.com/cloudfoundry-community/cf-mysql-java-broker  
 http://rubykr.github.io/rails_guides/getting_started.html  
 http://www.appdirect.com  
@@ -490,7 +490,7 @@ Single Sign-On (SSO)는 개방형 클라우드 플랫폼 사용자들이 개방�
 
 ##### <a name="14"/>2.5.3. Update Instance API 가이드
 Update Instance API는 기존의 서비스 인스턴스의 plan를 수정 한다. 즉 서비스 인스턴스의 plan을 업그레이드나 다운그레이드 한다.
-이 기능을 사용하려면 브로커는 카탈로그 endpoint 에서 “plan_updateable: true”설정 해주어야 한다. 이 옵션 필드가 포함되어 있지 않은 경우에는 service plan 변경 요청에 대해 의미 있는 오류를 반환하고 브로커는 API 호출을 하지 않는다. 이 필드가 포함된 경우 개방형 클라우드 플랫폼의 모든 plan 변경 요청에 브로커로 API 호출을 수행하며 브로커에서는 plan 지원 여부를 확인한다.
+이 기능을 사용하려면 브로커는 카탈로그 endpoint 에서 “plan_updateable: true”설정 해주어야 한다. 이 옵션 필드가 포함되어 있지 않은 경우, service plan 변경 요청에 대한 오류를 반환하고 브로커는 API 호출을 하지 않는다. 이 필드가 포함된 경우 개방형 클라우드 플랫폼의 모든 plan 변경 요청에 브로커로 API 호출을 수행하며 브로커에서는 plan 지원 여부를 확인한다.
 
 1.	Request
 1.1.	Route
@@ -1046,7 +1046,7 @@ Provision만으로 서비스를 사용할 수 있을 경우에는 bind 기능 �
 ### <a name="18"/>3. Service release 개발 가이드
 
 #### <a name="19"/>3.1.	개요
-BOSH release 는 jobs(packages 구동 스크립트, monit 스크립트 등), packages, 소스 코드 및 관련 자료의 메타 데이터로 구성되어 있다.BOSH를 통해서 소프트웨어(service back-end, broker 및 etc)를 설치한다. 패키징에 필요한 바이너리 파일 (일명 "blobs")은 release 저장소 내부에 보관하는 필요성을 없애고 release 내 Blob 저장소에 저장되어 외부에서 참조 할 수있다.또한 BOSH release를 활용하기 위해 release yml 를 작성 한다.
+BOSH release 는 jobs(packages 구동 스크립트, monit 스크립트 등), packages, 소스 코드 및 관련 자료의 메타 데이터로 구성되어 있다.BOSH를 통해서 소프트웨어(service back-end, broker 및 etc)를 설치한다. 패키징에 필요한 바이너리 파일 (일명 "blobs")은 release 저장소 내부에 보관하는 필요성을 없애고, release 내 Blob 저장소에 저장되어 외부에서 참조 할 수있다. 또한 BOSH release를 활용하기 위해 release yml 를 작성 한다.
 
 참고: service back-end (서비스 provider 가 제공하는 소프트웨어: 2.2 Service Architecture 참고) 가 외부 서비스로 이미 제공하는 provider 인 경우에는 BOSH release 로 service back-end 를 설치할 필요는 없고 해당 브로커만 개발하여 외부 서비스와 연결할수 있다. 이런 경우에는 Borker만 Bosh release 로 설치 한다. 하지만 외부에서 제공하는 서비스가 CF 가 설치 되는 IaaS 에 포함(단절된 네트워크에서 cloud 운영인 경우)되는 경우에는 해당 service back-end 를 BOSH release로 배포한다. 또한 외부 서비스를 사용하고 Broker가 개방형 클라우드 플랫폼의 Application으로 (cf push) 제공 하려는 경우에는 BOSH release 는 생략 하고 2. Service Borker Guide 를 진행하면된다.
 
@@ -1064,10 +1064,10 @@ BOSH release 는 jobs(packages 구동 스크립트, monit 스크립트 등), pac
 > [그림출처]: https://www.ibm.com/developerworks/community/blogs/fe313521-2e95-46f2-817d-44a4f27eba32/entry/porting_cloud_foundry_on_power8_ubuntu_le?lang=en
 
 #### <a name="21"/>3.3.	Release Directory 구조
-디랙토리 구조는 Bosh release 로 구성 할수 있게 되어 있다. Bosh는 릴리스 엔지니어링, 배포 및 대규모 분산 서비스의 라이프 사이클 관리를위한 오픈 소스 도구이다.
+디렉토리 구조는 Bosh release 로 구성 할수 있게 되어 있다. Bosh는 릴리스 엔지니어링, 배포 및 대규모 분산 서비스의 라이프 사이클 관리를위한 오픈 소스 도구이다.
 
 ##### <a name="22"/>3.3.1. packages
-packages에는 Boshrelease 설치를 위한 바이너리에 대한 종속성을 준비하는데 필요한 정보를 제공한다. (packaging, pre_packaging, spec 파일)
+packages에는 Bosh release 설치를 위한 바이너리에 대한 종속성을 준비하는데 필요한 정보를 제공한다. (packaging, pre_packaging, spec 파일)
 
 >![openpaas-servicepack-35]
  
@@ -1117,16 +1117,16 @@ IaaS 별 service 배포 manifest 파일 들을 관리한다.
 service를 Bosh release를 통해 배포 해야 하기 때문에 Bosh release 개발 방식에 따라
 작성되어야한다.Bosh release 는 packages 와 jobs 관련 스크립트로 구성되어 있다.
 Bosh 는 software를 release 할 때 두가지 방식을 제공한다.
-Boshupload release CLI명령어 및 프로세스는 다음과 같다.
+Bosh upload release CLI명령어 및 프로세스는 다음과 같다.
 
 bosh upload release CLI 
-boshupload release [<release_file>] [--rebase] [--skip-if-exists]
+Bosh upload release [<release_file>] [--rebase] [--skip-if-exists]
 release_file: 로컬 파일 또는 원격 URI 정보
     --rebase:최신 버전으로 Director에 설정
     --skip-if-exists:릴리즈 가 존재 하면 업로드 하지 않음
 
-1.	Yaml 파일을 이용한 설치 프로세스 [<release_file> 파라미터가 yml 파일일 경우]: releases 디랙토리안에 cf-<service_name>-<version>.yml 파일을 읽어서 sha1 값으로 .final_builds 폴더의 해당 packages 또는 jobs 폴더안의 index.yml 의 blobstore_id 로 config/final.yml 의 blobstore 에 접근하여 설치하는 방식이다.
-2.	tarball(설치할 release 파일을 모두 포함한 압축 파일: tgz 형식) 을 이용한 설치 프로세스 [<release_file> 파라미터가 tgz 파일일 경우]: blobstore 를 이용하지 않고 설치할 모든 packages 와 jobs 파일 및 release(release.MF), job메타 파일이 tgz 압축 파일 안에 있어서 blobstore에서 다운 받지 않고 설치하는 방식이다. (releases 디랙토리 안에 .tgz 파일로 압축)
+1.	Yaml 파일을 이용한 설치 프로세스 [<release_file> 파라미터가 yml 파일일 경우]: releases 디렉토리안에 cf-<service_name>-<version>.yml 파일을 읽어서 sha1 값으로 .final_builds 폴더의 해당 packages 또는 jobs 폴더안의 index.yml 의 blobstore_id 로 config/final.yml 의 blobstore 에 접근하여 설치하는 방식이다.
+2.	tarball(설치할 release 파일을 모두 포함한 압축 파일: tgz 형식) 을 이용한 설치 프로세스 [<release_file> 파라미터가 tgz 파일일 경우]: 설치할 모든 packages 와 jobs 파일 및 release(release.MF), job메타 파일이 tgz 압축 파일 안에 있으므로, blobstore에서 다운 받지 않고 설치하는 방식이다. (releases 디렉토리 안에 .tgz 파일로 압축)
 
 ##### <a name="32"/>3.4.1. packages 가이드
 Service software 설치 관련하여 packaging, pre_packaging 와 spec 파일로 구성 되어 있다.
@@ -1138,7 +1138,7 @@ packaging 파일은 software 를 설치 하는 script 를 제공한다.
 1	“bosh generate package PACKAGE_NAME” 명령어로 packaging script file 를 자동생성한다.
 1.1	예) $ bosh generate package test (service release 폴더에서 실행)
 1.2	packages 폴더 안에 test package 폴더가 생성되고 해당 폴더에 packaging, pre_packaging, spec 파일 생성
-1.3	bosh generate package 명령어로 하지 않고 수동으로 디랙토리 생성하여 파일을 만들어도 됨
+1.3	bosh generate package 명령어로 하지 않고 수동으로 디렉토리 생성하여 파일을 만들어도 됨
 2	컴파일시에 Bosh는 패키지 사양에 참조 된 소스 파일을 받아 배포 된 작업이 필요한 실행 가능한 바이너리 및 스크립트로 구성된다.
 3	packaging scripts 작성시아래와 같은 내용을 포함한다.
 3.1	Ruby 어플리케이션 경우 BOSH는 Ruby gems를 설치하고 소스파일을 복사해야 한다. (RubyGems은 루비 프로그램과 라이브러리를 배포하는 표준 형식을 제공하는 루비 프로그래밍 언어의 패키지 관리자)
@@ -1146,7 +1146,7 @@ packaging 파일은 software 를 설치 하는 script 를 제공한다.
 3.3	Python 어플리케이션 경우 BOSH는 Python eggs를 설치하고 소스파일을 복사해야 한다.
 4	packaging script를 작성할 때 이러한 원칙을 준수한다.
 4.1	“set -e –x” 으로 스크립트를 시작한다. 이는 에러가 발생하는 경우 즉시 종료 스크립트시킴으로써 컴파일시에 디버깅을 돕는다.
-4.2	복사, 설치 또는 컴파일이 (BOSH_INSTALL_TARGET 환경 변수로 표현) 설치 대상 디렉토리에 코드가 생성 되는지 확인한다.“make” commands에 대한 use configure 또는 이에 상응하는 작업을 수행한다.
+4.2	설치 대상 디렉토리에 복사, 설치 또는 컴파일(BOSH_INSTALL_TARGET 환경 변수로 표현)의 코드가 생성 되는지 확인한다. “make” commands에 대한 use configure 또는 이에 상응하는 작업을 수행한다.
 4.3	BOSH 패키지 사양 파일의 dependencies배포 된 바이너리를 사용할 수 있는지 확인해야 한다.
 
 	◎ Example libyaml packaging script
@@ -1230,12 +1230,12 @@ bosh document 에서는 pre_packaging 파일의 사용은 권장되지 않으며
 4.2	“bosh generate package PACKAGE_NAME” 명령어로 spec script file 를 자동생성한다.
 4.2.1	예) $ bosh generate package test (service release 폴더에서 실행)
 4.2.2	packages 폴더 안에 test package 폴더가 생성되고 해당 폴더에 packaging, pre_packaging, spec 파일 생성
-4.2.3	bosh generate package 명령어로 하지 않고 수동으로 디랙토리 생성하여 파일을 만들어도 됨
+4.2.3	bosh generate package 명령어로 하지 않고 수동으로 디렉토리 생성하여 파일을 만들어도 됨
 4.3	package 가 필요로 하는 모든 파일들을 src 디렉토리에 복사한다. 일반적으로 파일은 소스 코드이다. 만일 pre-compiled software(예: ruby-1.9.3-p484.tar.gz)를 포함하는 경우, pre-compiled binary가 포함 된 압축 파일을 복사한다.
 4.4	spec 파일 작성
-4.4.1	해당 패키지이름(name) 과파일의 이름(files)을 추가
-4.4.2	spec 파일에 어떤 compile-time dependencie의 이름을 추가. 패키지에는 compile-time dependencie가 없는 경우 빈 배열을 나타 내기 위해 []를 사용
-4.4.3	files 부분은 먼저 src 디랙토리에서 해당 파일을 찾고 없을 경우 blobstore 의 blobs 에서 찾는다.
+4.4.1	해당 패키지이름(name) 과 파일의 이름(files)을 추가
+4.4.2	spec 파일에 compile-time dependency의 이름을 추가. 패키지에는 compile-time dependency가 없는 경우 빈 배열을 나타 내기 위해 []를 사용
+4.4.3	files 부분은 src 디렉토리에서 해당 파일을 찾고, 없을 경우 blobstore 의 blobs 에서 찾는다.
 4.4.4	files 해당 파일이 소스로 구성되어 있을 경우에는 일반적으로 globbing pattern(<package_name>/**/*) 을 사용한다.
 
 	◎ Example Ruby package spec file
@@ -1251,12 +1251,12 @@ bosh document 에서는 pre_packaging 파일의 사용은 권장되지 않으며
 	  - ruby_1.9.3/bundler-1.2.1.gem
 
 ##### <a name="36"/>3.4.2. jobs 가이드
-모든 job은 시작 및 중지하는 방법이 제공되어야 한다. 따라서 제어 스크립트를 작성하고 MONIT 파일을 작성하여해당 실행 되는 jobs(processes)를 모니터링 한다.
+모든 job은 시작 및 중지하는 방법이 제공되어야 한다. 따라서 제어 스크립트를 작성하고 MONIT 파일을 작성하여 해당 실행 되는 jobs(processes)를 모니터링 한다.
 
 ###### <a name="37"/>3.4.2.1. templates
 설치된 package를 구동 및 정지 및 관련 설정 파일을 구성하는 템플릿 파일.
 
-◎ control script 설명 : *.erb 화일
+◎ control script 설명 : *.erb 파일
 1	시작 명령과 중지 명령이 포함되어 있다.
 2	관련 job에 대한 templates 디렉토리에 ERb template 형식으로 구성한다. (shell script로 구성)
 3	각 job 에 대해 “/var/vcap/sys/log/JOB_NAME” 안에 로그 작업을 구성하는 제어 스크립트를 만든다.
@@ -1810,7 +1810,7 @@ cloud_properties [Hash, required]: 컴파일 VM을 만드는 데 필요한 IaaS�
 7. Update Block
 update [Hash, required]: 업데이트 속성을 정의하며 이러한 속성은 BOSH가 배포 중에 작업 인스턴스를 업데이트하는 방법을 제어
 canaries [Integer, required]: canary 인스턴스 수
-canary: canary 인스턴스에 먼서 인스턴스를 업데이트를 수행하고 에러가 날 경우 배포가 중지 됨
+canary: canary 인스턴스에 먼저 인스턴스를 업데이트를 수행하고 에러가 날 경우 배포가 중지 됨
 canary_watch_time [Integer or Range, required]: canary 인스턴스가 수행하기 위한 대기 시간
 update_watch_time [Integer or Range, required]: non-canary 인스턴스가 수행하기 위한 대기 시간
 max_in_flight [Integer, required]: non-canary 인스턴스가 병렬로 update 하는 최대 개수

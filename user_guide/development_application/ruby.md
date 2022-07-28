@@ -31,7 +31,7 @@
 
 ##### <div id='3'></div> 1.1.1.	목적
 
-본 문서(Ruby 애플리케이션 개발 가이드)는 개방형 플랫폼 프로젝트의 서비스팩(Mysql, Cubrid, MongoDB, RabbitMQ, Radis, GlusterFS)을 Ruby 애플리케이션과 연동하여 사용하고 Ruby 애플리케이션을 배포하는 방법에 대해 제시하는 문서이다.
+본 문서(Ruby 애플리케이션 개발 가이드)는 개방형 플랫폼 프로젝트의 서비스팩(Mysql, Cubrid, MongoDB, RabbitMQ, Redis, GlusterFS)을 Ruby 애플리케이션과 연동하여 사용하고 Ruby 애플리케이션을 배포하는 방법에 대해 제시하는 문서이다.
 
 ##### <div id='4'></div> 1.1.2.	범위
 
@@ -84,7 +84,7 @@ DEVELOPMENT KIT : DevKit-tdm-32-4.5.2-20111229-1559-sfx
 - “OK” 버튼 클릭  
 
 ![ruby03]  
-- “I accet the License” 선택 후 “Next” 버튼 클릭   
+- “I accept the License” 선택 후 “Next” 버튼 클릭   
 
 ![ruby04]  
 - “Add Ruby executables to your PATH” 선택 후 “Install” 버튼 클릭   
@@ -496,7 +496,7 @@ end
 end
 ```
 
-2)	./app/controllers/orgs_chart_mysql_controller.rb 서비스 Connection 클래서 호출
+2)	./app/controllers/orgs_chart_mysql_controller.rb 서비스 Connection 클래스 호출
 
 ```
 # encoding: UTF-8      # Encoding 지정(한글지원)
@@ -584,7 +584,7 @@ end
 end
 ```
 
-2)	./app/controllers/orgs_chart_cubrid_controller.rb 서비스 Connection 클래서 호출
+2)	./app/controllers/orgs_chart_cubrid_controller.rb 서비스 Connection 클래스 호출
 
 ```
 # encoding: UTF-8      # Encoding 지정(한글지원)
@@ -683,7 +683,7 @@ module Connector
 end
 ```
 
-2)	./app/controllers/orgs_chart_mongo_controller.rb 서비스 Connection 클래서 호출
+2)	./app/controllers/orgs_chart_mongo_controller.rb 서비스 Connection 클래스 호출
 ```
 # encoding: UTF-8      # Encoding 지정(한글지원)
 require ‘mongo_service’    # mongo_service 클래스 추가 (각 서비스별 클래스 추가부분)
@@ -784,7 +784,7 @@ module Connector
 end
 ```
 
-2)	./app/controllers/login_controller.rb 서비스 Connection 클래서 호출
+2)	./app/controllers/login_controller.rb 서비스 Connection 클래스 호출
 ```
 # encoding: UTF-8      # Encoding 지정(한글지원)
 require ‘redis_service’    # redis_service 클래스 추가 (각 서비스별 클래스 추가부분)
@@ -869,7 +869,7 @@ end
 ```
 ※Bunny 2.2.x 이후 드라이버 버전에서는 TLS/SSL CA의 경로를 지정하지 않으면 기본으로 설정된 경로를 사용한다. Ex) Ubuntu/Debian : /etc/ssl/certs/ca-certificates.crt
 
-2)	./app/controllers/status_controller.rb 서비스 Connection 클래서 호출
+2)	./app/controllers/status_controller.rb 서비스 Connection 클래스 호출
 ```
 # encoding: UTF-8      # Encoding 지정(한글지원)
 require ‘rabbitmq_service’    # rabbitmq_service 클래스 추가 (각 서비스별 클래스 추가부분)
@@ -951,7 +951,7 @@ module Connector
   end
 end
 ```
-2)	./app/controllers/upload_controller.rb 서비스 Connection 클래서 호출
+2)	./app/controllers/upload_controller.rb 서비스 Connection 클래스 호출
 ```
 # encoding: UTF-8      # Encoding 지정(한글지원)
 require ‘glusterfs_service’    # glusterfs_service 클래스 추가 (각 서비스별 클래스 추가부분)

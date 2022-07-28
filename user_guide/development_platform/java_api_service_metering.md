@@ -154,7 +154,7 @@ api 서비스 요청에 대한 미터링 정보를 CF-ABACUS에 전송하는 처
 	: wrapper
 	: init
 
-	BUILD SUCCESSFU
+	BUILD SUCCESSFUL
 
 	Total time: 2.435 secs
 
