@@ -963,7 +963,7 @@ Api 서비스를 요청하는 애플리케이션을 구현한다.
 
 -   COR 설정
 
-		// api 서비스는 요청한 서비스의 응답 처리 이외에 abacus에 대해 request 처리가 추가로 필요하므로 크로스 도메인을 설정 한다.
+		// api 서비스는 요청한 서비스의 응답 처리 이외에 abacus에 대한 request 처리가 추가로 필요하므로 크로스 도메인을 설정 한다.
 		routes.use(function(req, res, next) {
 		  res.header('Access-Control-Allow-Origin', '*');
 		  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
