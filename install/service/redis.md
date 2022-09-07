@@ -351,8 +351,8 @@ broker: on-demand-redis-service
 
 - Sample App 묶음 다운로드
 ```
-$ wget https://nextcloud.paas-ta.org/index.php/s/NDgriPk5cgeLMfG/download --content-disposition  
-$ unzip paasta-service-samples.zip  
+$ wget https://nextcloud.paas-ta.org/index.php/s/BoSbKrcXMmTztSa/download --content-disposition  
+$ unzip paasta-service-samples-459dad9.zip  
 $ cd paasta-service-samples/redis  
 ```
 

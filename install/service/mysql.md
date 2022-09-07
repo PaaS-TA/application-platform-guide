@@ -332,8 +332,8 @@ Sample App은 PaaS-TA에 App으로 배포되며 App구동시 Bind 된 MySQL 서�
 
 - Sample App 묶음 다운로드
 ```
-$ wget https://nextcloud.paas-ta.org/index.php/s/NDgriPk5cgeLMfG/download --content-disposition  
-$ unzip paasta-service-samples.zip  
+$ wget https://nextcloud.paas-ta.org/index.php/s/BoSbKrcXMmTztSa/download --content-disposition  
+$ unzip paasta-service-samples-459dad9.zip  
 $ cd paasta-service-samples/mysql  
 ```
 
@@ -402,7 +402,7 @@ applications:
   buildpack: java_buildpack
   path: mysql-sample-app.war
   env:
-    mysql_datasource_driver-class-name: org.mariadb.jdbc.Driver
+    mysql_datasource_driver-class-name: com.mysql.cj.jdbc.Driver
     mysql_datasource_jdbc-url: jdbc:\${vcap.services.mysql-service-instance.credentials.uri}
     mysql_datasource_username: \${vcap.services.mysql-service-instance.credentials.username}
     mysql_datasource_password: \${vcap.services.mysql-service-instance.credentials.password}
