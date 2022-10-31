@@ -1,7 +1,9 @@
 ### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Architecture](../README.md) > PaaS-TA AP - min
 
 ## 목적
-본 문서는 PaaS-TA Application Platform (AP) - min의 Architecture를 제공한다.
+본 문서는 PaaS-TA Application Platform (AP) - min의 Architecture를 제공한다. 
+<br>
+PaaS-TA Application Platform (AP) - min 은 Application Platform의 경량화 버전이다. 
 <br><br>
 
 ## 시스템 구성도
