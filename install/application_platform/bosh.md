@@ -134,7 +134,7 @@ BOSH 인증서는 BOSH 내부 Component 간의 통신 시 필요한 certificate�
 ```
 $ mkdir -p ~/workspace
 $ cd ~/workspace
-$ git clone https://github.com/PaaS-TA/paasta-deployment.git -b v5.8.1
+$ git clone https://github.com/PaaS-TA/paasta-deployment.git -b v5.8.2
 ```
 
 - paasta/deployment/paasta-deployment 이하 폴더 확인
