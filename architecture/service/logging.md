@@ -13,14 +13,10 @@
 
 | 구분  | 스펙 |
 |-------|----|
-| elasticsearch_master | 1vCPU / 2GB RAM / 10GB 추가 디스크 |
-| queue | 1vCPU / 2GB RAM / 10GB 추가 디스크 |
-| maintenance | 1vCPU / 2GB RAM |
-| elasticsearch_data | 2vCPU / 4GB RAM / 20GB 추가 디스크 |
-| visualization | 1vCPU / 2GB RAM |
-| collector | 1vCPU / 2GB RAM |
-| parser | 1vCPU / 2GB RAM |
-| router | 1vCPU / 2GB RAM |
+| fluentd | 1vCPU / 4GB RAM |
+| influxdb | 4vCPU / 8GB RAM / 10GB 추가 디스크 |
+| collector | 1vCPU / 4GB RAM |
+| log-api | 1vCPU / 4GB RAM |
 
 
 
