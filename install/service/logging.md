@@ -157,11 +157,11 @@ collector_vm_type: "small"      # collector : vm type
 collector_network: "default"    # collector 네트워크
 
 
-# API
-api_azs: ["z4"]                                             # api : azs
-api_instances: 1                                            # api : instances (1)
-api_vm_type: "small"                                        # api : vm type
-api_network: "default"                                      # api 네트워크
+# LOG_API
+log_api_azs: ["z4"]                                             # log-api : azs
+log_api_instances: 1                                            # log-api : instances (1)
+log_api_vm_type: "small"                                        # log-api : vm type
+log_api_network: "default"                                      # log-api 네트워크
 ```  
 
 ### <div id="2.5"/> 2.5. 서비스 설치
@@ -231,7 +231,7 @@ Task 193. Done
 Deployment 'logging-service'
 
 Instance                                        Process State  AZ  IPs         VM CID                                   VM Type  Active  Stemcell  
-api/0d710aae-3c0f-44b2-ac79-4a134ad2c601        running        z4  10.0.1.163  vm-d04c9c5f-55c8-44ca-b64b-57db7c60d619  small    true    bosh-vsphere-esxi-ubuntu-bionic-go_agent/1.107  
+log-api/0d710aae-3c0f-44b2-ac79-4a134ad2c601        running        z4  10.0.1.163  vm-d04c9c5f-55c8-44ca-b64b-57db7c60d619  small    true    bosh-vsphere-esxi-ubuntu-bionic-go_agent/1.107  
 collector/c417b48c-4efe-47fd-a9a0-70529b6963cc  running        z4  10.0.1.162  vm-16a6a6b0-db47-4feb-b409-6bbd27370774  small    true    bosh-vsphere-esxi-ubuntu-bionic-go_agent/1.107  
 fluentd/0e7912d8-e9b0-4bab-986b-8f2c9351af77    running        z4  10.0.1.105  vm-758fdead-9b51-4fcf-aea9-929954dddee4  small    true    bosh-vsphere-esxi-ubuntu-bionic-go_agent/1.107  
 influxdb/e4078a4d-b71b-4e91-8f30-85189c3ecf3f   running        z4  10.0.1.115  vm-7d3b4e7f-eb90-406e-b2a4-c16c458d4bdc  large    true    bosh-vsphere-esxi-ubuntu-bionic-go_agent/1.107
