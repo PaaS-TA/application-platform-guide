@@ -565,7 +565,7 @@ PaaS-TA AP를 설치 후 UAAC의 활용 방법은 사용 가이드에 기타 CLI
 <tr>
 <td>operations/use-haproxy.yml</td>
 <td>HAProxy 적용 <br>
-    - IaaS에서 제공하는 LB를 사용하여 PaaS-TA AP 설치 시, Operation 파일을 제거하고 설치한다.
+    - IaaS에서 제공하는 Load Balancer(이하 LB)를 사용하여 PaaS-TA AP 설치 시, Operation 파일을 제거하고 설치한다.
 </td>
 <td>Requires operation file: use-haproxy-public-network.yml <br>
     Requires value :  -v haproxy_private_ip

@@ -5,8 +5,8 @@
 <br><br>
 
 ## 시스템 구성도
-
-
+Redis 서비스를 통해 인 메모리 캐시 저장소를 제공한다.  
+멀티 테넌트(Multi-tenant) 기반의 shared 서비스가 아닌 사용자 on-demand Redis 서버를 제공한다.
 
 ![Redis Service Architecture](image/redis_architecture.png)
 
