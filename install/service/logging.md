@@ -47,7 +47,7 @@ Cloud Foundry Document: [https://docs.cloudfoundry.org](https://docs.cloudfoundr
 ### <div id="2.2"/> 2.2. Stemcell 확인  
 
 Stemcell 목록을 확인하여 서비스 설치에 필요한 Stemcell이 업로드 되어 있는 것을 확인한다.  
-본 가이드의 Stemcell은 ubuntu-bionic 1.107을 사용한다.  
+본 가이드의 Stemcell은 ubuntu-bionic 1.122를 사용한다.  
 
 > $ bosh -e ${BOSH_ENVIRONMENT} stemcells  
 
@@ -55,7 +55,7 @@ Stemcell 목록을 확인하여 서비스 설치에 필요한 Stemcell이 업로
 Using environment '10.0.1.6' as client 'admin'
 
 Name                                     Version  OS             CPI  CID  
-bosh-vsphere-esxi-ubuntu-bionic-go_agent  1.107*  ubuntu-bionic  -    sc-c9eeb237-f344-4396-ab29-90bfab2b6a75 
+bosh-vsphere-esxi-ubuntu-bionic-go_agent  1.122*  ubuntu-bionic  -    sc-c9eeb237-f344-4396-ab29-90bfab2b6a75 
 
 (*) Currently deployed
 
@@ -112,7 +112,7 @@ uaa_client_admin_secret: "admin-secret"		# UAAC Admin Client에 접근하기 위
 ```yaml
 # STEMCELL INFO
 stemcell_os: "ubuntu-bionic"		# Stemcell OS
-stemcell_version: "1.107"		# Stemcell Version
+stemcell_version: "1.122"		# Stemcell Version
 
 
 # VARIABLE
@@ -231,10 +231,10 @@ Task 193. Done
 Deployment 'logging-service'
 
 Instance                                        Process State  AZ  IPs         VM CID                                   VM Type  Active  Stemcell  
-log-api/0d710aae-3c0f-44b2-ac79-4a134ad2c601    running        z4  10.0.1.163  vm-d04c9c5f-55c8-44ca-b64b-57db7c60d619  small    true    bosh-vsphere-esxi-ubuntu-bionic-go_agent/1.107  
-collector/c417b48c-4efe-47fd-a9a0-70529b6963cc  running        z4  10.0.1.162  vm-16a6a6b0-db47-4feb-b409-6bbd27370774  small    true    bosh-vsphere-esxi-ubuntu-bionic-go_agent/1.107  
-fluentd/0e7912d8-e9b0-4bab-986b-8f2c9351af77    running        z4  10.0.1.105  vm-758fdead-9b51-4fcf-aea9-929954dddee4  small    true    bosh-vsphere-esxi-ubuntu-bionic-go_agent/1.107  
-influxdb/e4078a4d-b71b-4e91-8f30-85189c3ecf3f   running        z4  10.0.1.115  vm-7d3b4e7f-eb90-406e-b2a4-c16c458d4bdc  large    true    bosh-vsphere-esxi-ubuntu-bionic-go_agent/1.107
+log-api/0d710aae-3c0f-44b2-ac79-4a134ad2c601    running        z4  10.0.1.163  vm-d04c9c5f-55c8-44ca-b64b-57db7c60d619  small    true    bosh-vsphere-esxi-ubuntu-bionic-go_agent/1.122  
+collector/c417b48c-4efe-47fd-a9a0-70529b6963cc  running        z4  10.0.1.162  vm-16a6a6b0-db47-4feb-b409-6bbd27370774  small    true    bosh-vsphere-esxi-ubuntu-bionic-go_agent/1.122  
+fluentd/0e7912d8-e9b0-4bab-986b-8f2c9351af77    running        z4  10.0.1.105  vm-758fdead-9b51-4fcf-aea9-929954dddee4  small    true    bosh-vsphere-esxi-ubuntu-bionic-go_agent/1.122  
+influxdb/e4078a4d-b71b-4e91-8f30-85189c3ecf3f   running        z4  10.0.1.115  vm-7d3b4e7f-eb90-406e-b2a4-c16c458d4bdc  large    true    bosh-vsphere-esxi-ubuntu-bionic-go_agent/1.122
 
 ```
 

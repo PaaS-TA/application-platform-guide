@@ -54,7 +54,7 @@ $ uaac -v
 ### <div id="2.2"/> 2.2. Stemcell 확인
 
 Stemcell 목록을 확인하여 서비스 설치에 필요한 Stemcell이 업로드 되어 있는 것을 확인한다.  
-본 가이드의 Stemcell은 ubuntu-bionic 1.107을 사용한다.  
+본 가이드의 Stemcell은 ubuntu-bionic 1.122를 사용한다.  
 
 > $ bosh -e ${BOSH_ENVIRONMENT} stemcells
 
@@ -62,7 +62,7 @@ Stemcell 목록을 확인하여 서비스 설치에 필요한 Stemcell이 업로
 Using environment '10.0.1.6' as client 'admin'
 
 Name                                       Version   OS             CPI  CID  
-bosh-openstack-kvm-ubuntu-bionic-go_agent  1.107      ubuntu-bionic  -    ce507ae4-aca6-4a6d-b7c7-220e3f4aaa7d
+bosh-openstack-kvm-ubuntu-bionic-go_agent  1.122      ubuntu-bionic  -    ce507ae4-aca6-4a6d-b7c7-220e3f4aaa7d
 
 (*) Currently deployed
 
@@ -197,7 +197,7 @@ portal_web_user_language: ["ko", "en"]             # portal webuser language lis
 ```
 # STEMCELL INFO
 stemcell_os: "ubuntu-bionic"                                    # stemcell os
-stemcell_version: "1.107"                                        # stemcell version
+stemcell_version: "1.122"                                        # stemcell version
 
 # NETWORKS INFO
 private_networks_name: "default"                                # private network name
