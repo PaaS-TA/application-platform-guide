@@ -167,7 +167,7 @@ log_api_network: "default"                                      # log-api 네트
 ### <div id="2.5"/> 2.5. 서비스 설치
 
 - 서버 환경에 맞추어 Deploy 스크립트 파일의 VARIABLES 설정을 수정한다.
-> $ vi ~/workspace/portal-deployment/logging-service/deploy-logging-service.sh
+> $ vi ~/workspace/portal-deployment/logging-service/deploy.sh
 
 ```shell script
 #!/bin/bash
@@ -214,7 +214,7 @@ fi
 - 서비스를 설치한다.  
 ```shell
 $ cd ~/workspace/service-deployment/logging-service
-$ sh ./deploy.sh  
+$ source deploy.sh  
 ```  
 
 
