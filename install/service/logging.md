@@ -143,6 +143,7 @@ influxdb_http_port: "8086"                  # default 8086
 influxdb_username: "admin"	  # InfluxDB Admin 계정 Username
 influxdb_password: "PaaS-TA2022"	  # InfluxDB Admin 계정 Password
 influxdb_interval: "7d"                     # InfluxDB Retention Policy (bootstrapper)
+influxdb_https_enabled: "true"              # InfluxDB HTTPS 설정
 
 influxdb_database: "logging_db"          # InfluxDB Database명
 influxdb_measurement: "logging_measurement"    # InfluxDB Measurement명
