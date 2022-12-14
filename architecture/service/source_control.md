@@ -5,6 +5,9 @@
 <br><br>
 
 ## 시스템 구성도
+Source Control Service는 사용자의 소스코드와 다양한 파일들을 안전하게 저장할 수 있는 저장소를 제공한다.  
+기본적으로 커밋 히스토리, 브랜치 목록 등을 제공하고 다양한 정보를 웹 상으로 확인할 수 있는 UI를 제공한다.
+
 ![Source Control Service Architecture](image/source_control_architecture.PNG)
 
 <br>
