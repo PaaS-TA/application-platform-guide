@@ -5,6 +5,7 @@
 <br><br>
 
 ## 시스템 구성도
+Pinpoint APM Service는 사용자 어플리케이션의 구성 요소간에 트랜잭션 흐름을 추적하고 문제영역 및 잠재적인 병목 현상을 식별할 수 있도록 데이터를 수집하고 시각적으로 확인할 수 있도록 UI를 제공한다.
 
 
 ![Pinpoint APM Service Architecture](image/pinpoint_architecture.png)

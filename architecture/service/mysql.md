@@ -5,6 +5,9 @@
 <br><br>
 
 ## 시스템 구성도
+MySQL Service는 Cloudfoundry가 공개하고 있는 MySQL Galera Bosh release를 기반으로 서비스를 구성한다.  
+Galera Cluster Provider 는 Percona Xtradb Cluster 이다.  
+
 <br>
 
 ![MySQL Service Architecture](image/mysql_architecture.png)

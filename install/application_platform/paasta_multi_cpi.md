@@ -29,7 +29,7 @@
 # <div id='1'/>1.  문서 개요
 
 ## <div id='1.1'/>1.1. 목적
-본 문서는 BOSH2(이하 BOSH)의 Multi CPI 설정 가이드 문서로, 하나의 BOSH를 통하여 BOSH가 설치된 IaaS 환경(이하 Main IaaS AZ)과 BOSH가 설치되지 않은 다른 IaaS 환경(이하 Second IaaS AZ)에서 VM을 배포하는 Multi CPI를 설정하고 사용하는 방법에 관해서 설명하였다.  
+본 문서는 BOSH2(이하 BOSH)의 Multi Cloud Provider Interface(이하 CPI) 설정 가이드 문서로, 하나의 BOSH를 통하여 BOSH가 설치된 IaaS 환경(이하 Main IaaS AZ)과 BOSH가 설치되지 않은 다른 IaaS 환경(이하 Second IaaS AZ)에서 VM을 배포하는 Multi CPI를 설정하고 사용하는 방법에 관해서 설명하였다.  
 
 <br>
 
