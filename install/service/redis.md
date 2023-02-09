@@ -44,7 +44,7 @@ Cloud Foundry Document: [https://docs.cloudfoundry.org](https://docs.cloudfoundr
 ### <div id="2.1"/> 2.1. Prerequisite  
 
 Stemcell 목록을 확인하여 서비스 설치에 필요한 Stemcell이 업로드 되어 있는 것을 확인한다.  
-본 가이드의 Stemcell은 ubuntu-bionic 1.122를 사용한다.  
+본 가이드의 Stemcell은 ubuntu-bionic 1.169를 사용한다.  
 
 > $ bosh -e ${BOSH_ENVIRONMENT} stemcells
 
@@ -52,7 +52,7 @@ Stemcell 목록을 확인하여 서비스 설치에 필요한 Stemcell이 업로
 Using environment '10.0.1.6' as client 'admin'
 
 Name                                       Version   OS             CPI  CID  
-bosh-openstack-kvm-ubuntu-bionic-go_agent  1.122      ubuntu-bionic  -    ce507ae4-aca6-4a6d-b7c7-220e3f4aaa7d
+bosh-openstack-kvm-ubuntu-bionic-go_agent  1.169      ubuntu-bionic  -    ce507ae4-aca6-4a6d-b7c7-220e3f4aaa7d
 
 (*) Currently deployed
 
@@ -72,7 +72,7 @@ $ bosh -e ${BOSH_ENVIRONMENT} upload-stemcell -n {STEMCELL_URL}
 
 서비스 설치에 필요한 Deployment를 Git Repository에서 받아 서비스 설치 작업 경로로 위치시킨다.  
 
-- Service Deployment Git Repository URL : https://github.com/PaaS-TA/service-deployment/tree/v5.1.17
+- Service Deployment Git Repository URL : https://github.com/PaaS-TA/service-deployment/tree/v5.1.19
 
 ```
 # Deployment 다운로드 파일 위치 경로 생성 및 설치 경로 이동
@@ -80,7 +80,7 @@ $ mkdir -p ~/workspace
 $ cd ~/workspace
 
 # Deployment 파일 다운로드
-$ git clone https://github.com/PaaS-TA/service-deployment.git -b v5.1.17
+$ git clone https://github.com/PaaS-TA/service-deployment.git -b v5.1.19
 
 # common_vars.yml 파일 다운로드(common_vars.yml가 존재하지 않는다면 다운로드)
 $ git clone https://github.com/PaaS-TA/common.git
@@ -178,7 +178,7 @@ paasta_admin_password: "admin"			# PaaS-TA Admin Password
 ```
 # STEMCELL
 stemcell_os: "ubuntu-bionic"                                      # Deployment Main Stemcell OS
-stemcell_version: "1.122"                                        # Main Stemcell Version
+stemcell_version: "1.169"                                        # Main Stemcell Version
 
 # NETWORK
 private_networks_name: "default"                                  # private network name
