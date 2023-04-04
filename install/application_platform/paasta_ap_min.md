@@ -76,7 +76,7 @@ $ bosh -e ${BOSH_ENVIRONMENT} upload-stemcell {URL}
 
 paasta-deployment는 v5.5.0 부터 Stemcell 업로드 스크립트를 지원하며, BOSH 로그인 후 다음 명령어를 수행하여 Stemcell을 올린다.  
 BOSH_ENVIRONMENT는 BOSH 설치 시 사용한 Director 명이고, CURRENT_IAAS는 배포된 환경 IaaS(aws, azure, gcp, openstack, vsphere, 그외 입력시 bosh-lite)에 맞게 입력을 한다.
-<br>(PaaS-TA AP에서 제공되는 create-bosh-login.sh을 이용하여 BOSH LOGIN시 BOSH_ENVIRONMENT와 CURRENT_IAAS는 자동입력된다.)
+<br>(paasta-deployment에서 제공되는 create-bosh-login.sh을 이용하여 BOSH LOGIN시 BOSH_ENVIRONMENT와 CURRENT_IAAS는 자동입력된다.)
 
 - Stemcell 업로드 Script의 설정 수정 (BOSH_ENVIRONMENT 수정)
 
@@ -124,8 +124,8 @@ $ bosh -e ${BOSH_ENVIRONMENT} update-runtime-config {PATH} --name={NAME}
 PaaS-TA AP min에서 적용하는 Runtime Config는 다음과 같다.  
 
 - DNS Runtime Config  
-  PaaS-TA 4.0부터 적용되는 부분으로 PaaS-TA Component에서 Consul이 대체된 Component이다.  
-  PaaS-TA Component 간의 통신을 위해 BOSH DNS 배포가 선행되어야 한다.  
+  PaaS-TA AP 4.0부터 적용되는 부분으로 PaaS-TA Component에서 Consul이 대체된 Component이다.  
+  PaaS-TA AP Component 간의 통신을 위해 BOSH DNS 배포가 선행되어야 한다.  
 
 - OS Configuration Runtime Config  
   BOSH Linux OS 구성 릴리스를 이용하여 sysctl을 구성한다.  
@@ -159,8 +159,8 @@ $ source update-runtime-config.sh
 ## <div id='2.5'/>2.5. Cloud Config 설정
 
 BOSH를 통해 VM을 배포 시 IaaS 관련 Network, Storage, VM 관련 설정을 Cloud Config로 정의한다.  
-paasta-deployment 설치 파일을 내려받으면 ~/workspace/paasta-deployment-min/cloud-config 디렉터리 이하에 IaaS 별 Cloud Config 예제를 확인할 수 있으며, 예제를 참고하여 cloud-config.yml을 IaaS에 맞게 수정한다.  
-PaaS-TA AP 배포 전에 Cloud Config를 BOSH에 적용해야 한다.
+deployment 설치 파일을 내려받으면 ~/workspace/paasta-deployment-min/cloud-config 디렉터리 이하에 IaaS 별 Cloud Config 예제를 확인할 수 있으며, 예제를 참고하여 cloud-config.yml을 IaaS에 맞게 수정한다.  
+PaaS-TA AP min 배포 전에 Cloud Config를 BOSH에 적용해야 한다.
 
 - AWS을 기준으로 한 [cloud-config.yml](https://github.com/PaaS-TA/paasta-deployment/blob/master/cloud-config/aws-cloud-config.yml) 예제
 
@@ -247,7 +247,7 @@ vm_types:
 - AZs
 
 PaaS-TA에서 제공되는 Cloud Config 예제는 z1 ~ z6까지 설정되어 있다.  
-z1 ~ z3까지는 PaaS-TA AP VM이 설치되는 Zone이며, z4 ~ z6까지는 서비스가 설치되는 Zone으로 정의한다.   
+z1 ~ z3까지는 PaaS-TA AP min VM이 설치되는 Zone이며, z4 ~ z6까지는 서비스가 설치되는 Zone으로 정의한다.   
 3개 단위로 설정하는 이유는 서비스 3중화를 위해서이며, 설치하는 환경에 따라 다르게 설정해도 무방하다.  
 
 - VM Types
@@ -259,11 +259,11 @@ VM Type은 IaaS에서 정의된 VM Type이다.
 
 - Compilation
 
-PaaS-TA AP 및 서비스 설치 시, BOSH는 Compile 작업용 VM을 생성하여 소스를 컴파일하고, 이후 VM을 생성하여 컴파일된 파일을 대상 VM에 설치한 뒤 Compile 작업용 VM은 삭제된다. (Worker 수는 Compile VM의 수로, 많을수록 컴파일 속도가 빨라진다.)  
+PaaS-TA AP min 및 서비스 설치 시, BOSH는 Compile 작업용 VM을 생성하여 소스를 컴파일하고, 이후 VM을 생성하여 컴파일된 파일을 대상 VM에 설치한 뒤 Compile 작업용 VM은 삭제된다. (Worker 수는 Compile VM의 수로, 많을수록 컴파일 속도가 빨라진다.)  
 
 - Disk Size
 
-PaaS-TA AP 및 서비스가 설치되는 VM의 Persistent Disk Size이다.
+PaaS-TA AP min 및 서비스가 설치되는 VM의 Persistent Disk Size이다.
 
 - Networks
 
@@ -514,7 +514,7 @@ ex) uaa_client_portal_secret="portalclient"
 ex) uaa_client_admin_secret="admin-secret"
 ```
 
-PaaS-TA AP를 설치 후 UAAC의 활용 방법은 사용 가이드에 기타 CLI를 참고한다.
+PaaS-TA AP min을 설치 후 UAAC의 활용 방법은 사용 가이드에 기타 CLI를 참고한다.
 
 <br>
 
@@ -588,7 +588,7 @@ min-paasta-deployment.yml 파일은 PaaS-TA AP min를 배포하는 Manifest 파�
 PaaS-TA AP min 배포 BOSH 명령어 예시
 
 ```
-$ bosh -e ${BOSH_ENVIRONMENT} -d paasta deploy paasta-deployment.yml
+$ bosh -e ${BOSH_ENVIRONMENT} -d paasta deploy min-paasta-deployment.yml
 ```
 
 PaaS-TA AP min 배포 시, 설치 Option을 추가해야 한다. 설치 Option에 대한 설명은 아래와 같다.
