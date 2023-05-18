@@ -47,7 +47,7 @@ Cloud Foundry Document: [https://docs.cloudfoundry.org](https://docs.cloudfoundr
 ### <div id="2.2"/> 2.2. Stemcell 확인  
 
 Stemcell 목록을 확인하여 서비스 설치에 필요한 Stemcell이 업로드 되어 있는 것을 확인한다.  
-본 가이드의 Stemcell은 ubuntu-bionic 1.171를 사용한다.  
+본 가이드의 Stemcell은 ubuntu-bionic 1.195를 사용한다.  
 
 > $ bosh -e ${BOSH_ENVIRONMENT} stemcells  
 
@@ -55,7 +55,7 @@ Stemcell 목록을 확인하여 서비스 설치에 필요한 Stemcell이 업로
 Using environment '10.0.1.6' as client 'admin'
 
 Name                                     Version  OS             CPI  CID  
-bosh-vsphere-esxi-ubuntu-bionic-go_agent  1.171*  ubuntu-bionic  -    sc-c9eeb237-f344-4396-ab29-90bfab2b6a75 
+bosh-vsphere-esxi-ubuntu-bionic-go_agent  1.195*  ubuntu-bionic  -    sc-c9eeb237-f344-4396-ab29-90bfab2b6a75 
 
 (*) Currently deployed
 
@@ -75,7 +75,7 @@ bosh -e ${BOSH_ENVIRONMENT} upload-stemcell -n {STEMCELL_URL}
 
 서비스 설치에 필요한 Deployment를 Git Repository에서 받아 서비스 설치 작업 경로로 위치시킨다.  
 
-- Service Deployment Git Repository URL : https://github.com/PaaS-TA/service-deployment/tree/v5.1.20
+- Service Deployment Git Repository URL : https://github.com/PaaS-TA/service-deployment/tree/v5.1.22
 
 ```
 # Deployment 다운로드 파일 위치 경로 생성 및 설치 경로 이동
@@ -83,7 +83,7 @@ $ mkdir -p ~/workspace
 $ cd ~/workspace
 
 # Deployment 파일 다운로드
-$ git clone https://github.com/PaaS-TA/service-deployment.git -b v5.1.20
+$ git clone https://github.com/PaaS-TA/service-deployment.git -b v5.1.22
 
 # common_vars.yml 파일 다운로드(common_vars.yml가 존재하지 않는다면 다운로드)
 $ git clone https://github.com/PaaS-TA/common.git
@@ -112,12 +112,13 @@ uaa_client_admin_secret: "admin-secret"		# UAAC Admin Client에 접근하기 위
 ```yaml
 # STEMCELL INFO
 stemcell_os: "ubuntu-bionic"		# Stemcell OS
-stemcell_version: "1.171"		# Stemcell Version
+stemcell_version: "1.195"		# Stemcell Version
 
 
 # VARIABLE
 syslog_forwarder_custom_rule: 'if ($msg contains "DEBUG") then stop'      # PaaS-TA Logging Agent에서 전송할 Custom Rule
 syslog_forwarder_fallback_servers: []
+paasta_deploy_type: "ap"                     # PaaS-TA 배포 타입(ap, sidecar)
 portal_deploy_type: "vm"                     # PaaS-TA Portal 배포 타입(vm, app)
 
 
@@ -144,6 +145,8 @@ influxdb_username: "admin"	  # InfluxDB Admin 계정 Username
 influxdb_password: "PaaS-TA2022"	  # InfluxDB Admin 계정 Password
 influxdb_interval: "7d"                     # InfluxDB Retention Policy (bootstrapper)
 influxdb_https_enabled: "true"              # InfluxDB HTTPS 설정
+influxdb_ssl_key_path: "/var/vcap/jobs/paas-ta-portal-log-api/data"     # InfluxDB SSL key store path
+influxdb_ssl_password: "paasta2022"         # InfluxDB SSL password
 
 influxdb_database: "logging_db"          # InfluxDB Database명
 influxdb_measurement: "logging_measurement"    # InfluxDB Measurement명
@@ -178,37 +181,53 @@ COMMON_VARS_PATH="<COMMON_VARS_FILE_PATH>"             # common_vars.yml File Pa
 BOSH_ENVIRONMENT="${BOSH_ENVIRONMENT}"                   # bosh director alias name (PaaS-TA에서 제공되는 create-bosh-login.sh 미 사용시 bosh envs에서 이름을 확인하여 입력)
 
 
-# Portal 설치 타입 및 프로토콜 종류에 따라 옵션 파일 사용 여부를 분기한다.
-PORTAL_TYPE=`grep portal_deploy_type vars.yml | cut -d "#" -f1`
+# PaaS-TA, Portal 설치 타입 및 프로토콜 종류에 따라 옵션 파일 사용 여부를 분기한다.
+PAASTA_DEPLOY_TYPE=`grep paasta_deploy_type vars.yml | cut -d "#" -f1`
+PORTAL_DEPLOY_TYPE=`grep portal_deploy_type vars.yml | cut -d "#" -f1`
 FLUENTD_TRANSPORT=`grep fluentd_transport vars.yml`
 
 
-if [[ "${PORTAL_TYPE}" =~ "app" ]]; then
-  if [[ "${FLUENTD_TRANSPORT}" =~ "tcp" ]]; then
-    bosh -e ${BOSH_ENVIRONMENT} -d logging-service -n deploy logging-service.yml \
-          -o operations/portal-app-type.yml \
-          -o operations/use-protocol-tcp.yml \
-          -l vars.yml \
-          -l ${COMMON_VARS_PATH}
+if [[ "${PAASTA_DEPLOY_TYPE}" =~ "sidecar" ]]; then
+  source operations/create-sidecar-ops.sh
+  if [[ "${PORTAL_DEPLOY_TYPE}" =~ "app" ]]; then
+      bosh -e ${BOSH_ENVIRONMENT} -d logging-service -n deploy logging-service.yml \
+            -o operations/portal-app-type.yml \
+            -o operations/paasta-sidecar-type.yml \
+            -l vars.yml \
+            -l ${COMMON_VARS_PATH}
   else
-    bosh -e ${BOSH_ENVIRONMENT} -d logging-service -n deploy logging-service.yml \
-          -o operations/portal-app-type.yml \
-          -l vars.yml \
-          -l ${COMMON_VARS_PATH}
+    echo "Logging Service can't install. Please check 'portal_deploy_type'."
   fi
-elif [[ "${PORTAL_TYPE}" =~ "vm" ]]; then
-  if [[ "${FLUENTD_TRANSPORT}" =~ "tcp" ]]; then
-    bosh -e ${BOSH_ENVIRONMENT} -d logging-service -n deploy logging-service.yml \
-          -o operations/use-protocol-tcp.yml \
-          -l vars.yml \
-          -l ${COMMON_VARS_PATH}
+elif [[ "${PAASTA_DEPLOY_TYPE}" =~ "ap" ]]; then
+  if [[ "${PORTAL_DEPLOY_TYPE}" =~ "app" ]]; then
+    if [[ "${FLUENTD_TRANSPORT}" =~ "tcp" ]]; then
+      bosh -e ${BOSH_ENVIRONMENT} -d logging-service -n deploy logging-service.yml \
+            -o operations/portal-app-type.yml \
+            -o operations/use-protocol-tcp.yml \
+            -l vars.yml \
+            -l ${COMMON_VARS_PATH}
+    else
+      bosh -e ${BOSH_ENVIRONMENT} -d logging-service -n deploy logging-service.yml \
+            -o operations/portal-app-type.yml \
+            -l vars.yml \
+            -l ${COMMON_VARS_PATH}
+    fi
+  elif [[ "${PORTAL_DEPLOY_TYPE}" =~ "vm" ]]; then
+    if [[ "${FLUENTD_TRANSPORT}" =~ "tcp" ]]; then
+      bosh -e ${BOSH_ENVIRONMENT} -d logging-service -n deploy logging-service.yml \
+            -o operations/use-protocol-tcp.yml \
+            -l vars.yml \
+            -l ${COMMON_VARS_PATH}
+    else
+      bosh -e ${BOSH_ENVIRONMENT} -d logging-service -n deploy logging-service.yml \
+            -l vars.yml \
+            -l ${COMMON_VARS_PATH}
+    fi
   else
-    bosh -e ${BOSH_ENVIRONMENT} -d logging-service -n deploy logging-service.yml \
-          -l vars.yml \
-          -l ${COMMON_VARS_PATH}
+    echo "Logging Service can't install. Please check 'portal_deploy_type'."
   fi
 else
-  echo "Logging Service can't install. Please check 'portal_deploy_type'."
+  echo "Logging Service can't install. Please check 'paasta_deploy_type'."
 fi
 ```
 
@@ -232,10 +251,10 @@ Task 193. Done
 Deployment 'logging-service'
 
 Instance                                        Process State  AZ  IPs         VM CID                                   VM Type  Active  Stemcell  
-log-api/0d710aae-3c0f-44b2-ac79-4a134ad2c601    running        z4  10.0.1.163  vm-d04c9c5f-55c8-44ca-b64b-57db7c60d619  small    true    bosh-vsphere-esxi-ubuntu-bionic-go_agent/1.171  
-collector/c417b48c-4efe-47fd-a9a0-70529b6963cc  running        z4  10.0.1.162  vm-16a6a6b0-db47-4feb-b409-6bbd27370774  small    true    bosh-vsphere-esxi-ubuntu-bionic-go_agent/1.171  
-fluentd/0e7912d8-e9b0-4bab-986b-8f2c9351af77    running        z4  10.0.1.105  vm-758fdead-9b51-4fcf-aea9-929954dddee4  small    true    bosh-vsphere-esxi-ubuntu-bionic-go_agent/1.171  
-influxdb/e4078a4d-b71b-4e91-8f30-85189c3ecf3f   running        z4  10.0.1.115  vm-7d3b4e7f-eb90-406e-b2a4-c16c458d4bdc  large    true    bosh-vsphere-esxi-ubuntu-bionic-go_agent/1.171
+log-api/0d710aae-3c0f-44b2-ac79-4a134ad2c601    running        z4  10.0.1.163  vm-d04c9c5f-55c8-44ca-b64b-57db7c60d619  small    true    bosh-vsphere-esxi-ubuntu-bionic-go_agent/1.195  
+collector/c417b48c-4efe-47fd-a9a0-70529b6963cc  running        z4  10.0.1.162  vm-16a6a6b0-db47-4feb-b409-6bbd27370774  small    true    bosh-vsphere-esxi-ubuntu-bionic-go_agent/1.195  
+fluentd/0e7912d8-e9b0-4bab-986b-8f2c9351af77    running        z4  10.0.1.105  vm-758fdead-9b51-4fcf-aea9-929954dddee4  small    true    bosh-vsphere-esxi-ubuntu-bionic-go_agent/1.195  
+influxdb/e4078a4d-b71b-4e91-8f30-85189c3ecf3f   running        z4  10.0.1.115  vm-7d3b4e7f-eb90-406e-b2a4-c16c458d4bdc  large    true    bosh-vsphere-esxi-ubuntu-bionic-go_agent/1.195
 
 ```
 
