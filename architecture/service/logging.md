@@ -16,8 +16,6 @@
 | fluentd | 1vCPU / 4GB RAM |
 | influxdb | 4vCPU / 8GB RAM / 10GB 추가 디스크 |
 | collector | 1vCPU / 4GB RAM |
-| log-api | 1vCPU / 4GB RAM |
-
 
 
 ### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Architecture](../README.md) > Logging Service
