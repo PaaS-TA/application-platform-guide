@@ -54,7 +54,7 @@ $ uaac -v
 ### <div id="2.2"/> 2.2. Stemcell 확인
 
 Stemcell 목록을 확인하여 서비스 설치에 필요한 Stemcell이 업로드 되어 있는 것을 확인한다.  
-본 가이드의 Stemcell은 ubuntu-bionic 1.195를 사용한다.  
+본 가이드의 Stemcell은 ubuntu-jammy 1.102를 사용한다.  
 
 > $ bosh -e ${BOSH_ENVIRONMENT} stemcells
 
@@ -62,7 +62,7 @@ Stemcell 목록을 확인하여 서비스 설치에 필요한 Stemcell이 업로
 Using environment '10.0.1.6' as client 'admin'
 
 Name                                       Version   OS             CPI  CID  
-bosh-openstack-kvm-ubuntu-bionic-go_agent  1.195      ubuntu-bionic  -    ce507ae4-aca6-4a6d-b7c7-220e3f4aaa7d
+bosh-openstack-kvm-ubuntu-jammy-go_agent  1.102      ubuntu-jammy  -    ce507ae4-aca6-4a6d-b7c7-220e3f4aaa7d
 
 (*) Currently deployed
 
@@ -182,7 +182,7 @@ uaa_client_admin_id: "admin"			# UAAC Admin Client Admin ID
 uaa_client_admin_secret: "admin-secret"		# UAAC Admin Client에 접근하기 위한 Secret 변수
 monitoring_api_url: "61.252.53.241"		# Monitoring-WEB의 Public IP
 portal_web_user_url: "http://portal-web-user.52.78.88.252.nip.io"
-portal_web_user_language: ["ko", "en"]             # portal webuser language list (e.g. ["ko", "en"])
+portal_web_user_language: ["ko", "en"]          # portal webuser language list (e.g. ["ko", "en"])
 
 
 ... ((생략)) ...
@@ -196,8 +196,8 @@ portal_web_user_language: ["ko", "en"]             # portal webuser language lis
 
 ```
 # STEMCELL INFO
-stemcell_os: "ubuntu-bionic"                                    # stemcell os
-stemcell_version: "1.195"                                        # stemcell version
+stemcell_os: "ubuntu-jammy"                                     # stemcell os
+stemcell_version: "1.102"                                       # stemcell version
 
 # NETWORKS INFO
 private_networks_name: "default"                                # private network name
@@ -260,9 +260,19 @@ storage_api_infra_admin: false                                  # portal-storage
 
 # PORTAL_LOG_API INFO
 log_api_azs: [z6]                                               # portal-log-api : azs
-log_api_instances: 1                                            # portal-log-api : instances (1)
+log_api_instances: 0                                            # portal-log-api : instances (1)
 log_api_vm_type: "small"                                        # portal-log-api : vm type
 log_api_infra_admin: false                                      # portal-log-api : infra admin (default "false")
+
+log_api_influxdb_ip: "<LOG_API_INFLUXDB_IP>"                    # portal-log-api : InfluxDB IP
+log_api_influxdb_http_port: "8086"                              # portal-log-api : InfluxDB HTTP PORT (default 8086)
+log_api_influxdb_username: "<INFLUXDB_USERNAME>"                # portal-log-api : InfluxDB Admin 계정 Username
+log_api_influxdb_password: "<INFLUXDB_PASSWORD>"                # portal-log-api : InfluxDB Admin 계정 Password
+log_api_influxdb_https_enabled: true                            # portal-log-api : InfluxDB HTTPS 설정 (default "true")
+
+log_api_influxdb_database: "<INFLUXDB_DATABASE>"                # portal-log-api : InfluxDB Database명
+log_api_influxdb_measurement: "<INFLUXDB_MEASUREMENT>"          # portal-log-api : InfluxDB Measurement명
+log_api_influxdb_query_limit: "<INFLUXDB_QUERY_LIMIT>"          # portal-log-api : InfluxDB query limit (default "50")
 
 # MAIL_SMTP INFO
 mail_smtp_host: "<MAIL_SMTP_HOST>"                              # mail-smtp : host (e.g. "smtp.gmail.com")
@@ -286,16 +296,28 @@ mail_smtp_properties_subject: "<MAIL_SMTP_PROPERTIES_SUBJECT>"  # mail-smtp : pr
 #!/bin/bash
 
 # VARIABLES
-COMMON_VARS_PATH="<COMMON_VARS_FILE_PATH>"	# common_vars.yml File Path (e.g. ../../common/common_vars.yml)
-CURRENT_IAAS="${CURRENT_IAAS}"			# IaaS Information (PaaS-TA에서 제공되는 create-bosh-login.sh 미 사용시 aws/azure/gcp/openstack/vsphere 입력)
-BOSH_ENVIRONMENT="${BOSH_ENVIRONMENT}"		# bosh director alias name (PaaS-TA에서 제공되는 create-bosh-login.sh 미 사용시 bosh envs에서 이름을 확인하여 입력)
+COMMON_VARS_PATH="<COMMON_VARS_FILE_PATH>"              # common_vars.yml File Path (e.g. ../../common/common_vars.yml)
+CURRENT_IAAS="${CURRENT_IAAS}"                          # IaaS Information (PaaS-TA에서 제공되는 create-bosh-login.sh 미 사용시 aws/azure/gcp/openstack/vsphere 입력)
+BOSH_ENVIRONMENT="${BOSH_ENVIRONMENT}"                  # bosh director alias name (PaaS-TA에서 제공되는 create-bosh-login.sh 미 사용시 bosh envs에서 이름을 확인하여 입력)
+
+# portal-log-api 인스턴스 갯수에 따라 logging service 활성화 여부를 분기한다.
+LOG_API_INSTANCE_CNT=`grep 'log_api_instances' vars.yml | cut -d ":" -f2 | cut -d "#" -f1`
 
 # DEPLOY
-bosh -e ${BOSH_ENVIRONMENT} -n -d portal-api deploy --no-redact portal-api.yml \
-   -o operations/${CURRENT_IAAS}-network.yml \
-   -o operations/cce.yml \
-   -l ${COMMON_VARS_PATH} \
-   -l vars.yml
+if [[ ${LOG_API_INSTANCE_CNT} -eq 1 ]]; then
+  bosh -e ${BOSH_ENVIRONMENT} -n -d portal-api deploy --no-redact portal-api.yml \
+     -o operations/${CURRENT_IAAS}-network.yml \
+     -o operations/cce.yml \
+     -l ${COMMON_VARS_PATH} \
+     -l vars.yml
+else
+  bosh -e ${BOSH_ENVIRONMENT} -n -d portal-api deploy --no-redact portal-api.yml \
+     -o operations/disable-logging-service.yml \
+     -o operations/${CURRENT_IAAS}-network.yml \
+     -o operations/cce.yml \
+     -l ${COMMON_VARS_PATH} \
+     -l vars.yml
+fi
 ```
 
 - 서비스를 설치한다.  
@@ -326,11 +348,10 @@ mariadb/117cbf05-b223-4133-bf61-e15f16494e21                      running       
 paas-ta-portal-api/48fa0c5a-52eb-4ae8-a7b9-91275615318c           running        z5  10.30.107.217  vm-9d2a1929-0157-4c77-af5e-707ec496ed87  portal_medium  true  
 paas-ta-portal-common-api/060320fa-7f26-4032-a1d9-6a7a41a044a8    running        z5  10.30.107.219  vm-f35e9838-74cf-40e0-9f97-894b53a68d1f  portal_medium  true  
 paas-ta-portal-gateway/6baba810-9a4a-479d-98b2-97e5ba651784       running        z5  10.30.107.214  vm-7ec75160-bf34-442e-b755-778ae7dd3fec  portal_medium  true  
-paas-ta-portal-log-api/a4460008-42b5-4ba0-84ee-fff49fe6c1bd       running        z5  10.30.107.218  vm-9ec0a1b0-09f6-415b-8e23-53af91fd94b8  portal_medium  true  
 paas-ta-portal-registration/3728ed73-451e-4b93-ab9b-c610826c3135  running        z5  10.30.107.215  vm-c4020514-c458-41c6-bcbc-7e0ee1bc6f42  portal_small   true  
 paas-ta-portal-storage-api/2940366a-8294-4509-a9c0-811c8140663a   running        z5  10.30.107.220  vm-79ad6ee1-1bb5-4308-8b71-9ed30418e2c1  portal_medium  true  
 
-9 vms
+8 vms
 
 Succeeded
 ```
@@ -416,13 +437,10 @@ Paas-TA Portal 각각 Instance의 log를 확인 할 수 있다.
        paas-ta-portal-api/48fa0c5a-52eb-4ae8-a7b9-91275615318c           running        z5  10.30.107.217  vm-9d2a1929-0157-4c77-af5e-707ec496ed87  portal_medium  true  
        paas-ta-portal-common-api/060320fa-7f26-4032-a1d9-6a7a41a044a8    running        z5  10.30.107.219  vm-f35e9838-74cf-40e0-9f97-894b53a68d1f  portal_medium  true  
        paas-ta-portal-gateway/6baba810-9a4a-479d-98b2-97e5ba651784       running        z5  10.30.107.214  vm-7ec75160-bf34-442e-b755-778ae7dd3fec  portal_medium  true  
-       paas-ta-portal-log-api/a4460008-42b5-4ba0-84ee-fff49fe6c1bd       running        z5  10.30.107.218  vm-9ec0a1b0-09f6-415b-8e23-53af91fd94b8  portal_medium  true  
        paas-ta-portal-registration/3728ed73-451e-4b93-ab9b-c610826c3135  running        z5  10.30.107.215  vm-c4020514-c458-41c6-bcbc-7e0ee1bc6f42  portal_small   true  
        paas-ta-portal-storage-api/2940366a-8294-4509-a9c0-811c8140663a   running        z5  10.30.107.220  vm-79ad6ee1-1bb5-4308-8b71-9ed30418e2c1  portal_medium  true  
-       paas-ta-portal-webadmin/8047fcbd-9a98-4b61-b161-0cbb277fa643      running        z5  10.30.107.221  vm-188250fd-e918-4aab-9cbe-7d368852ea8a  portal_medium  true  
-       paas-ta-portal-webuser/cb206717-81c9-49ed-a0a8-e6c3b957cb66       running        z5  10.30.107.222  vm-822f68a5-91c8-453a-b9b3-c1bbb388e377  portal_medium  true  
 
-       11 vms
+       8 vms
 
        Succeeded
        inception@inception:~$ bosh ssh -d paas-ta-portal-v2 paas-ta-portal-api  << instance 접근(bosh ssh) 명령어 입력
