@@ -39,7 +39,7 @@ Cloud Foundry Document: [https://docs.cloudfoundry.org](https://docs.cloudfoundr
 
 ## <div id="2"/> 2. PaaS-TA AP Portal UI 설치
 
-### <div id="2.1"/> 2.1. Prerequisite  
+### <div id="2.1"/> 2.1. Prerequisite
 
 본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다.  
 서비스팩 설치를 위해서는 먼저 BOSH CLI v2 가 설치 되어 있어야 하고 BOSH 에 로그인이 되어 있어야 한다.<br>
@@ -55,7 +55,7 @@ $ uaac -v
 ### <div id="2.2"/> 2.2. Stemcell 확인
 
 Stemcell 목록을 확인하여 서비스 설치에 필요한 Stemcell이 업로드 되어 있는 것을 확인한다.  
-본 가이드의 Stemcell은 ubuntu-jammy 1.102를 사용한다.  
+본 가이드의 Stemcell은 ubuntu-jammy 1.181를 사용한다.  
 
 > $ bosh -e ${BOSH_ENVIRONMENT} stemcells
 
@@ -63,7 +63,7 @@ Stemcell 목록을 확인하여 서비스 설치에 필요한 Stemcell이 업로
 Using environment '10.0.1.6' as client 'admin'
 
 Name                                       Version   OS             CPI  CID  
-bosh-openstack-kvm-ubuntu-jammy-go_agent  1.102      ubuntu-jammy  -    ce507ae4-aca6-4a6d-b7c7-220e3f4aaa7d
+bosh-openstack-kvm-ubuntu-jammy-go_agent  1.181      ubuntu-jammy  -    ce507ae4-aca6-4a6d-b7c7-220e3f4aaa7d
 
 (*) Currently deployed
 
@@ -79,11 +79,11 @@ Succeeded
 $ bosh -e ${BOSH_ENVIRONMENT} upload-stemcell -n {STEMCELL_URL}
 ```
 
-### <div id="2.3"/> 2.3. Deployment 다운로드  
+### <div id="2.3"/> 2.3. Deployment 다운로드
 
 서비스 설치에 필요한 Deployment를 Git Repository에서 받아 서비스 설치 작업 경로로 위치시킨다.  
 
-- Portal Deployment Git Repository URL : https://github.com/PaaS-TA/portal-deployment/tree/v5.2.21
+- Portal Deployment Git Repository URL : https://github.com/PaaS-TA/portal-deployment/tree/v5.2.23
 
 ```
 # Deployment 다운로드 파일 위치 경로 생성 및 설치 경로 이동
@@ -91,7 +91,7 @@ $ mkdir -p ~/workspace
 $ cd ~/workspace
 
 # Deployment 파일 다운로드
-$ git clone https://github.com/PaaS-TA/portal-deployment.git -b v5.2.21
+$ git clone https://github.com/PaaS-TA/portal-deployment.git -b v5.2.23
 ```
 
 ### <div id="2.4"/> 2.4. Deployment 파일 수정
@@ -184,7 +184,7 @@ portal_web_admin_language: ["ko", "en"]             # portal webadmin language l
 ```
 # STEMCELL INFO
 stemcell_os: "ubuntu-jammy"                                             # stemcell os
-stemcell_version: "1.102"                                                 # stemcell version
+stemcell_version: "1.181"                                                 # stemcell version
 
 # NETWORKS INFO
 private_networks_name: "default"                                         # private network name

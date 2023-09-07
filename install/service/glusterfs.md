@@ -1,6 +1,6 @@
 ### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Install](../README.md) > GlusterFS Service
 
-## Table of Contents  
+## Table of Contents
 
 1. [문서 개요](#1)  
   1.1. [목적](#1.1)  
@@ -37,7 +37,7 @@ Cloud Foundry Document: [https://docs.cloudfoundry.org](https://docs.cloudfoundr
 
 ## <div id="2"/>2. GlusterFS 서비스 설치
 
-### <div id="2.1"/> 2.1. Prerequisite  
+### <div id="2.1"/> 2.1. Prerequisite
 
 본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다.  
 서비스팩 설치를 위해서는 먼저 BOSH CLI v2 가 설치 되어 있어야 하고 BOSH 에 로그인이 되어 있어야 한다.  
@@ -47,7 +47,7 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 ### <div id="2.2"/> 2.2. Stemcell 확인
 
 Stemcell 목록을 확인하여 서비스 설치에 필요한 Stemcell이 업로드 되어 있는 것을 확인한다.  
-본 가이드의 Stemcell은 ubuntu-jammy 1.102를 사용한다.  
+본 가이드의 Stemcell은 ubuntu-jammy 1.181를 사용한다.  
 
 > $ bosh -e ${BOSH_ENVIRONMENT} stemcells
 
@@ -55,7 +55,7 @@ Stemcell 목록을 확인하여 서비스 설치에 필요한 Stemcell이 업로
 Using environment '10.0.1.6' as client 'admin'
 
 Name                                       Version   OS             CPI  CID  
-bosh-openstack-kvm-ubuntu-jammy-go_agent  1.102      ubuntu-jammy  -    ce507ae4-aca6-4a6d-b7c7-220e3f4aaa7d
+bosh-openstack-kvm-ubuntu-jammy-go_agent  1.181      ubuntu-jammy  -    ce507ae4-aca6-4a6d-b7c7-220e3f4aaa7d
 
 (*) Currently deployed
 
@@ -72,11 +72,11 @@ $ bosh -e ${BOSH_ENVIRONMENT} upload-stemcell -n {STEMCELL_URL}
 ```
 
 
-### <div id="2.3"/> 2.3. Deployment 다운로드  
+### <div id="2.3"/> 2.3. Deployment 다운로드
 
 서비스 설치에 필요한 Deployment를 Git Repository에서 받아 서비스 설치 작업 경로로 위치시킨다.  
 
-- Service Deployment Git Repository URL : https://github.com/PaaS-TA/service-deployment/tree/v5.1.22
+- Service Deployment Git Repository URL : https://github.com/PaaS-TA/service-deployment/tree/v5.1.25
 
 ```
 # Deployment 다운로드 파일 위치 경로 생성 및 설치 경로 이동
@@ -84,7 +84,7 @@ $ mkdir -p ~/workspace
 $ cd ~/workspace
 
 # Deployment 파일 다운로드
-$ git clone https://github.com/PaaS-TA/service-deployment.git -b v5.1.22
+$ git clone https://github.com/PaaS-TA/service-deployment.git -b v5.1.25
 
 # common_vars.yml 파일 다운로드(common_vars.yml가 존재하지 않는다면 다운로드)
 $ git clone https://github.com/PaaS-TA/common.git
@@ -181,7 +181,7 @@ paasta_admin_password: "admin"			# PaaS-TA Admin Password
 ```
 # STEMCELL
 stemcell_os: "ubuntu-jammy"                                     # stemcell os
-stemcell_version: "1.102"                                       # stemcell version
+stemcell_version: "1.181"                                       # stemcell version
 
 
 # NETWORK
@@ -279,7 +279,7 @@ Succeeded
 ## <div id="3"/>3. GlusterFS 연동 Sample App 설명
 본 Sample Web App은 PaaS-TA에 배포되며 GlusterFS의 서비스를 Provision과 Bind를 한 상태에서 사용이 가능하다.
 
-### <div id="3.1"/> 3.1. 서비스 브로커 등록  
+### <div id="3.1"/> 3.1. 서비스 브로커 등록
 
 GlusterFS 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을 사용하기 위해서 먼저 GlusterFS 서비스 브로커를 등록해 주어야 한다.
 서비스 브로커 등록시에는 PaaS-TA에서 서비스 브로커를 등록할 수 있는 사용자로 로그인 하여야 한다
@@ -418,7 +418,7 @@ glusterfs-service-instance  glusterfs   glusterfs-1000Mb                        
 <br>
 
 
-### <div id='3.4'> 3.4. Sample App에 서비스 바인드 신청 및 App 확인  
+### <div id='3.4'> 3.4. Sample App에 서비스 바인드 신청 및 App 확인
 
 서비스 신청이 완료되었으면 Sample Web App 에서는 생성된 서비스 인스턴스를 Bind 하여 App에서 GlusterFS 서비스를 이용한다.
 *참고: 서비스 Bind 신청시 개방형 클라우드 플랫폼에서 서비스 Bind신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
