@@ -54,7 +54,7 @@ $ uaac -v
 
 ### <div id="2.2"/> 2.2. Stemcell 확인
 Stemcell 목록을 확인하여 서비스 설치에 필요한 Stemcell이 업로드 되어 있는 것을 확인한다.  
-본 가이드의 Stemcell은 ubuntu-bionic 1.171를 사용한다.  
+본 가이드의 Stemcell은 ubuntu-jammy 1.102를 사용한다.  
 
 > $ bosh -e ${BOSH_ENVIRONMENT} stemcells
 
@@ -62,7 +62,7 @@ Stemcell 목록을 확인하여 서비스 설치에 필요한 Stemcell이 업로
 Using environment '10.0.1.6' as client 'admin'
 
 Name                                       Version   OS             CPI  CID  
-bosh-openstack-kvm-ubuntu-bionic-go_agent  1.171      ubuntu-bionic  -    ce507ae4-aca6-4a6d-b7c7-220e3f4aaa7d
+bosh-openstack-kvm-ubuntu-jammy-go_agent  1.102      ubuntu-jammy  -    ce507ae4-aca6-4a6d-b7c7-220e3f4aaa7d
 
 (*) Currently deployed
 
@@ -83,7 +83,7 @@ $ bosh -e ${BOSH_ENVIRONMENT} upload-stemcell -n {STEMCELL_URL}
 
 서비스 설치에 필요한 Deployment를 Git Repository에서 받아 서비스 설치 작업 경로로 위치시킨다.  
 
-- Portal Deployment Git Repository URL : https://github.com/PaaS-TA/portal-deployment/tree/v5.2.19
+- Portal Deployment Git Repository URL : https://github.com/PaaS-TA/portal-deployment/tree/v5.2.21
 
 ```
 # Deployment 다운로드 파일 위치 경로 생성 및 설치 경로 이동
@@ -91,7 +91,7 @@ $ mkdir -p ~/workspace
 $ cd ~/workspace
 
 # Deployment 파일 다운로드
-$ git clone https://github.com/PaaS-TA/portal-deployment.git -b v5.2.19
+$ git clone https://github.com/PaaS-TA/portal-deployment.git -b v5.2.21
 ```
 
 ### <div id="2.4"/> 2.4. Deployment 파일 수정  
@@ -167,8 +167,8 @@ Succeeded
 ```
 ... ((생략)) ...
 
-system_domain: "61.252.53.246.nip.io"		# Domain (nip.io를 사용하는 경우 HAProxy Public IP와 동일)
-portal_web_user_language: ["ko", "en"]             # portal webuser language list (e.g. ["ko", "en"])
+system_domain: "61.252.53.246.nip.io"               # Domain (nip.io를 사용하는 경우 HAProxy Public IP와 동일)
+portal_web_user_language: ["ko", "en"]              # portal webuser language list (e.g. ["ko", "en"])
 portal_web_admin_language: ["ko", "en"]             # portal webadmin language list (e.g. ["ko", "en"])
 
 ... ((생략)) ...
@@ -181,8 +181,8 @@ portal_web_admin_language: ["ko", "en"]             # portal webadmin language l
 
 ```
 # STEMCELL INFO
-stemcell_os: "ubuntu-bionic"                                    # stemcell os
-stemcell_version: "1.171"                                        # stemcell version
+stemcell_os: "ubuntu-jammy"                                     # stemcell os
+stemcell_version: "1.102"                                       # stemcell version
 
 # NETWORKS INFO
 private_networks_name: "default"                                # private network name
@@ -260,18 +260,17 @@ Succeeded
 
 ## <div id="3"/> 3. PaaS-TA AP Portal 설치
 ### <div id="3.1"/> 3.1. Portal App 구성
-PaaS-TA AP에 Portal 관련 App이 9개 배포되며 구성은 다음과 같다.
+PaaS-TA AP에 Portal 관련 App이 8개 배포되며 구성은 다음과 같다.
 ```
-portal-app-1.2.9
-├── portal-api-2.4.2
-├── portal-common-api-2.2.5
-├── portal-gateway-2.2.1
-├── portal-log-api-2.3.0
+portal-app-1.2.13
+├── portal-api-2.4.3
+├── portal-common-api-2.2.6
+├── portal-gateway-2.1.2
 ├── portal-registration-2.1.0
 ├── portal-ssh-1.0.0
 ├── portal-storage-api-2.2.1
 ├── portal-web-admin-2.3.5
-└── portal-web-user-2.4.6
+└── portal-web-user-2.4.9
 ```
 ### <div id="3.2"/> 3.2. Portal App 배포 Script 변수 설정  
 Portal App 배포 Script 실행을 위하여 Script가 있는 위치로 이동한다.
@@ -295,6 +294,8 @@ PORTAL_APP_WORKING_DIRECTORY=~/workspace/portal-deployment/portal-container-infr
 ##PORTAL VARIABLE
 USER_APP_SIZE_MB=0					# USER My App size(MB), if value==0 -> unlimited
 MONITORING_ENABLE=false					# Monitoring Enable Option
+SSH_ENABLE=true						# SSH Enable Option
+TAIL_LOG_INTERVAL=250					# tail log interval (ms)
 
 PORTAL_ORG_NAME="portal"				# PaaS-TA Portal Org Name
 PORTAL_SPACE_NAME="system"				# PaaS-TA Portal Space Name
@@ -318,6 +319,7 @@ PORTAL_WEB_USER_INSTANCE=1				# PORTAL-WEB-USER INSTANCES
 
 
 ##UNCHANGE VARIABLE(if defulat install, don't change variable)
+PAASTA_DEPLOYMENT_TYPE="ap"                             # PaaS TA Deployment Type
 PAASTA_CORE_DEPLOYMENT_NAME="paasta"			# PaaS TA AP Deployment Name
 PORTAL_INFRA_DEPLOYMENT_NAME="portal-container-infra"	# Portal Container Infra Deployment Name
 PAASTA_DATABASE_INSTANCE_NAME="database"		# PaaS TA AP Database Instance Name
@@ -343,6 +345,16 @@ PORTAL_EXTERNAL_STORAGE_PORT=				# Portal External Storage Port
 PORTAL_EXTERNAL_STORAGE_TENANTNAME=			# Portal External Storage Tenant Name
 PORTAL_EXTERNAL_STORAGE_USERNAME=			# Portal External Storage Username
 PORTAL_EXTERNAL_STORAGE_PASSWORD=			# Portal External Storage Password
+
+USE_LOGGING_SERVICE=false                               # (true or false)
+LOGGING_INFLUXDB_IP=10.0.1.115                          # Logging Service InfluxDB IP
+LOGGING_INFLUXDB_PORT=8086                              # Logging Service InfluxDB HTTP PORT
+LOGGING_INFLUXDB_USERNAME="admin"                       # Logging Service InfluxDB Username
+LOGGING_INFLUXDB_PASSWORD="PaaS-TA2022"                 # Logging Service InfluxDB Password
+LOGGING_INFLUXDB_DATABASE="logging_db"                  # Logging Service InfluxDB DB Name
+LOGGING_INFLUXDB_MEASUREMNET="logging_measurement"      # Logging Service InfluxDB Measurement Name
+LOGGING_INFLUXDB_LIMIT=50                               # Logging Service InfluxDB query limit
+LOGGING_INFLUXDB_HTTPS_ENABLED=false                    # (true or false)
 ```
 
 
@@ -357,7 +369,6 @@ name                  requested state   processes           routes
 portal-api            started           web:1/1, task:0/0   portal-api.61.252.53.246.nip.io
 portal-common-api     started           web:1/1, task:0/0   portal-common-api.61.252.53.246.nip.io
 portal-gateway        started           web:1/1, task:0/0   portal-gateway.61.252.53.246.nip.io
-portal-log-api        started           web:1/1, task:0/0   portal-log-api.61.252.53.246.nip.io
 portal-registration   started           web:1/1, task:0/0   portal-registration.61.252.53.246.nip.io
 portal-storage-api    started           web:1/1, task:0/0   portal-storage-api.61.252.53.246.nip.io
 portal-web-admin      started           web:1/1, task:0/0   portal-web-admin.61.252.53.246.nip.io
