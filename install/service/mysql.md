@@ -1,6 +1,6 @@
 ### [Index](https://github.com/PaaS-TA/Guide/blob/master/README.md) > [AP Install](../README.md) > MySQL Service
 
-## Table of Contents  
+## Table of Contents
 
 1. [문서 개요](#1)  
   1.1. [목적](#1.1)  
@@ -44,7 +44,7 @@ Cloud Foundry Document: [https://docs.cloudfoundry.org](https://docs.cloudfoundr
 
 ## <div id='2'> 2. MySQL 서비스 설치
 
-### <div id="2.1"/> 2.1. Prerequisite  
+### <div id="2.1"/> 2.1. Prerequisite
 
 본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다.  
 서비스팩 설치를 위해서는 먼저 BOSH CLI v2 가 설치 되어 있어야 하고 BOSH 에 로그인이 되어 있어야 한다.  
@@ -53,7 +53,7 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 ### <div id="2.2"/> 2.2. Stemcell 확인
 
 Stemcell 목록을 확인하여 서비스 설치에 필요한 Stemcell이 업로드 되어 있는 것을 확인한다.  
-본 가이드의 Stemcell은 ubuntu-jammy 1.102를 사용한다.  
+본 가이드의 Stemcell은 ubuntu-jammy 1.181를 사용한다.  
 
 > $ bosh -e ${BOSH_ENVIRONMENT} stemcells
 
@@ -61,7 +61,7 @@ Stemcell 목록을 확인하여 서비스 설치에 필요한 Stemcell이 업로
 Using environment '10.0.1.6' as client 'admin'
 
 Name                                       Version   OS             CPI  CID  
-bosh-openstack-kvm-ubuntu-jammy-go_agent  1.102      ubuntu-jammy  -    ce507ae4-aca6-4a6d-b7c7-220e3f4aaa7d
+bosh-openstack-kvm-ubuntu-jammy-go_agent  1.181      ubuntu-jammy  -    ce507ae4-aca6-4a6d-b7c7-220e3f4aaa7d
 
 (*) Currently deployed
 
@@ -77,11 +77,11 @@ Succeeded
 $ bosh -e ${BOSH_ENVIRONMENT} upload-stemcell -n {STEMCELL_URL}
 ```
 
-### <div id="2.3"/> 2.3. Deployment 다운로드  
+### <div id="2.3"/> 2.3. Deployment 다운로드
 
 서비스 설치에 필요한 Deployment를 Git Repository에서 받아 서비스 설치 작업 경로로 위치시킨다.  
 
-- Service Deployment Git Repository URL : https://github.com/PaaS-TA/service-deployment/tree/v5.1.22
+- Service Deployment Git Repository URL : https://github.com/PaaS-TA/service-deployment/tree/v5.1.25
 
 ```
 # Deployment 다운로드 파일 위치 경로 생성 및 설치 경로 이동
@@ -89,7 +89,7 @@ $ mkdir -p ~/workspace
 $ cd ~/workspace
 
 # Deployment 파일 다운로드
-$ git clone https://github.com/PaaS-TA/service-deployment.git -b v5.1.22
+$ git clone https://github.com/PaaS-TA/service-deployment.git -b v5.1.25
 ```
 
 ### <div id="2.4"/> 2.4. Deployment 파일 수정
@@ -165,7 +165,7 @@ Succeeded
 ```
 # STEMCELL
 stemcell_os: "ubuntu-jammy"                                     # stemcell os
-stemcell_version: "1.102"                                       # stemcell version
+stemcell_version: "1.181"                                       # stemcell version
 
 # NETWORK
 private_networks_name: "default"                                 # private network name
@@ -249,11 +249,11 @@ proxy/2adc060d-a30b-46bc-b5f7-a4c09db1b189                     running        z5
 Succeeded
 ```	
 
-## <div id='3'> 3. MySQL 연동 Sample Web App 설명  
+## <div id='3'> 3. MySQL 연동 Sample Web App 설명
 
 본 Sample App은 MySQL의 서비스를 Provision한 상태에서 PaaS-TA에 배포하면 MySQL서비스와 bind되어 사용할 수 있다.  
 
-### <div id='3.1'> 3.1. MySQL 서비스 브로커 등록  
+### <div id='3.1'> 3.1. MySQL 서비스 브로커 등록
 Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을 사용하기 위해서 먼저 MySQL 서비스 브로커를 등록해 주어야 한다.  
 서비스 브로커 등록시 PaaS-TA에서 서비스브로커를 등록할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
@@ -325,7 +325,7 @@ broker: mysql-service-broker
    Mysql-DB   Mysql-Plan2-100con   all
 ```  
 
-### <div id='3.2'> 3.2. Sample Web App 다운로드  
+### <div id='3.2'> 3.2. Sample Web App 다운로드
 
 Sample App은 PaaS-TA에 App으로 배포되며 App구동시 Bind 된 MySQL 서비스 연결 정보로 접속하여 초기 데이터를 생성하게 된다.    
 브라우져를 통해 App에 접속 후 "MYSQL 데이터 가져오기"를 통해 초기 생성된 데이터를 조회 할 수 있다.  
@@ -337,7 +337,7 @@ $ unzip paasta-service-samples-459dad9.zip
 $ cd paasta-service-samples/mysql  
 ```
 
-### <div id='3.3'> 3.3. PaaS-TA에서 서비스 신청  
+### <div id='3.3'> 3.3. PaaS-TA에서 서비스 신청
 Sample App에서 MySQL 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.  
 
 *참고: 서비스 신청시 PaaS-TA에서 서비스를 신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.  
@@ -385,7 +385,7 @@ name                      service    plan                 bound apps            
 mysql-service-instance    Mysql-DB   Mysql-Plan2-100con                         create succeeded
 ```  
 
-### <div id='3.4'> 3.4. Sample Web App 배포 및 MySQL바인드 확인   
+### <div id='3.4'> 3.4. Sample Web App 배포 및 MySQL바인드 확인
 서비스 신청이 완료되었으면 Sample Web App 에서는 생성된 서비스 인스턴스를 Bind 하여 App에서 MySQL 서비스를 이용한다.  
 *참고: 서비스 Bind 신청시 PaaS-TA에서 서비스 Bind신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.  
 
@@ -513,11 +513,11 @@ buildpacks:
 
 ![update_mysql_vsphere_34]  
 
-## <div id='4'> 4. MySQL Client 툴 접속  
+## <div id='4'> 4. MySQL Client 툴 접속
 
 Application에 바인딩 된 MySQL 서비스 연결정보는 Private IP로 구성되어 있기 때문에 MySQL Client 툴에서 직접 연결할수 없다. 따라서 MySQL Client 툴에서 SSH 터널, Proxy 터널 등을 제공하는 툴을 사용해서 연결하여야 한다. 본 가이드는 SSH 터널을 이용하여 연결 하는 방법을 제공하며 MySQL Client 툴로써는 오픈 소스인 HeidiSQL로 가이드한다. HeidiSQL 에서 접속하기 위해서 먼저 SSH 터널링 할수 있는 VM 인스턴스를 생성해야한다. 이 인스턴스는 SSH로 접속이 가능해야 하고 접속 후 Open PaaS 에 설치한 서비스팩에 Private IP 와 해당 포트로 접근이 가능하도록 시큐리티 그룹을 구성해야 한다. 이 부분은 vSphere관리자 및 OpenPaaS 운영자에게 문의하여 구성한다.  
 
-### <div id='4.1'> 4.1. HeidiSQL 설치 및 연결  
+### <div id='4.1'> 4.1. HeidiSQL 설치 및 연결
 
 HeidiSQL 프로그램은 무료로 사용할 수 있는 오픈소스 소프트웨어이다.  
 
